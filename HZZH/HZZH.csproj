@@ -1,0 +1,430 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EE3A24EC-102F-489B-90BC-62A0528A8E96}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HZZH</RootNamespace>
+    <AssemblyName>HZZH</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>发布\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>776d7818</NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Organization_16px_1186200_easyicon.net.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CSkin, Version=16.1.14.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\CSkin.dll</HintPath>
+    </Reference>
+    <Reference Include="halcondotnet">
+      <HintPath>..\..\新建文件夹\halcondotnet.dll</HintPath>
+    </Reference>
+    <Reference Include="HZZHController">
+      <HintPath>..\..\新建文件夹\HZZHController.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\新建文件夹\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Modbus">
+      <HintPath>..\..\新建文件夹\Modbus.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\VisionsysEx\Sqlite\Sqlite\bin\Debug\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="ProVision">
+      <HintPath>Dll\ProVision.dll</HintPath>
+    </Reference>
+    <Reference Include="SqliteNet">
+      <HintPath>..\..\新建文件夹\SqliteNet.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>..\..\新建文件夹\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Unme.Common">
+      <HintPath>..\..\新建文件夹\Unme.Common.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\PointLayout\DisplayLayoutPoint.cs" />
+    <Compile Include="Common\PointLayout\DrawPointLayout.cs" />
+    <Compile Include="Common\PointLayout\LayoutPoint.cs" />
+    <Compile Include="Common\PointLayout\LayoutPointEnumerable.cs" />
+    <Compile Include="Common\PointLayout\SelectFrame.cs" />
+    <Compile Include="Common\Tools\BytesConverter.cs" />
+    <Compile Include="Common\Tools\CreateProject.cs" />
+    <Compile Include="Common\Tools\Exception.cs" />
+    <Compile Include="Common\Tools\Functions.cs" />
+    <Compile Include="Common\Typedef\GlobalData.cs" />
+    <Compile Include="Common\Function\Axis.cs" />
+    <Compile Include="Common\Tools\IOEvent.cs" />
+    <Compile Include="Common\Tools\LogWrite.cs" />
+    <Compile Include="Common\Tools\MessageEvent.cs" />
+    <Compile Include="Common\Tools\PointArray.cs" />
+    <Compile Include="Common\Tools\Serialization.cs" />
+    <Compile Include="Common\Function\User.cs" />
+    <Compile Include="Common\License\AESHelper.cs" />
+    <Compile Include="Common\License\Api.cs" />
+    <Compile Include="Common\License\LicenseMsg.cs" />
+    <Compile Include="Common\License\SoftReg.cs" />
+    <Compile Include="Logic\LogicMain.cs" />
+    <Compile Include="Motion\API\VisionApi.cs" />
+    <Compile Include="Motion\API\LogicAPI.cs" />
+    <Compile Include="Motion\Config\AxisDef.cs" />
+    <Compile Include="Motion\Config\IO.cs" />
+    <Compile Include="Motion\Data\ProcessData.cs" />
+    <Compile Include="Motion\Data\SettingData.cs" />
+    <Compile Include="SYMVLightHeader.cs" />
+    <Compile Include="UI\DerivedControl\Form_UserInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DerivedControl\Form_UserInfo.designer.cs">
+      <DependentUpon>Form_UserInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DerivedControl\MyMsgBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DerivedControl\UserCtrlMsgListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\Config\Config.cs" />
+    <Compile Include="Common\Config\ConfigAlarm.cs" />
+    <Compile Include="Common\Config\ConfigAxis.cs" />
+    <Compile Include="Common\Config\ConfigInput.cs" />
+    <Compile Include="Common\Config\ConfigOutput.cs" />
+    <Compile Include="Common\Config\ConfigSystem.cs" />
+    <Compile Include="Common\Config\ConfigUser.cs" />
+    <Compile Include="Common\Config\HandleConfig.cs" />
+    <Compile Include="Motion\MCU\BoardCtrllerManager.cs" />
+    <Compile Include="Motion\MCU\BoardDriver_HZZH.cs" />
+    <Compile Include="Common\Tools\WriteLog.cs" />
+    <Compile Include="Motion\Config\Address.cs" />
+    <Compile Include="UI\DerivedControl\Form_Log.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DerivedControl\Form_Log.Designer.cs">
+      <DependentUpon>Form_Log.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DerivedControl\Form_Screen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DerivedControl\Form_Screen.designer.cs">
+      <DependentUpon>Form_Screen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Thread\Thread.cs" />
+    <Compile Include="Motion\FSM\FSM.cs" />
+    <Compile Include="Common\Thread\Process.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\DerivedControl\Form_Alarm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DerivedControl\Form_Alarm.designer.cs">
+      <DependentUpon>Form_Alarm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DerivedControl\Form_ChangePwd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DerivedControl\Form_ChangePwd.designer.cs">
+      <DependentUpon>Form_ChangePwd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DerivedControl\Form_InputOutput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DerivedControl\Form_InputOutput.designer.cs">
+      <DependentUpon>Form_InputOutput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DerivedControl\Form_MachinePrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DerivedControl\Form_MachinePrm.designer.cs">
+      <DependentUpon>Form_MachinePrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DerivedControl\Form_Jog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DerivedControl\Form_Jog.designer.cs">
+      <DependentUpon>Form_Jog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DerivedControl\Form_UserLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DerivedControl\Form_UserLogin.designer.cs">
+      <DependentUpon>Form_UserLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DerivedControl\Form_ThreePArray.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DerivedControl\Form_ThreePArray.designer.cs">
+      <DependentUpon>Form_ThreePArray.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DerivedControl\Form_TwoPArray.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DerivedControl\Form_TwoPArray.designer.cs">
+      <DependentUpon>Form_TwoPArray.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Form1_Layout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Form1_Layout.Designer.cs">
+      <DependentUpon>Form1_Layout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Form_Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Form_Main.designer.cs">
+      <DependentUpon>Form_Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Form_SolderSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Form_SolderSet.designer.cs">
+      <DependentUpon>Form_SolderSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vision\Algorithm\Circle.cs" />
+    <Compile Include="Vision\Config\Config.cs" />
+    <Compile Include="Vision\Config\ConfigAPIHandle.cs" />
+    <Compile Include="Vision\Config\ConfigCamera.cs" />
+    <Compile Include="Vision\Config\ConfigManager.cs" />
+    <Compile Include="Vision\Config\ConfigVisionPara.cs" />
+    <Compile Include="Vision\Device\Camera.cs" />
+    <Compile Include="Vision\Device\CtrllerObj.cs" />
+    <Compile Include="Vision\Device\Device.cs" />
+    <Compile Include="Vision\Device\DeviceManager.cs" />
+    <Compile Include="Vision\Device\Device_Camera.cs" />
+    <Compile Include="Vision\Driver\APIHandle.cs" />
+    <Compile Include="Vision\Driver\CameraDriver_Halcon.cs" />
+    <Compile Include="Vision\Driver\CameraDriver_MindVision.cs" />
+    <Compile Include="Vision\Driver\Driver.cs" />
+    <Compile Include="Vision\Driver\MVSDK.cs" />
+    <Compile Include="Vision\Logic\MotionPlatform.cs" />
+    <Compile Include="Vision\Logic\VisionProject.cs" />
+    <Compile Include="Vision\Logic\VisionTool.cs" />
+    <Compile Include="Vision\Tool\CalibrationAssistant\CalibDataPoint.cs" />
+    <Compile Include="Vision\Tool\CalibrationAssistant\CalibPointToPoint.cs" />
+    <Compile Include="Vision\Tool\CalibrationAssistant\CalibPPControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vision\Tool\CalibrationAssistant\CalibPPControl.designer.cs">
+      <DependentUpon>CalibPPControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vision\Tool\CalibrationAssistant\CalibPPSetting.cs" />
+    <Compile Include="Vision\Tool\CalibrationAssistant\CalibSimilarity.cs" />
+    <Compile Include="Vision\Tool\CalibrationAssistant\IPlatformMove.cs" />
+    <Compile Include="Vision\Tool\Frm_HandMagnification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vision\Tool\Frm_HandMagnification.designer.cs">
+      <DependentUpon>Frm_HandMagnification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vision\Tool\Frm_MaskEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vision\Tool\Frm_MaskEditor.designer.cs">
+      <DependentUpon>Frm_MaskEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vision\Tool\IniFileOperate.cs" />
+    <Compile Include="Vision\Tool\InteractiveROI\GraphicContext.cs" />
+    <Compile Include="Vision\Tool\InteractiveROI\HObjectEntry.cs" />
+    <Compile Include="Vision\Tool\InteractiveROI\HWndCtrller.cs" />
+    <Compile Include="Vision\Tool\InteractiveROI\HWndCtrllerEx.cs" />
+    <Compile Include="Vision\Tool\InteractiveROI\ROI.cs" />
+    <Compile Include="Vision\Tool\InteractiveROI\ROIAnnulus.cs" />
+    <Compile Include="Vision\Tool\InteractiveROI\ROICircle.cs" />
+    <Compile Include="Vision\Tool\InteractiveROI\ROICircularArc.cs" />
+    <Compile Include="Vision\Tool\InteractiveROI\ROICross.cs" />
+    <Compile Include="Vision\Tool\InteractiveROI\ROICtrller.cs" />
+    <Compile Include="Vision\Tool\InteractiveROI\ROILine.cs" />
+    <Compile Include="Vision\Tool\InteractiveROI\ROIPolygon.cs" />
+    <Compile Include="Vision\Tool\InteractiveROI\ROIRectangle1.cs" />
+    <Compile Include="Vision\Tool\InteractiveROI\ROIRectangle2.cs" />
+    <Compile Include="Vision\Tool\InteractiveROI\ROIRectangle2_Fix.cs" />
+    <Compile Include="Vision\Tool\Miscs.cs" />
+    <Compile Include="Vision\Tool\Model-NCC\Frm_NccModelControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vision\Tool\Model-NCC\Frm_NccModelControl.designer.cs">
+      <DependentUpon>Frm_NccModelControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vision\Tool\Model-NCC\NCCModel.cs" />
+    <Compile Include="Vision\Tool\Model-NCC\NCCParam.cs" />
+    <Compile Include="Vision\Tool\Model-Shape\Frm_ShapeModelControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vision\Tool\Model-Shape\Frm_ShapeModelControl.designer.cs">
+      <DependentUpon>Frm_ShapeModelControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vision\Tool\Model-Shape\ShapeModel.cs" />
+    <Compile Include="Vision\Tool\Model-Shape\ShapeParam.cs" />
+    <Compile Include="Vision\Tool\ParallelLines.cs" />
+    <Compile Include="Vision\Tool\PictureZoom.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Vision\Tool\RotateCenter\NozzleRotateCenter.cs" />
+    <Compile Include="Vision\Tool\Serialization.cs" />
+    <EmbeddedResource Include="UI\DerivedControl\Form_Log.resx">
+      <DependentUpon>Form_Log.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DerivedControl\Form_Screen.resx">
+      <DependentUpon>Form_Screen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="UI\DerivedControl\Form_Alarm.resx">
+      <DependentUpon>Form_Alarm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DerivedControl\Form_ChangePwd.resx">
+      <DependentUpon>Form_ChangePwd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DerivedControl\Form_InputOutput.resx">
+      <DependentUpon>Form_InputOutput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DerivedControl\Form_MachinePrm.resx">
+      <DependentUpon>Form_MachinePrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DerivedControl\Form_Jog.resx">
+      <DependentUpon>Form_Jog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DerivedControl\Form_UserInfo.resx">
+      <DependentUpon>Form_UserInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DerivedControl\Form_UserLogin.resx">
+      <DependentUpon>Form_UserLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DerivedControl\Form_ThreePArray.resx">
+      <DependentUpon>Form_ThreePArray.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DerivedControl\Form_TwoPArray.resx">
+      <DependentUpon>Form_TwoPArray.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DerivedControl\MyMsgBox.resx">
+      <DependentUpon>MyMsgBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Form1_Layout.resx">
+      <DependentUpon>Form1_Layout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Form_Main.resx">
+      <DependentUpon>Form_Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Form_SolderSet.resx">
+      <DependentUpon>Form_SolderSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vision\Tool\CalibrationAssistant\CalibPPControl.resx">
+      <DependentUpon>CalibPPControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vision\Tool\Frm_HandMagnification.resx">
+      <DependentUpon>Frm_HandMagnification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vision\Tool\Frm_MaskEditor.resx">
+      <DependentUpon>Frm_MaskEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vision\Tool\Model-NCC\Frm_NccModelControl.resx">
+      <DependentUpon>Frm_NccModelControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vision\Tool\Model-Shape\Frm_ShapeModelControl.resx">
+      <DependentUpon>Frm_ShapeModelControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Vision\Parameter\" />
+    <Folder Include="Vision\Tool\MatchAssistant\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Organization_16px_1186200_easyicon.net.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
