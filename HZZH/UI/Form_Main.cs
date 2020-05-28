@@ -302,6 +302,11 @@ namespace UI
             VisionProject.Instance.SetDisplayWindow(0, this.hWindowControl1);
             VisionProject.Instance.SetDisplayWindow(1, this.hWindowControl2);
             VisionProject.Instance.SetDisplayWindow(2, this.hWindowControl0);
+            VisionProject.Instance.SetDisplayWindow(3, this.hWindowControl3);
+            VisionProject.Instance.SetDisplayWindow(4, this.hWindowControl4);
+            VisionProject.Instance.SetDisplayWindow(5, this.hWindowControl5);
+            VisionProject.Instance.SetDisplayWindow(6, this.hWindowControl6);
+
             toolStripButton18.Click += (s, ev) => { VisionProject.Instance.CamState[0] = false; VisionProject.Instance.CameraSoft(0); };
             toolStripButton32.Click += (s, ev) => { VisionProject.Instance.CamState[1] = false; VisionProject.Instance.CameraSoft(1); };
             触发相机.Click += (s, ev) => { VisionProject.Instance.CamState[2] = false; VisionProject.Instance.CameraSoft(2); };
@@ -768,7 +773,7 @@ namespace UI
                 userCtrlMsgListView1.AddUserMsg(str, "报警");
             }
 
-            #region 
+            #region 显示工作状态
 
             if(RunProcess.LogicTask.WorkTask[0].execute == 1)
                 panelL.BackColor = Color.Green;

@@ -145,6 +145,9 @@ namespace Logic
             FsmStaDef stadef = FSM.GetStatus();
             if (stadef == FsmStaDef.INIT || stadef == FsmStaDef.SCRAM || stadef == FsmStaDef.RESET)
             {
+                if(LogicTask.WorkTask[0].execute == 1|| LogicTask.WorkTask[1].execute == 1)
+                    Tools.WriteLog.AddLog("设备切换到：" + stadef.ToString()+",运行动作清零");
+
                 LogicTask = new LogicTaskDef();
                 PolishBusy = false;
             }
@@ -189,6 +192,7 @@ namespace Logic
                     if (LogicTask.PolishTask[my.ID].execute == 0 && LogicTask.SolderTask[my.ID].execute == 0)
                     {
                         LogicTask.PolishTask[my.ID].execute = 1;
+                        Tools.WriteLog.AddLog(my.ID.ToString() + "边打磨");
                         my.step = 2;
                     }
                     break;
@@ -196,6 +200,7 @@ namespace Logic
                     if (LogicTask.PolishTask[my.ID].execute == 0)
                     {
                         LogicTask.SolderTask[my.ID].execute = 1;
+                        Tools.WriteLog.AddLog(my.ID.ToString() + "边上锡");
                         my.step = 3;
                     }
                     break;
@@ -206,6 +211,8 @@ namespace Logic
                         TimeCount[my.ID] = mytime_end[my.ID] - mytime_start[my.ID];
                         time[my.ID] = TimeCount[my.ID].TotalSeconds;//记录焊点时间
                         FormMain.uph_list.Add(new uphDef((float)time[my.ID], my.ID));//显示
+
+                        Tools.WriteLog.AddLog(my.ID.ToString() + "边工作完结，耗时："+ time[my.ID].ToString());
 
                         my.End();
                     }

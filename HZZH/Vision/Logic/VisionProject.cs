@@ -81,7 +81,7 @@ namespace HZZH.Vision.Logic
         /// <summary>
         /// 使用4个显示窗口
         /// </summary>
-        private HWindowControl[] windowctrl = new HWindowControl[4];
+        private HWindowControl[] windowctrl = new HWindowControl[10];
 
 
         /// <summary>
@@ -143,7 +143,7 @@ namespace HZZH.Vision.Logic
                 for (int i = 0; i < DevCam.CamHandleList.Values.Count; i++)
                 {
                     DevCam.CamHandleList.Values[i].Close();
-                }  
+                }
             }
             Log("关闭相机");
 
@@ -152,7 +152,7 @@ namespace HZZH.Vision.Logic
         private void Log(string log)
         {
 #if DEBUG
-             Tools.WriteLog.AddLog(string.Format("[{0}]  \t{1}", this.GetType().Name, log));
+            Tools.WriteLog.AddLog(string.Format("[{0}]  \t{1}", this.GetType().Name, log));
 #endif
         }
 
@@ -569,7 +569,7 @@ namespace HZZH.Vision.Logic
                 if (Calib[i] == null)
                 {
                     Calib[i] = new CalibPointToPoint();
-                    Log("初始化时候标定"+i+"无数据，重新生成默认值");
+                    Log("初始化时候标定" + i + "无数据，重新生成默认值");
                 }
                 calibrateSetting[i] = new CalibPPSetting(Calib[i]);
             }
@@ -639,7 +639,7 @@ namespace HZZH.Vision.Logic
                 {
                     global::Vision.Tool.Serialization.SaveToXml(Calib[i], @"AppRequired\Calib" + i + ".Xml", true);
                 }
-                Log("标定数据"+i+"保存完成");
+                Log("标定数据" + i + "保存完成");
             }
         }
 
@@ -658,7 +658,7 @@ namespace HZZH.Vision.Logic
 
 
         #region  用于显示Halcon数据窗口
-        private HWndCtrller[] hWndCtrller = new HWndCtrller[6];
+        private HWndCtrller[] hWndCtrller = new HWndCtrller[10];
 
         private void DisplayHobject(HWndCtrller hWndCtrller, HObject hObject)
         {
@@ -867,7 +867,24 @@ namespace HZZH.Vision.Logic
 
         }
 
+        /// <summary>
+        /// 设置halcon窗口的字体的大小
+        /// </summary>
+        /// <param name="hWindowIndex"></param>
+        /// <param name="size"></param>
+        private void SetWindowFontSize(int hWindowIndex, int size)
+        {
+            try
+            {
+                if (windowctrl[hWindowIndex] != null)
+                {
+                    string font = string.Format("-Arial-{0}-*-1-*-*-1-ANSI_CHARSET-", size);
+                    HOperatorSet.SetFont(windowctrl[hWindowIndex].HalconWindow, font);
 
+                }
+            }
+            catch { }
+        }
         #endregion
 
 
@@ -876,8 +893,8 @@ namespace HZZH.Vision.Logic
 
         private void Camera_ImageGrabbedEvt(Camera cam, HObject hoImage)
         {
-           HObject _hoImage = GetCurrentImage(cam.Number);
-           if (_hoImage != null && _hoImage.IsInitialized() && hWndCtrller[cam.Number] != null)
+            HObject _hoImage = GetCurrentImage(cam.Number);
+            if (_hoImage != null && _hoImage.IsInitialized() && hWndCtrller[cam.Number] != null)
             {
                 HTuple imgWidth, imgHeight;
                 HOperatorSet.GetImageSize(_hoImage, out imgWidth, out imgHeight);
@@ -917,7 +934,9 @@ namespace HZZH.Vision.Logic
             // 显示
             ShapeMatchResult match = shape.OutputResult;
             DisplayModelResult(hWndCtrller[0], shape);
-
+            SetWindowFontSize(3, match.Count > 0 ? 40 : 120);
+            DisplayHobject(hWndCtrller[3], shape.InputImg);
+            DisplayModelResult(hWndCtrller[3], shape);
 
             // 结果转换
             VisionResult result = new VisionResult();
@@ -996,7 +1015,9 @@ namespace HZZH.Vision.Logic
             // 显示
             ShapeMatchResult match = shape.OutputResult;
             DisplayModelResult(hWndCtrller[1], shape);
-
+            SetWindowFontSize(5, match.Count > 0 ? 40 : 120);
+            DisplayHobject(hWndCtrller[5], shape.InputImg);
+            DisplayModelResult(hWndCtrller[5], shape);
 
             // 结果转换
             VisionResult result = new VisionResult();
@@ -1074,6 +1095,9 @@ namespace HZZH.Vision.Logic
             // 显示
             ShapeMatchResult match = shape.OutputResult;
             DisplayModelResult(hWndCtrller[2], shape);
+            SetWindowFontSize(4, match.Count > 0 ? 40 : 120);
+            DisplayHobject(hWndCtrller[4], shape.InputImg);
+            DisplayModelResult(hWndCtrller[4], shape);
 
             // 结果转换
             for (int n = 0; n < match.Count; n++)
@@ -1154,6 +1178,9 @@ namespace HZZH.Vision.Logic
             // 显示
             ShapeMatchResult match = shape.OutputResult;
             DisplayModelResult(hWndCtrller[2], shape);
+            SetWindowFontSize(6, match.Count > 0 ? 40 : 120);
+            DisplayHobject(hWndCtrller[6], shape.InputImg);
+            DisplayModelResult(hWndCtrller[6], shape);
 
             // 结果转换
             for (int n = 0; n < match.Count; n++)
@@ -1242,7 +1269,7 @@ namespace HZZH.Vision.Logic
 
                 // 结果转换
                 ShapeMatchResult match = shape.OutputResult;
-                if(match.Count>0)
+                if (match.Count > 0)
                 {
                     int imgWidth, imgHeight;
                     image.GetImageSize(out imgWidth, out imgHeight);
@@ -1435,7 +1462,7 @@ namespace HZZH.Vision.Logic
 
         private bool creatingModel = false;
 
-        private void SetTempleteModel(ShapeModel shape,HImage img)
+        private void SetTempleteModel(ShapeModel shape, HImage img)
         {
             creatingModel = true;
             if (img != null)
@@ -1460,8 +1487,8 @@ namespace HZZH.Vision.Logic
                     nCC.InputImg.Dispose();
                 }
                 else
-                { 
-                
+                {
+
                 }
                 nCC.InputImg = img;
                 nCC.ShowSetting();
@@ -1472,7 +1499,7 @@ namespace HZZH.Vision.Logic
         /// <summary>
         /// 设置焊锡左模板
         /// </summary>
-        public void SolderLeftShape(int index,HImage img=null)
+        public void SolderLeftShape(int index, HImage img = null)
         {
             if (img == null) img = GetCurrentImage(0);
             SetTempleteModel(VisionTools.SolderLeft[index].Shape, img);
@@ -1509,7 +1536,7 @@ namespace HZZH.Vision.Logic
         /// <returns></returns>
         public PointF GetSolderLeftShapeDeviation(int index)
         {
-            return VisionTools.SolderLeft[index].GetShapeDeviation(Calib[0]); 
+            return VisionTools.SolderLeft[index].GetShapeDeviation(Calib[0]);
         }
         public PointF GetSolderRightShapeDeviation(int index)
         {
@@ -1574,7 +1601,7 @@ namespace HZZH.Vision.Logic
     }
 
 
-   
+
 
 
 
