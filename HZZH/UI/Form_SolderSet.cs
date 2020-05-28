@@ -86,13 +86,14 @@ namespace UI
                     _polishPos = FormMain.RunProcess.LogicData.vData.vPolishDatasR;
                     break;
             }
-            
+
 
             DispalyModelCombox();
 
+
+            button5.Enabled = button9.Enabled = button8.Enabled = false;
             if (comboBox1.Items.Count == 0)
             {
-                button5.Enabled = button6.Enabled = button9.Enabled = button8.Enabled = false;
                 button2_Click(null, EventArgs.Empty);
             }
 
@@ -108,7 +109,7 @@ namespace UI
 
         private void propertyGridShow(int index)
         {
-            if(_id== LEFT_POLISH || _id == RIGHT_POLISH)
+            if (_id == LEFT_POLISH || _id == RIGHT_POLISH)
             {
                 propertyGrid1.SelectedObject = _polishPos[index].polishDef;
                 LoadtreeView1(_polishPos[index].pos);
@@ -136,7 +137,6 @@ namespace UI
                 if (comboBox1.Items.Count > 0)
                 {
 
-                    button5.Enabled = button6.Enabled = button9.Enabled = button8.Enabled = true;
                     comboBox1.SelectedIndex = 0;
                     // propertyGridShow(0);
 
@@ -212,7 +212,7 @@ namespace UI
         bool _mouseDown = false;
         private void HWindowControl0_HMouseDown(object sender, HalconDotNet.HMouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left && crossCollection!=null)
+            if (e.Button == MouseButtons.Left && crossCollection != null)
             {
                 crossCollection.SetCrossActive(e.X, e.Y);
                 Repaint();
@@ -225,13 +225,13 @@ namespace UI
         {
             hWndCtrller.Repaint();
         }
-        
+
         Point point = new Point();
 
         private void button5_Click(object sender, EventArgs e)
         {
             int index = comboBox1.SelectedIndex;
-            
+
             if (index >= 0)
             {
                 Common.PointF4 f4 = new Common.PointF4();
@@ -289,7 +289,7 @@ namespace UI
                 }
             }
 
-                ///add
+            ///add
 
             //    operaCross = new Cross();
             //crossCollection.SetCrossActive(99999, 99999);
@@ -326,9 +326,9 @@ namespace UI
             }
         }
 
-       
 
-        
+
+
 
         private void button6_Click(object sender, EventArgs e)
         {
@@ -372,7 +372,7 @@ namespace UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
             button5.Enabled = button9.Enabled = false;
             locationShapes.Add(new LocationShapePoint());
 
@@ -491,6 +491,8 @@ namespace UI
                         int i = this.treeView1.Nodes.Count;
                         this.treeView1.SelectedNode = treeView1.Nodes[0];
                     }
+
+                    button5.Enabled = button9.Enabled = button8.Enabled = false;
                 }
                 Repaint();
             }
@@ -500,7 +502,7 @@ namespace UI
         {
             button7.Enabled = true;
             int index = comboBox1.SelectedIndex;
-            if (index >= 0 )
+            if (index >= 0)
             {
 
                 switch (_id)
@@ -523,56 +525,61 @@ namespace UI
 
         private void button7_Click(object sender, EventArgs e)
         {
-            button2_Click(null, null); 
-            Thread.Sleep(200);                    
+            button2_Click(null, null);
+            Thread.Sleep(200);
             PointF4 f4 = new PointF4();
-            f4.X = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxX1];
-            f4.Y = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxY1];
             PointF? point = null;
             switch (_id)
             {
                 case LEFT_SOLDER:
                     //VisionProject.Instance.LocateSolderLeftShape();
+                    f4.X = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxX1];
+                    f4.Y = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxY1];
                     point = VisionProject.Instance.LocateSolderLeftShape(hImage.Clone(), OperShapeIndex, this.hWndCtrller);
                     Thread.Sleep(100);
-                    if(point!=null)
+                    if (point != null)
                     {
                         _SolderPos[OperShapeIndex].Vpos.X = f4.X + point.Value.X;
                         _SolderPos[OperShapeIndex].Vpos.Y = f4.Y + point.Value.Y;
 
-                        Tools.WriteLog.AddLog(DateTime.Now.ToString() + "拍照识别偏差 X;" + point.Value.X.ToString() + "Y;" + point.Value.Y.ToString() 
-                            +"基点坐标X:" + _SolderPos[OperShapeIndex].Vpos.X.ToString ()+"Y:"+ _SolderPos[OperShapeIndex].Vpos.Y.ToString());
+                        Tools.WriteLog.AddLog(DateTime.Now.ToString() + "拍照识别偏差 X;" + point.Value.X.ToString() + "Y;" + point.Value.Y.ToString()
+                            + "基点坐标X:" + _SolderPos[OperShapeIndex].Vpos.X.ToString() + "Y:" + _SolderPos[OperShapeIndex].Vpos.Y.ToString());
 
 
                         string info = "X偏移" + point.Value.X.ToString("f2") + "，Y偏移" + point.Value.Y.ToString("f2") + ",是否移动到中心点？";
                         if (MessageBox.Show(info, "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                         {
-                            while (!FormMain.RunProcess.LogicAPI.PlatformMove[0].exe((int)AxisDef.AxX1, ((int)AxisDef.AxY1), (int)AxisDef.AxZ1, (int)AxisDef.AxR1, ((int)AxisDef.AxT1), f4.X, f4.Y, FormMain.RunProcess.LogicData.slaverData.basics.Safe_ZL, 0, 2, 0))
+                            while (!FormMain.RunProcess.LogicAPI.PlatformMove[0].exe((int)AxisDef.AxX1, ((int)AxisDef.AxY1), (int)AxisDef.AxZ1, (int)AxisDef.AxR1, ((int)AxisDef.AxT1), _SolderPos[OperShapeIndex].Vpos.X, _SolderPos[OperShapeIndex].Vpos.Y, FormMain.RunProcess.LogicData.slaverData.basics.Safe_ZL, 0, 2, 0))
                             {
                                 Thread.Sleep(1);
                             }
                         }
                         button5.Enabled = button9.Enabled = button8.Enabled = true;
                     }
-                    else 
+                    else
                     {
                         MessageBox.Show("基准点设置失败");
+                        button5.Enabled = button9.Enabled = button8.Enabled = false;
                     }
                     break;
                 case RIGHT_SOLSER:
                     //VisionProject.Instance.LocateSolderRightShape();
+                    f4.X = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxX2];
+                    f4.Y = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxY2];
                     point = VisionProject.Instance.LocateSolderRightShape(hImage.Clone(), OperShapeIndex, this.hWndCtrller);
                     Thread.Sleep(100);
                     if (point != null)
                     {
 
                         _SolderPos[OperShapeIndex].Vpos.X = f4.X + point.Value.X;
-                        _SolderPos[OperShapeIndex].Vpos.Y = f4.Y + point.Value.Y; 
+                        _SolderPos[OperShapeIndex].Vpos.Y = f4.Y + point.Value.Y;
+                        Tools.WriteLog.AddLog(DateTime.Now.ToString() + "拍照识别偏差 X;" + point.Value.X.ToString() + "Y;" + point.Value.Y.ToString()
+                            + "基点坐标X:" + _SolderPos[OperShapeIndex].Vpos.X.ToString() + "Y:" + _SolderPos[OperShapeIndex].Vpos.Y.ToString());
 
                         string info = "X偏移" + point.Value.X.ToString("f2") + "，Y偏移" + point.Value.Y.ToString("f2") + ",是否移动到中心点？";
                         if (MessageBox.Show(info, "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                         {
-                            while (!FormMain.RunProcess.LogicAPI.PlatformMove[0].exe((int)AxisDef.AxX2, ((int)AxisDef.AxY2), (int)AxisDef.AxZ2, (int)AxisDef.AxR2, ((int)AxisDef.AxT2), f4.X, f4.Y, FormMain.RunProcess.LogicData.slaverData.basics.Safe_ZL, 0, 2, 0))
+                            while (!FormMain.RunProcess.LogicAPI.PlatformMove[0].exe((int)AxisDef.AxX2, ((int)AxisDef.AxY2), (int)AxisDef.AxZ2, (int)AxisDef.AxR2, ((int)AxisDef.AxT2), _SolderPos[OperShapeIndex].Vpos.X, _SolderPos[OperShapeIndex].Vpos.Y, FormMain.RunProcess.LogicData.slaverData.basics.Safe_ZL, 0, 2, 0))
                             {
                                 Thread.Sleep(1);
                             }
@@ -582,21 +589,27 @@ namespace UI
                     else
                     {
                         MessageBox.Show("基准点设置失败");
+                        button5.Enabled = button9.Enabled = button8.Enabled = false;
                     }
                     break;
                 case LEFT_POLISH:
                     //VisionProject.Instance.LocatePolishLeftShape();
+                    f4.X = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxX3];
+                    f4.Y = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxY1];
                     point = VisionProject.Instance.LocatePolishLeftShape(hImage.Clone(), OperShapeIndex, this.hWndCtrller);
                     Thread.Sleep(100);
                     if (point != null)
                     {
-                        _SolderPos[OperShapeIndex].Vpos.X = f4.X + point.Value.X;
-                        _SolderPos[OperShapeIndex].Vpos.Y = f4.Y + point.Value.Y; 
+                        _polishPos[OperShapeIndex].Vpos.X = f4.X + point.Value.X;
+                        _polishPos[OperShapeIndex].Vpos.Y = f4.Y + point.Value.Y;
+
+                        Tools.WriteLog.AddLog(DateTime.Now.ToString() + "拍照识别偏差 X;" + point.Value.X.ToString() + "Y;" + point.Value.Y.ToString()
+                            + "基点坐标X:" + _polishPos[OperShapeIndex].Vpos.X.ToString() + "Y:" + _polishPos[OperShapeIndex].Vpos.Y.ToString());
 
                         string info = "X偏移" + point.Value.X.ToString("f2") + "，Y偏移" + point.Value.Y.ToString("f2") + ",是否移动到中心点？";
                         if (MessageBox.Show(info, "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                         {
-                            while (!FormMain.RunProcess.LogicAPI.PlatformMove[0].exe((int)AxisDef.AxX3, ((int)AxisDef.AxY1), (int)AxisDef.AxZ3, (int)AxisDef.AxR3, ((int)AxisDef.AxT1), f4.X, f4.Y, FormMain.RunProcess.LogicData.slaverData.basics.Safe_ZL, 0, 2, 0))
+                            while (!FormMain.RunProcess.LogicAPI.PlatformMove[0].exe((int)AxisDef.AxX3, ((int)AxisDef.AxY1), (int)AxisDef.AxZ3, (int)AxisDef.AxR3, ((int)AxisDef.AxT1), _polishPos[OperShapeIndex].Vpos.X, _polishPos[OperShapeIndex].Vpos.Y, FormMain.RunProcess.LogicData.slaverData.basics.Safe_ZL, 0, 2, 0))
                             {
                                 Thread.Sleep(1);
                             }
@@ -606,21 +619,26 @@ namespace UI
                     else
                     {
                         MessageBox.Show("基准点设置失败");
+                        button5.Enabled = button9.Enabled = button8.Enabled = false;
                     }
                     break;
                 case RIGHT_POLISH:
                     //VisionProject.Instance.LocatePolishRightShape();
+                    f4.X = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxX3];
+                    f4.Y = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxY2];
                     point = VisionProject.Instance.LocatePolishRightShape(hImage.Clone(), OperShapeIndex, this.hWndCtrller);
                     Thread.Sleep(100);
                     if (point != null)
                     {
-                        _SolderPos[OperShapeIndex].Vpos.X = f4.X + point.Value.X;
-                        _SolderPos[OperShapeIndex].Vpos.Y = f4.Y + point.Value.Y; 
+                        _polishPos[OperShapeIndex].Vpos.X = f4.X + point.Value.X;
+                        _polishPos[OperShapeIndex].Vpos.Y = f4.Y + point.Value.Y;
+                        Tools.WriteLog.AddLog(DateTime.Now.ToString() + "拍照识别偏差 X;" + point.Value.X.ToString() + "Y;" + point.Value.Y.ToString()
+                            + "基点坐标X:" + _polishPos[OperShapeIndex].Vpos.X.ToString() + "Y:" + _polishPos[OperShapeIndex].Vpos.Y.ToString());
 
                         string info = "X偏移" + point.Value.X.ToString("f2") + "，Y偏移" + point.Value.Y.ToString("f2") + ",是否移动到中心点？";
                         if (MessageBox.Show(info, "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                         {
-                            while (!FormMain.RunProcess.LogicAPI.PlatformMove[0].exe((int)AxisDef.AxX3, ((int)AxisDef.AxY2), (int)AxisDef.AxZ3, (int)AxisDef.AxR3, (int)AxisDef.AxT2, f4.X, f4.Y, FormMain.RunProcess.LogicData.slaverData.basics.Safe_ZL, 0, 2, 0))
+                            while (!FormMain.RunProcess.LogicAPI.PlatformMove[0].exe((int)AxisDef.AxX3, ((int)AxisDef.AxY2), (int)AxisDef.AxZ3, (int)AxisDef.AxR3, (int)AxisDef.AxT2, _polishPos[OperShapeIndex].Vpos.X, _polishPos[OperShapeIndex].Vpos.Y, FormMain.RunProcess.LogicData.slaverData.basics.Safe_ZL, 0, 2, 0))
                             {
                                 Thread.Sleep(1);
                             }
@@ -630,6 +648,7 @@ namespace UI
                     else
                     {
                         MessageBox.Show("基准点设置失败");
+                        button5.Enabled = button9.Enabled = button8.Enabled = false;
                     }
                     break;
             }
@@ -667,7 +686,7 @@ namespace UI
                 hWndCtrller.AddIconicVar(hImage.Clone());
                 Repaint();
             }
-           
+
         }
 
 
@@ -725,13 +744,13 @@ namespace UI
         private void button10_Click(object sender, EventArgs e)
         {
 
-            if(MessageBox.Show("是否将当前位置设置为基准点？","提示",MessageBoxButtons.OKCancel,MessageBoxIcon.Information) == DialogResult.Cancel)
-            return ;
-                
+            if (MessageBox.Show("是否将当前位置设置为基准点？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.Cancel)
+                return;
+
             int index = comboBox1.SelectedIndex;
             PointF2 f2 = new PointF2();
             PointF point = new PointF();
-            
+
             switch (_id)
             {
                 case LEFT_SOLDER:
@@ -812,100 +831,100 @@ namespace UI
                     f4.Y = _SolderPos[index].pos[RowCount].Y + _SolderPos[index].Vpos.Y;
                     f4.Z = _SolderPos[index].pos[RowCount].Z;
                     f4.R = _SolderPos[index].pos[RowCount].R;
-                    data = MessageBox.Show("定位到焊点，坐标X：" + f4.X.ToString () +"；Y:"+ f4.Y.ToString() + "；Z:" + f4.Z.ToString() + "；R:" + f4.R.ToString() +
-                        "\n\r\n\r是：焊头下降到焊点\n\r\n\r否：焊头到焊点上方\n\r\n\r取消：不移动", "提示", MessageBoxButtons.YesNoCancel);
-                    if (data == DialogResult.Yes)
-                    {
-                        while (!FormMain.RunProcess.LogicAPI.PlatformMove[0].exe((int)AxisDef.AxX1, ((int)AxisDef.AxY1),
-                        (int)AxisDef.AxZ1, (int)AxisDef.AxR1, ((int)AxisDef.AxT1), f4.X, f4.Y, f4.Z, f4.R, 2, 0))
-                        {
-                            Thread.Sleep(1);
-                        }
-                    }
-                    else if(data == DialogResult.No)
-                    {
-                        while (!FormMain.RunProcess.LogicAPI.PlatformMove[0].exe((int)AxisDef.AxX1, ((int)AxisDef.AxY1),
+
+                    Tools.WriteLog.AddLog(DateTime.Now.ToString() + "焊锡左X;" + f4.X.ToString() + "Y：" + f4.Y.ToString() + "Z：" + f4.Z.ToString() + "R：" + f4.R.ToString() + "基点X：" + _SolderPos[index].Vpos.X.ToString() + "Y:" + _SolderPos[index].Vpos.Y.ToString());
+
+                    while (!FormMain.RunProcess.LogicAPI.PlatformMove[0].exe((int)AxisDef.AxX1, ((int)AxisDef.AxY1),
                         (int)AxisDef.AxZ1, (int)AxisDef.AxR1, ((int)AxisDef.AxT1), f4.X, f4.Y, FormMain.RunProcess.LogicData.slaverData.basics.Safe_ZL, f4.R, 2, 0))
-                        {
-                            Thread.Sleep(1);
-                        }
+                    {
+                        Thread.Sleep(1);
                     }
+                    Thread.Sleep(100);
+                    while (!(FormMain.RunProcess.LogicAPI.PlatformMove[0].sta() && FormMain.RunProcess.LogicAPI.PlatformMove[0].start != 1))
+                    {
+                        Thread.Sleep(1);
+                    }
+
+                    if (MessageBox.Show("是否Z轴下降到焊点", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        FormMain.RunProcess.movedriverZm.MoveAbs((int)AxisDef.AxZ1, FormMain.RunProcess.LogicData.slaverData.basics.TeachSpeedL, f4.Z);
+                    }
+
                     break;
                 case RIGHT_SOLSER:
                     f4.X = _SolderPos[index].pos[RowCount].X + _SolderPos[index].Vpos.X;
                     f4.Y = _SolderPos[index].pos[RowCount].Y + _SolderPos[index].Vpos.Y;
                     f4.Z = _SolderPos[index].pos[RowCount].Z;
                     f4.R = _SolderPos[index].pos[RowCount].R;
-                    data = MessageBox.Show("定位到焊点，坐标X：" + f4.X.ToString() + "；Y:" + f4.Y.ToString() + "；Z:" + f4.Z.ToString() + "；R:" + f4.R.ToString() +
-                        "\n\r\n\r是：焊头下降到焊点\n\r\n\r否：焊头到焊点上方\n\r\n\r取消：不移动", "提示", MessageBoxButtons.YesNoCancel);
-                    if (data == DialogResult.Yes)
+
+                    Tools.WriteLog.AddLog(DateTime.Now.ToString() + "焊锡右X;" + f4.X.ToString() + "Y：" + f4.Y.ToString() + "Z：" + f4.Z.ToString() + "R：" + f4.R.ToString() + "基点X：" + _SolderPos[index].Vpos.X.ToString() + "Y:" + _SolderPos[index].Vpos.Y.ToString());
+
+                    while (!FormMain.RunProcess.LogicAPI.PlatformMove[1].exe((int)AxisDef.AxX2, ((int)AxisDef.AxY2),
+                        (int)AxisDef.AxZ2, (int)AxisDef.AxR2, ((int)AxisDef.AxT2), f4.X, f4.Y, FormMain.RunProcess.LogicData.slaverData.basics.Safe_ZR, f4.R, 2, 0))
                     {
-                        while (!FormMain.RunProcess.LogicAPI.PlatformMove[1].exe((int)AxisDef.AxX2, ((int)AxisDef.AxY2),
-                            (int)AxisDef.AxZ2, (int)AxisDef.AxR2, ((int)AxisDef.AxT2), f4.X, f4.Y, f4.Z, f4.R, 2, 0))
-                        {
-                            Thread.Sleep(1);
-                        }
+                        Thread.Sleep(1);
                     }
-                    else if(data == DialogResult.No)
+                    Thread.Sleep(100);
+                    while (!(FormMain.RunProcess.LogicAPI.PlatformMove[1].sta() && FormMain.RunProcess.LogicAPI.PlatformMove[1].start != 1))
                     {
-                        while (!FormMain.RunProcess.LogicAPI.PlatformMove[1].exe((int)AxisDef.AxX2, ((int)AxisDef.AxY2),
-                            (int)AxisDef.AxZ2, (int)AxisDef.AxR2, ((int)AxisDef.AxT2), f4.X, f4.Y, FormMain.RunProcess.LogicData.slaverData.basics.Safe_ZR, f4.R, 2, 0))
-                        {
-                            Thread.Sleep(1);
-                        }
+                        Thread.Sleep(1);
                     }
+
+                    if (MessageBox.Show("是否Z轴下降到焊点", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        FormMain.RunProcess.movedriverZm.MoveAbs((int)AxisDef.AxZ2, FormMain.RunProcess.LogicData.slaverData.basics.TeachSpeedR, f4.Z);
+                    }
+
                     break;
                 case LEFT_POLISH:
                     f4.X = _polishPos[index].pos[RowCount].X + _polishPos[index].Vpos.X;
                     f4.Y = _polishPos[index].pos[RowCount].Y + _polishPos[index].Vpos.Y;
                     f4.Z = _polishPos[index].pos[RowCount].Z;
                     f4.R = _polishPos[index].pos[RowCount].R;
-                    data = MessageBox.Show("定位到焊点，坐标X：" + f4.X.ToString() + "；Y:" + f4.Y.ToString() + "；Z:" + f4.Z.ToString() + "；R:" + f4.R.ToString() +
-                        "\n\r\n\r是：焊头下降到焊点\n\r\n\r否：焊头到焊点上方\n\r\n\r取消：不移动", "提示", MessageBoxButtons.YesNoCancel);
-                    if (data == DialogResult.Yes)
-                    {
-                        while (!FormMain.RunProcess.LogicAPI.PlatformMove[0].exe((int)AxisDef.AxX3, ((int)AxisDef.AxY1),
-                        (int)AxisDef.AxZ3, (int)AxisDef.AxR3, ((int)AxisDef.AxT1), f4.X, f4.Y, f4.Z, f4.R, 2, 0))
-                        {
-                            Thread.Sleep(1);
-                        }
-                    }
-                    else if (data == DialogResult.No)
-                    {
-                        while (!FormMain.RunProcess.LogicAPI.PlatformMove[0].exe((int)AxisDef.AxX3, ((int)AxisDef.AxY1),
+
+                    Tools.WriteLog.AddLog(DateTime.Now.ToString() + "打磨左X;" + f4.X.ToString() + "Y：" + f4.Y.ToString() + "Z：" + f4.Z.ToString() + "R：" + f4.R.ToString() + "基点X：" + _polishPos[index].Vpos.X.ToString() + "Y:" + _polishPos[index].Vpos.Y.ToString());
+
+                    while (!FormMain.RunProcess.LogicAPI.PlatformMove[0].exe((int)AxisDef.AxX3, ((int)AxisDef.AxY1),
                         (int)AxisDef.AxZ3, (int)AxisDef.AxR3, ((int)AxisDef.AxT1), f4.X, f4.Y, FormMain.RunProcess.LogicData.slaverData.basics.Safe_Z, f4.R, 2, 0))
-                        {
-                            Thread.Sleep(1);
-                        }
-                        Tools.WriteLog.AddLog(DateTime.Now.ToString() + "X;" + f4.X.ToString() + "Y;" + f4.Y.ToString() + "Z;" + FormMain.RunProcess.LogicData.slaverData.basics.Safe_Z.ToString() + "R;" + f4.R.ToString());
+                    {
+                        Thread.Sleep(1);
                     }
+                    Thread.Sleep(100);
+                    while (!(FormMain.RunProcess.LogicAPI.PlatformMove[0].sta() && FormMain.RunProcess.LogicAPI.PlatformMove[0].start != 1))
+                    {
+                        Thread.Sleep(1);
+                    }
+
+                    if (MessageBox.Show("是否Z轴下降到磨点", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        FormMain.RunProcess.movedriverZm.MoveAbs((int)AxisDef.AxZ3, FormMain.RunProcess.LogicData.slaverData.basics.TeachSpeed, f4.Z);
+                    }
+
                     break;
                 case RIGHT_POLISH:
                     f4.X = _polishPos[index].pos[RowCount].X + _polishPos[index].Vpos.X;
                     f4.Y = _polishPos[index].pos[RowCount].Y + _polishPos[index].Vpos.Y;
                     f4.Z = _polishPos[index].pos[RowCount].Z;
                     f4.R = _polishPos[index].pos[RowCount].R;
-                    data = MessageBox.Show("定位到焊点，坐标X：" + f4.X.ToString() + "；Y:" + f4.Y.ToString() + "；Z:" + f4.Z.ToString() + "；R:" + f4.R.ToString() +
-                         "\n\r\n\r是：焊头下降到焊点\n\r\n\r否：焊头到焊点上方\n\r\n\r取消：不移动", "提示", MessageBoxButtons.YesNoCancel);
-                    if (data == DialogResult.Yes)
-                    {
-                        while (!FormMain.RunProcess.LogicAPI.PlatformMove[1].exe((int)AxisDef.AxX3, ((int)AxisDef.AxY2),
-                        (int)AxisDef.AxZ3, (int)AxisDef.AxR3, ((int)AxisDef.AxT1), f4.X, f4.Y, f4.Z, f4.R, 2, 0))
-                        {
-                            Thread.Sleep(1);
-                        }
 
-                        Tools.WriteLog.AddLog(DateTime.Now.ToString ()+"打磨右X;" + f4.X.ToString()+"Y;"+f4.Y.ToString() + "Z;" + f4.Z.ToString() + "R;" + f4.R.ToString()+"基点X："+ _polishPos[index].Vpos.X.ToString ()+"Y:"+ _polishPos[index].Vpos.Y.ToString());
-                    }
-                    else if (data == DialogResult.No)
+                    Tools.WriteLog.AddLog(DateTime.Now.ToString() + "打磨右X;" + f4.X.ToString() + "Y：" + f4.Y.ToString() + "Z：" + f4.Z.ToString() + "R：" + f4.R.ToString() + "基点X：" + _polishPos[index].Vpos.X.ToString() + "Y:" + _polishPos[index].Vpos.Y.ToString());
+
+                    while (!FormMain.RunProcess.LogicAPI.PlatformMove[1].exe((int)AxisDef.AxX3, ((int)AxisDef.AxY2),
+                        (int)AxisDef.AxZ3, (int)AxisDef.AxR3, ((int)AxisDef.AxT2), f4.X, f4.Y, FormMain.RunProcess.LogicData.slaverData.basics.Safe_Z, f4.R, 2, 0))
                     {
-                        while (!FormMain.RunProcess.LogicAPI.PlatformMove[1].exe((int)AxisDef.AxX3, ((int)AxisDef.AxY2),
-                        (int)AxisDef.AxZ3, (int)AxisDef.AxR3, ((int)AxisDef.AxT1), f4.X, f4.Y, FormMain.RunProcess.LogicData.slaverData.basics.Safe_Z, f4.R, 2, 0))
-                        {
-                            Thread.Sleep(1);
-                        }
-                        Tools.WriteLog.AddLog(DateTime.Now.ToString() + "X;" + f4.X.ToString() + "Y;" + f4.Y.ToString() + "Z;" + FormMain.RunProcess.LogicData.slaverData.basics.Safe_Z.ToString() + "R;" + f4.R.ToString());
+                        Thread.Sleep(1);
                     }
+                    Thread.Sleep(100);
+                    while (!(FormMain.RunProcess.LogicAPI.PlatformMove[1].sta() && FormMain.RunProcess.LogicAPI.PlatformMove[1].start != 1))
+                    {
+                        Thread.Sleep(1);
+                    }
+
+                    if (MessageBox.Show("是否Z轴下降到磨点", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        FormMain.RunProcess.movedriverZm.MoveAbs((int)AxisDef.AxZ3, FormMain.RunProcess.LogicData.slaverData.basics.TeachSpeed, f4.Z);
+                    }
+
                     break;
             }
         }
