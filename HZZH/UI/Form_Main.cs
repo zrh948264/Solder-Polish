@@ -766,7 +766,22 @@ namespace UI
             foreach (string str in ConfigHandle.Instance.AlarmDefine.ErrorInformation(error, errorLevel[0], b_statusError))
             {
                 userCtrlMsgListView1.AddUserMsg(str, "报警");
-            }            
+            }
+
+            #region 
+
+            if(RunProcess.LogicTask.WorkTask[0].execute == 1)
+                panelL.BackColor = Color.Green;
+            else
+                panelL.BackColor = SystemColors.ActiveCaption;
+
+            if (RunProcess.LogicTask.WorkTask[1].execute == 1)
+                panelR.BackColor = Color.Green;
+            else
+                panelR.BackColor = SystemColors.ActiveCaption;
+
+            #endregion
+
 
             switch ((FsmStaDef)RunProcess.movedriverZm.DeviceStatus.IntValue[0])
 			{
@@ -774,21 +789,18 @@ namespace UI
                     lbl_RunStates.Text = "设备初始";
                     lbl_RunStates.BackColor = SystemColors.ActiveCaption;
                     panel10.BackColor = SystemColors.ActiveCaption;
-                    RunProcess.LogicTask.AngingTest.step = RunProcess.LogicTask.AngingTest.done = RunProcess.LogicTask.AngingTest.execute = 0;
                     break;
 
 				case FsmStaDef.PAUSE:
                     lbl_RunStates.Text = "设备暂停";
                     lbl_RunStates.BackColor = Color.Yellow;
                     panel10.BackColor = Color.Yellow;
-                    RunProcess.LogicTask.AngingTest.step = RunProcess.LogicTask.AngingTest.done = RunProcess.LogicTask.AngingTest.execute = 0;
                     break;
 
 				case FsmStaDef.RESET:
                     lbl_RunStates.Text = "设备复位";
                     lbl_RunStates.BackColor = Color.Red;
                     panel10.BackColor = Color.Red;
-                    RunProcess.LogicTask.AngingTest.step = RunProcess.LogicTask.AngingTest.done = RunProcess.LogicTask.AngingTest.execute = 0;
                     break;
 
                 case FsmStaDef.RUN:
@@ -801,14 +813,12 @@ namespace UI
                     lbl_RunStates.Text = "设备急停";
                     lbl_RunStates.BackColor = Color.Red;
                     panel10.BackColor = Color.Red;
-                    RunProcess.LogicTask.AngingTest.step = RunProcess.LogicTask.AngingTest.done = RunProcess.LogicTask.AngingTest.execute = 0;
                     break;
 
                 case FsmStaDef.STOP:
                     lbl_RunStates.Text = "设备停止";
                     lbl_RunStates.BackColor = Color.Yellow;
                     panel10.BackColor = Color.Yellow;
-                    RunProcess.LogicTask.AngingTest.step = RunProcess.LogicTask.AngingTest.done = RunProcess.LogicTask.AngingTest.execute = 0;
                     break;
 			}
                                           
@@ -1929,7 +1939,14 @@ namespace UI
         {
             FormMain.RunProcess.LogicData.RunData.rightSoldertintimes = 0;
         }
-        
+
+        private void lbl_RunStates_TextChanged(object sender, EventArgs e)
+        {
+            if(lbl_RunStates.Text  == "设备运行")
+            {
+                tabControl3.SelectedIndex = 3;
+            }
+        }
     }
 
     public class uphDef
