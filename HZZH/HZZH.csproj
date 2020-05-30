@@ -34,7 +34,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>true</Prefer32Bit>
@@ -125,6 +125,18 @@
     <Compile Include="Motion\Data\ProcessData.cs" />
     <Compile Include="Motion\Data\SettingData.cs" />
     <Compile Include="SYMVLightHeader.cs" />
+    <Compile Include="UI\DerivedControl\Form_AxisData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DerivedControl\Form_AxisData.Designer.cs">
+      <DependentUpon>Form_AxisData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DerivedControl\Form_Dog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DerivedControl\Form_Dog.Designer.cs">
+      <DependentUpon>Form_Dog.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\DerivedControl\Form_UserInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -313,6 +325,12 @@
     </Compile>
     <Compile Include="Vision\Tool\RotateCenter\NozzleRotateCenter.cs" />
     <Compile Include="Vision\Tool\Serialization.cs" />
+    <EmbeddedResource Include="UI\DerivedControl\Form_AxisData.resx">
+      <DependentUpon>Form_AxisData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DerivedControl\Form_Dog.resx">
+      <DependentUpon>Form_Dog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\DerivedControl\Form_Log.resx">
       <DependentUpon>Form_Log.cs</DependentUpon>
     </EmbeddedResource>

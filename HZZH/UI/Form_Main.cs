@@ -17,6 +17,9 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Threading;
 using System.Linq;
+using ApiClass;
+using LicenseManagement;
+using UI;
 
 namespace UI
 {
@@ -291,76 +294,85 @@ namespace UI
 
         private void Form_SubMain_Load(object sender, EventArgs e)
 		{
-             
-            BtnIsEnabled();
-            if (ConfigHandle.Instance.SystemDefine.ProjectDirectory != null && ConfigHandle.Instance.SystemDefine.ProjectDirectory != "")
+            try
             {
-                OpenProject(ConfigHandle.Instance.SystemDefine.ProjectDirectory);
+                BtnIsEnabled();
+                if (ConfigHandle.Instance.SystemDefine.ProjectDirectory != null && ConfigHandle.Instance.SystemDefine.ProjectDirectory != "")
+                {
+                    OpenProject(ConfigHandle.Instance.SystemDefine.ProjectDirectory);
+                }
+
+                #region 加载视觉
+                VisionProject.Instance.SetDisplayWindow(0, this.hWindowControl1);
+                VisionProject.Instance.SetDisplayWindow(1, this.hWindowControl2);
+                VisionProject.Instance.SetDisplayWindow(2, this.hWindowControl0);
+                VisionProject.Instance.SetDisplayWindow(3, this.hWindowControl3);
+                VisionProject.Instance.SetDisplayWindow(4, this.hWindowControl4);
+                VisionProject.Instance.SetDisplayWindow(5, this.hWindowControl5);
+                VisionProject.Instance.SetDisplayWindow(6, this.hWindowControl6);
+
+                toolStripButton18.Click += (s, ev) => { VisionProject.Instance.CamState[0] = false; VisionProject.Instance.CameraSoft(0); };
+                toolStripButton32.Click += (s, ev) => { VisionProject.Instance.CamState[1] = false; VisionProject.Instance.CameraSoft(1); };
+                触发相机.Click += (s, ev) => { VisionProject.Instance.CamState[2] = false; VisionProject.Instance.CameraSoft(2); };
+
+                toolStripButton19.Click += (s, ev) => { VisionProject.Instance.CamState[0] = true; };
+                toolStripButton33.Click += (s, ev) => { VisionProject.Instance.CamState[1] = true; };
+                相机实时.Click += (s, ev) => { VisionProject.Instance.CamState[2] = true; };
+
+                toolStripButton20.Click += (s, ev) => { VisionProject.Instance.ShowCameraSetPage(0); };
+                toolStripButton34.Click += (s, ev) => { VisionProject.Instance.ShowCameraSetPage(1); };
+                相机设置.Click += (s, ev) => { VisionProject.Instance.ShowCameraSetPage(2); };
+
+                toolStripTextBox2.Text = VisionProject.Instance.GetCameraExposureTime(0).ToString();
+                toolStripTextBox4.Text = VisionProject.Instance.GetCameraExposureTime(1).ToString();
+                toolStripTextBox1.Text = VisionProject.Instance.GetCameraExposureTime(2).ToString();
+                toolStripTextBox2.TextChanged += toolStripTextBox2_TextChanged;
+                toolStripTextBox4.TextChanged += toolStripTextBox4_TextChanged;
+                toolStripTextBox1.TextChanged += toolStripTextBox1_TextChanged;
+
+                toolStripButton14.Click += (s, ev) => { VisionProject.Instance.SetViewModeMove(0); };
+                toolStripButton29.Click += (s, ev) => { VisionProject.Instance.SetViewModeMove(1); };
+                移动.Click += (s, ev) => { VisionProject.Instance.SetViewModeMove(2); };
+
+                toolStripButton15.Click += (s, ev) => { VisionProject.Instance.SetViewModeZoom(0); };
+                toolStripButton30.Click += (s, ev) => { VisionProject.Instance.SetViewModeZoom(1); };
+                缩放.Click += (s, ev) => { VisionProject.Instance.SetViewModeZoom(2); };
+
+                toolStripButton17.Click += (s, ev) => { VisionProject.Instance.SetViewModeNone(0); };
+                toolStripButton31.Click += (s, ev) => { VisionProject.Instance.SetViewModeNone(1); };
+                恢复.Click += (s, ev) => { VisionProject.Instance.SetViewModeNone(2); };
+
+                toolStripComboBox2.SelectedIndexChanged += (s, ev) => { VisionProject.Instance.ImagePathSolderLeftState = ((ToolStripComboBox)s).SelectedIndex; };
+                toolStripComboBox3.SelectedIndexChanged += (s, ev) => { VisionProject.Instance.ImagePathSolderRightState = ((ToolStripComboBox)s).SelectedIndex; };
+                toolStripComboBox1.SelectedIndexChanged += (s, ev) =>
+                {
+                    VisionProject.Instance.ImagePathPolishLeftState = ((ToolStripComboBox)s).SelectedIndex;
+                    VisionProject.Instance.ImagePathPolishRightState = ((ToolStripComboBox)s).SelectedIndex;
+                };
+                #endregion
+
+                toolStripComboBox1.SelectedIndex = 0;
+                toolStripComboBox2.SelectedIndex = 0;
+                toolStripComboBox3.SelectedIndex = 0;
+
+                #region 加载点动
+                jog.TopLevel = false; //将子窗体设置成非最高层，非顶级控件
+                jog.FormBorderStyle = FormBorderStyle.None;//去掉窗体边框
+                jog.Size = this.panel7.Size;
+                jog.Parent = this.panel7;//指定子窗体显示的容器
+                jog.Dock = DockStyle.Fill;
+                jog.Show();
+                jog.Activate();
+                #endregion
             }
-
-            #region 加载视觉
-            VisionProject.Instance.SetDisplayWindow(0, this.hWindowControl1);
-            VisionProject.Instance.SetDisplayWindow(1, this.hWindowControl2);
-            VisionProject.Instance.SetDisplayWindow(2, this.hWindowControl0);
-            VisionProject.Instance.SetDisplayWindow(3, this.hWindowControl3);
-            VisionProject.Instance.SetDisplayWindow(4, this.hWindowControl4);
-            VisionProject.Instance.SetDisplayWindow(5, this.hWindowControl5);
-            VisionProject.Instance.SetDisplayWindow(6, this.hWindowControl6);
-
-            toolStripButton18.Click += (s, ev) => { VisionProject.Instance.CamState[0] = false; VisionProject.Instance.CameraSoft(0); };
-            toolStripButton32.Click += (s, ev) => { VisionProject.Instance.CamState[1] = false; VisionProject.Instance.CameraSoft(1); };
-            触发相机.Click += (s, ev) => { VisionProject.Instance.CamState[2] = false; VisionProject.Instance.CameraSoft(2); };
-
-            toolStripButton19.Click += (s, ev) => { VisionProject.Instance.CamState[0] = true; };
-            toolStripButton33.Click += (s, ev) => { VisionProject.Instance.CamState[1] = true; };
-            相机实时.Click += (s, ev) => { VisionProject.Instance.CamState[2] = true; };
-
-            toolStripButton20.Click += (s, ev) => { VisionProject.Instance.ShowCameraSetPage(0); };
-            toolStripButton34.Click += (s, ev) => { VisionProject.Instance.ShowCameraSetPage(1); };
-            相机设置.Click += (s, ev) => { VisionProject.Instance.ShowCameraSetPage(2); };
-
-            toolStripTextBox2.Text = VisionProject.Instance.GetCameraExposureTime(0).ToString();
-            toolStripTextBox4.Text = VisionProject.Instance.GetCameraExposureTime(1).ToString();
-            toolStripTextBox1.Text = VisionProject.Instance.GetCameraExposureTime(2).ToString();
-            toolStripTextBox2.TextChanged += toolStripTextBox2_TextChanged;
-            toolStripTextBox4.TextChanged += toolStripTextBox4_TextChanged;
-            toolStripTextBox1.TextChanged += toolStripTextBox1_TextChanged;
-
-            toolStripButton14.Click += (s, ev) => { VisionProject.Instance.SetViewModeMove(0); };
-            toolStripButton29.Click += (s, ev) => { VisionProject.Instance.SetViewModeMove(1); };
-            移动.Click += (s, ev) => { VisionProject.Instance.SetViewModeMove(2); };
-
-            toolStripButton15.Click += (s, ev) => { VisionProject.Instance.SetViewModeZoom(0); };
-            toolStripButton30.Click += (s, ev) => { VisionProject.Instance.SetViewModeZoom(1); };
-            缩放.Click += (s, ev) => { VisionProject.Instance.SetViewModeZoom(2); };
-
-            toolStripButton17.Click += (s, ev) => { VisionProject.Instance.SetViewModeNone(0); };
-            toolStripButton31.Click += (s, ev) => { VisionProject.Instance.SetViewModeNone(1); };
-            恢复.Click += (s, ev) => { VisionProject.Instance.SetViewModeNone(2); };
-
-            toolStripComboBox2.SelectedIndexChanged += (s, ev) => { VisionProject.Instance.ImagePathSolderLeftState = ((ToolStripComboBox)s).SelectedIndex; };
-            toolStripComboBox3.SelectedIndexChanged += (s, ev) => { VisionProject.Instance.ImagePathSolderRightState = ((ToolStripComboBox)s).SelectedIndex; };
-            toolStripComboBox1.SelectedIndexChanged += (s, ev) =>
+            catch(Exception ex)
             {
-                VisionProject.Instance.ImagePathPolishLeftState = ((ToolStripComboBox)s).SelectedIndex;
-                VisionProject.Instance.ImagePathPolishRightState = ((ToolStripComboBox)s).SelectedIndex;
-            };
-            #endregion
-
-            toolStripComboBox1.SelectedIndex = 0;
-            toolStripComboBox2.SelectedIndex = 0;
-            toolStripComboBox3.SelectedIndex = 0;
-
-            #region 加载点动
-            jog.TopLevel = false; //将子窗体设置成非最高层，非顶级控件
-            jog.FormBorderStyle = FormBorderStyle.None;//去掉窗体边框
-            jog.Size = this.panel7.Size;
-            jog.Parent = this.panel7;//指定子窗体显示的容器
-            jog.Dock = DockStyle.Fill;
-            jog.Show();
-            jog.Activate();
-            #endregion
-
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                ChcekLicense();
+            }
         }
         void toolStripTextBox2_TextChanged(object sender, EventArgs e)
         {
@@ -394,6 +406,17 @@ namespace UI
             VisionProject.Instance.CurrentDomain_ProcessExit(null, EventArgs.Empty);
             
         }
+
+
+        private void tsslbl_ControllerStatus_TextChanged(object sender, EventArgs e)
+        {
+            if (tsslbl_ControllerStatus.Text == "控制器：在线")
+            {
+                Motor.DownMotorPrmToSlave();
+            }
+        }
+
+
 
         #endregion
 
@@ -535,6 +558,19 @@ namespace UI
             StartUpdate.SendStartMsg("控件初始化完成");
         }
         
+
+        private void ShowMessage(SendCmdArgs e)
+        {
+            userCtrlMsgListView1.AddUserMsg(e.StrReciseve, "提示");
+        }
+
+
+        private void 清空ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RunProcess.movedriverZm.WriteRegister(new BaseData(1130, new int[]{1}));
+            ConfigHandle.Instance.AlarmDefine.ClearAlarmMessage(b_statusError);
+			userCtrlMsgListView1.ClearMsgItems();
+		}
 
         #endregion
 
@@ -861,30 +897,15 @@ namespace UI
 
             #endregion 日志
 
+
+
+            #region 加密狗
+            TimerCheck();
+            #endregion
+
         }
 
 
-
-        private void 清空ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            RunProcess.movedriverZm.WriteRegister(new BaseData(1130, new int[]{1}));
-            ConfigHandle.Instance.AlarmDefine.ClearAlarmMessage(b_statusError);
-			userCtrlMsgListView1.ClearMsgItems();
-		}
-
-        private void ShowMessage(SendCmdArgs e)
-        {
-            userCtrlMsgListView1.AddUserMsg(e.StrReciseve, "提示");
-        }
-
-        private void tsslbl_ControllerStatus_TextChanged(object sender, EventArgs e)
-        {
-            if (tsslbl_ControllerStatus.Text == "控制器：在线")
-            {
-                Motor.DownMotorPrmToSlave();
-            }
-        }
-        
         #endregion
 
         #region 工单操作
@@ -1951,6 +1972,298 @@ namespace UI
             {
                 tabControl3.SelectedIndex = 3;
             }
+        }
+
+
+
+
+
+        #region 加密狗
+
+        SoftReg m_termSoftReg = new SoftReg();
+        LicenseMsg m_licenseMsg;
+
+        bool b_IsUseTimeOver = true;
+        DateTime _IssuingDate;//发行日期
+        public static DateTime timeState;
+        private void ChcekLicense()
+        {
+            string strdogmsg = Api.ReadDog(0, StartUpClass.handle);
+            string strdogsmsg = Api.ReadDog(128, StartUpClass.handle);
+            if ((strdogmsg == string.Empty) && (strdogsmsg == string.Empty))
+            {
+
+
+                this.txt_MachineID.Text = m_termSoftReg.GetMNum();
+                this.txt_press.Text = m_termSoftReg.str_IssuingDate.ToShortDateString();
+                this.txt_mature.Text = m_termSoftReg.str_InitPermitDate.ToShortDateString();
+
+                Api.WriteDog(this.txt_MachineID.Text, 0, StartUpClass.handle);
+
+                Thread.Sleep(2);
+                strdogmsg = Api.ReadDog(0, StartUpClass.handle);
+                DateTime dogDateTime = m_termSoftReg.Register(strdogmsg);
+                timeState = new DateTime(dogDateTime.Year, dogDateTime.Month, dogDateTime.Day, 12, 0, 0);
+
+                Thread.Sleep(2);
+                int o3 = AESHelper.ConvertDateTimeInt(m_termSoftReg.str_IssuingDate);
+                Api.WriteDog(o3.ToString(), 64, StartUpClass.handle);
+
+                LicenseMsg.Save(AESHelper.EncryptStr(SoftReg.MachineID), @"armcc01_intr");
+
+                m_licenseMsg = new LicenseMsg(SoftReg.MachineID, new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, 0, 0), m_termSoftReg.str_IssuingDate, m_termSoftReg.str_InitPermitDate);
+
+                b_IsUseTimeOver = false;
+            }
+            else
+            {
+                this.txt_MachineID.Text = strdogmsg;                       //ID
+                string strIssuingDate = Api.ReadDog(64, StartUpClass.handle);
+                _IssuingDate = AESHelper.GetTime(strIssuingDate);
+                this.txt_press.Text = _IssuingDate.ToShortDateString();                  //发行时间
+
+                string term0 = AESHelper.Decrypt(strdogmsg, "qwertyuiop");
+                string strend = term0.Substring(9, 10);
+
+                if (strend.CompareTo("JJJ868JJJJ") == 0)
+                {
+                    txt_mature.Text = "无限期";
+                    groupBox5_ma.Enabled = false;
+                    b_IsUseTimeOver = false;
+                    return;
+                }
+
+                DateTime nowDateTime = DateTime.Now;
+                DateTime dogDateTime = m_termSoftReg.Register(strdogmsg);
+                DateTime machineDateTime = m_termSoftReg.Register(strdogsmsg);
+
+                this.txt_mature.Text = dogDateTime.ToShortDateString();                        //注册时间
+                DateTime dogDateTime12 = timeState = new DateTime(dogDateTime.Year, dogDateTime.Month, dogDateTime.Day, 12, 0, 0);
+
+                if (DateTime.Compare(nowDateTime, machineDateTime) <= 0)
+                {
+                    //系统时间错误,请联系厂家解决
+                    lbl_msg.Text = "系统时间错误,请联系厂家解决:" + machineDateTime.ToString() + "/" + nowDateTime.ToString();
+                    lbl_msg.BackColor = SystemColors.Control;
+                    lbl_msg.ForeColor = Color.Red;
+                    tabControl1.SelectedIndex = 5;
+                }
+                else
+                {
+                    if (DateTime.Compare(nowDateTime, dogDateTime12) >= 0)
+                    {
+                        //注册到期
+                        tabControl1.SelectedIndex = 5;
+                        lbl_msg.Text = "使用时间到期，请联系厂家";
+                        lbl_msg.BackColor = SystemColors.Control;
+                        lbl_msg.ForeColor = Color.Blue;
+                    }
+                    else
+                    {
+                        b_IsUseTimeOver = false;
+                        m_licenseMsg = new LicenseMsg(SoftReg.GetDogNumber(StartUpClass.handle),
+                            new DateTime(DateTime.Now.Year,
+                            DateTime.Now.Month,
+                            DateTime.Now.Day,
+                            DateTime.Now.Hour, 0, 0), _IssuingDate, dogDateTime);
+                        int days = (dogDateTime12 - nowDateTime).Days;
+                        if (days <= 5)
+                        {
+                            pnl_SoftwaretrialInfo.Visible = true;
+                            lbl_SoftwaretrialInfo.Visible = true;
+
+                            if (days < 0)
+                            {
+                                MessageBox.Show("软件使用已到期，请注册！！！！！");
+                                stateData = true;
+
+                                //注册到期
+                                tabControl1.SelectedIndex = 5;
+                                lbl_msg.Text = "使用时间到期，请联系厂家";
+                                lbl_msg.BackColor = SystemColors.Control;
+                                lbl_msg.ForeColor = Color.Blue;
+                                b_IsUseTimeOver = true;
+                            }
+                            else
+                            {
+                                // tabControl1.SelectedIndex = 0;
+                                MessageBox.Show("软件使用日期剩余：" + days + "天");
+                                stateData = true;
+                            }
+                        }
+                        else
+                        {
+                            // tabControl1.SelectedIndex = 0;
+                        }
+                    }
+                }
+            }
+
+            if (Api.R1_Close(StartUpClass.handle) != 0)      //关闭Rockey1
+            {
+                throw new Exception("关闭加密狗......失败");
+            }
+        }
+
+
+        bool m_userIsIndefinite = false;
+        private void btn_register_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string str_Register = txt_permit.Text;
+                if (string.IsNullOrEmpty(str_Register.Trim()))
+                {
+                    throw new Exception("注册码不能为空");
+                }
+
+                string newmachineID;
+                DateTime retDateTime;
+                object returnmsg = m_termSoftReg.UpdateRegister(str_Register, out m_userIsIndefinite, out retDateTime, out newmachineID).ToString();
+                timeState = new DateTime(retDateTime.Year, retDateTime.Month, retDateTime.Day, 12, 0, 0);
+                stateData = false;
+
+                if (m_userIsIndefinite)
+                {
+                    txt_mature.Text = returnmsg.ToString();
+                    m_licenseMsg.Dispose();
+                    groupBox5_ma.Enabled = false;
+                }
+                else
+                {
+                    DateTime nowDateTime = DateTime.Now;
+                    if (nowDateTime <= retDateTime)
+                    {
+                        lbl_msg.Text = "软件注册成功";
+                        lbl_msg.BackColor = SystemColors.Control;
+                        lbl_msg.ForeColor = Color.Blue;
+                        m_licenseMsg = new LicenseMsg(SoftReg.GetDogNumber1(), new DateTime(DateTime.Now.Year, 
+                            DateTime.Now.Month, 
+                            DateTime.Now.Day, 
+                            DateTime.Now.Hour, 0, 0), _IssuingDate, retDateTime);
+                    }
+                    string strdogmsg = Api.ReadDog(64);
+                    Api.WriteDog(strdogmsg, 64);
+                    txt_MachineID.Text = newmachineID;
+                    txt_mature.Text = retDateTime.ToShortDateString();
+                }
+                txt_permit.Text = "";
+                b_IsUseTimeOver = false;
+
+                //tabControl1.SelectedIndex = 0;
+                //if (!bWorker.IsBusy)
+                //{
+                //    bWorker.RunWorkerAsync();
+                //}
+
+                MessageBox.Show("注册成功");
+
+                tabControl2.SelectedIndex = 0;
+                tabControl1.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                txt_permit.Text = "";
+                MessageBox.Show(ex.Message + "," + "请重新输入 ");
+            }
+        }
+
+
+        public static bool stateData = false;
+
+        public void TimerCheck()
+        {
+            if (stateData)
+            {
+                //if ((timeState - DateTime.Now).Days < 0)
+                //{
+                //    lbl_SoftwaretrialInfo.Text = "软件使用已到期，请注册！！！！！";
+                //    pnl_SoftwaretrialInfo.Visible = true;
+                //    lbl_SoftwaretrialInfo.Visible = true;
+                //    lbl_msg.Text = "软件使用已到期，请注册！！！！！";
+                //    tabControl1.SelectedIndex = 5;
+                //    b_IsUseTimeOver = true;
+                //}
+                //else
+                //{
+                //    lbl_SoftwaretrialInfo.Text = "软件使用日期剩余：" + (timeState - DateTime.Now).Days + "天";
+                //    pnl_SoftwaretrialInfo.Visible = true;
+                //    lbl_SoftwaretrialInfo.Visible = true;
+                //}
+
+                //lbl_SoftwaretrialInfo.Left -= 5;  //向左移动3个像素
+                ////移动到窗体最左端后从最右端进入窗体
+                //if (lbl_SoftwaretrialInfo.Right < 0)
+                //{
+                //    lbl_SoftwaretrialInfo.Left = pnl_SoftwaretrialInfo.Width;
+                //}
+            }
+            else
+            {
+                pnl_SoftwaretrialInfo.Visible = false;
+                lbl_SoftwaretrialInfo.Visible = false;
+            }
+
+
+            if (m_licenseMsg != null)
+            {
+                #region 系统时间错误重启
+                if (m_licenseMsg.timeException != null)
+                {
+                    if (!b_IsUseTimeOver)
+                    {
+                        lbl_msg.Text = m_licenseMsg.timeException.Message;
+                        lbl_msg.BackColor = SystemColors.Control;
+                        lbl_msg.ForeColor = Color.Red;
+                        tabControl1.SelectedIndex = 5;
+                        b_IsUseTimeOver = true;
+                    }
+                }
+                #endregion
+
+
+                #region 系统时间错误不重启
+                //if (m_licenseMsg.timeException != null)
+                //{
+                //    if (!b_IsUseTimeOver)
+                //    {
+                //        lbl_msg.Text = m_licenseMsg.timeException.Message;
+                //        lbl_msg.BackColor = SystemColors.Control;
+                //        lbl_msg.ForeColor = Color.Red;
+                //       // tabControl1.SelectedIndex = 7;
+
+                //        b_IsUseTimeOver = true;
+
+                //    }
+                //}
+                //else
+                //{
+                //    if (b_IsUseTimeOver)
+                //    {
+                //        lbl_msg.Text = "加密软件";
+                //        lbl_msg.BackColor = SystemColors.Control;
+                //        lbl_msg.ForeColor = Color.MediumBlue;
+                //       // tabControl1.SelectedIndex = 7;
+
+                //        b_IsUseTimeOver = false;
+
+                //    }
+                //}
+                #endregion
+
+            }
+        }
+
+
+
+
+
+
+        #endregion
+
+        private void 关于ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedIndex = 5;
         }
     }
 

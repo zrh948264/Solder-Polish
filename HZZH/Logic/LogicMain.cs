@@ -270,6 +270,8 @@ namespace Logic
 
                             ProcessData.PolishList[my.ID].Clear();
                             VisionAPI.Polishs(my.ID).Clear();
+
+                            Tools.WriteLog.AddLog(my.ID.ToString() + "开始打磨正面拍照");
                             my.step = 2;
                         }
                         else
@@ -299,6 +301,7 @@ namespace Logic
                     }
                     else
                     {
+                        Tools.WriteLog.AddLog(my.ID.ToString() + "开始打磨正面");
                         my.step = 4;
                     }
                     break;
@@ -407,6 +410,8 @@ namespace Logic
                     {
                         VisionAPI.Polishs(my.ID).Clear();
                         ProcessData.PolishList[my.ID].Clear();
+
+                        Tools.WriteLog.AddLog(my.ID.ToString() + "开始打磨反面拍照");
                         my.step = 6;
                         my.cnt = 0;
                     }
@@ -441,6 +446,7 @@ namespace Logic
                     }
                     else
                     {
+                        Tools.WriteLog.AddLog(my.ID.ToString() + "开始打磨反面");
                         my.step = 8;
                     }
                     break;
@@ -544,6 +550,7 @@ namespace Logic
                     }
                     else
                     {
+                        Tools.WriteLog.AddLog(my.ID.ToString() + "打磨反面结束");
                         ProcessData.PolishList[my.ID].Clear();
                         PolishBusy = false;
                         my.End();
@@ -613,10 +620,14 @@ namespace Logic
                         #endregion
 
                         ProcessData.SolderList[my.ID].Clear();
+
+                        Tools.WriteLog.AddLog(my.ID.ToString() + "开始焊锡反面拍照");
                         my.step = 6;
                     }
                     else
                     {
+
+                        Tools.WriteLog.AddLog(my.ID.ToString() + "焊锡没点");
                         my.End();
                         while (!LogicAPI.PlatformMove[my.ID].exe(((int)AxisDef.AxX1 + my.ID * 6),
                                                         ((int)AxisDef.AxY1 + my.ID * 6),
@@ -656,6 +667,7 @@ namespace Logic
                     }
                     else
                     {
+                        Tools.WriteLog.AddLog(my.ID.ToString() + "开始焊锡正面");
                         my.cnt = 0;
                         my.step = 4;
                     }
@@ -781,6 +793,7 @@ namespace Logic
                     }
                     else
                     {
+                        Tools.WriteLog.AddLog(my.ID.ToString() + "焊锡正面结束");
                         my.End();
                         while (!LogicAPI.PlatformMove[my.ID].exe(((int)AxisDef.AxX1 + my.ID * 6),
                                                        ((int)AxisDef.AxY1 + my.ID * 6),
@@ -829,6 +842,7 @@ namespace Logic
                     }
                     else
                     {
+                        Tools.WriteLog.AddLog(my.ID.ToString() + "开始焊锡反面");
                         my.cnt = 0;
                         my.step = 8;
                     }
@@ -952,6 +966,7 @@ namespace Logic
                     }
                     else
                     {
+                        Tools.WriteLog.AddLog(my.ID.ToString() + "开始焊锡正面拍照");
                         ProcessData.SolderList[my.ID].Clear();
                         my.step = 2;
                         my.cnt = 0;
