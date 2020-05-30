@@ -2069,8 +2069,8 @@ namespace UI
                         int days = (dogDateTime12 - nowDateTime).Days;
                         if (days <= 5)
                         {
-                            pnl_SoftwaretrialInfo.Visible = true;
-                            lbl_SoftwaretrialInfo.Visible = true;
+                        //    pnl_SoftwaretrialInfo.Visible = true;
+                        //    lbl_SoftwaretrialInfo.Visible = true;
 
                             if (days < 0)
                             {
@@ -2173,8 +2173,8 @@ namespace UI
 
         public void TimerCheck()
         {
-            if (stateData)
-            {
+            //if (stateData)
+            //{
                 //if ((timeState - DateTime.Now).Days < 0)
                 //{
                 //    lbl_SoftwaretrialInfo.Text = "软件使用已到期，请注册！！！！！";
@@ -2197,12 +2197,12 @@ namespace UI
                 //{
                 //    lbl_SoftwaretrialInfo.Left = pnl_SoftwaretrialInfo.Width;
                 //}
-            }
-            else
-            {
-                pnl_SoftwaretrialInfo.Visible = false;
-                lbl_SoftwaretrialInfo.Visible = false;
-            }
+            //}
+            //else
+            //{
+            //    pnl_SoftwaretrialInfo.Visible = false;
+            //    lbl_SoftwaretrialInfo.Visible = false;
+           // }
 
 
             if (m_licenseMsg != null)
