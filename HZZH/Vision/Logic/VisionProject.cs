@@ -660,7 +660,7 @@ namespace HZZH.Vision.Logic
         #region  用于显示Halcon数据窗口
         private HWndCtrller[] hWndCtrller = new HWndCtrller[10];
 
-        private void DisplayHobject(HWndCtrller hWndCtrller, HObject hObject)
+        private void DisplayHobject(HWndCtrller hWndCtrller, HImage hObject)
         {
             try
             {
@@ -714,7 +714,7 @@ namespace HZZH.Vision.Logic
 
                 if (shape.OutputResult.Count == 0)
                 {
-                    string msg = "无匹配的结果";
+                    string msg = "NG";
                     HObjectString objectString = new HObjectString(msg)
                     {
                         Row = 60,
@@ -804,7 +804,7 @@ namespace HZZH.Vision.Logic
 
                 if (nCC.OutputResult.Count == 0)
                 {
-                    string msg = "无匹配的结果";
+                    string msg = "NG";
                     HObjectString objectString = new HObjectString(msg)
                     {
                         Row = 60,

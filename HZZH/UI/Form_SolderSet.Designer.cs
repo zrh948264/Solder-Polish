@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.hWindowControl0 = new HalconDotNet.HWindowControl();
@@ -47,12 +48,15 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.一键同步参数ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -274,6 +278,7 @@
             // 
             // treeView1
             // 
+            this.treeView1.ContextMenuStrip = this.contextMenuStrip1;
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Margin = new System.Windows.Forms.Padding(0);
@@ -281,6 +286,20 @@
             this.treeView1.Size = new System.Drawing.Size(139, 365);
             this.treeView1.TabIndex = 53;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.一键同步参数ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
+            // 
+            // 一键同步参数ToolStripMenuItem
+            // 
+            this.一键同步参数ToolStripMenuItem.Name = "一键同步参数ToolStripMenuItem";
+            this.一键同步参数ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.一键同步参数ToolStripMenuItem.Text = "一键同步参数";
+            this.一键同步参数ToolStripMenuItem.Click += new System.EventHandler(this.一键同步参数ToolStripMenuItem_Click);
             // 
             // Form_SolderSet
             // 
@@ -299,6 +318,7 @@
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -324,5 +344,7 @@
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 一键同步参数ToolStripMenuItem;
     }
 }

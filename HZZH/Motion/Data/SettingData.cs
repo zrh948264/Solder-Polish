@@ -560,13 +560,13 @@ namespace Motion
     public class PolishPos
     {
         public PointF2 Vpos { get; set; }
-        public List<PointF4> pos { get; set; }
+        public List<PolishPosdata> pos { get; set; }
         public PolishDef polishDef { get; set; }
         public PolishPos()
         {
             Vpos = new PointF2();
             polishDef = new PolishDef();
-            pos = new List<PointF4>();
+            pos = new List<PolishPosdata>();
         }
     }
     /// <summary>
@@ -578,13 +578,13 @@ namespace Motion
     public class SolderPos
     {
         public PointF2 Vpos { get; set; }
-        public List<PointF4> pos { get; set; }
+        public List<SolderPosdata> pos { get; set; }
         public SolderDef solderDef { get; set; }
         public SolderPos()
         {
             Vpos = new PointF2();
             solderDef = new SolderDef();
-            pos = new List<PointF4>();
+            pos = new List<SolderPosdata>();
         }
     }
 

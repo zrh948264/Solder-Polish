@@ -91,7 +91,7 @@ namespace UI
             DispalyModelCombox();
 
 
-            button5.Enabled = button9.Enabled = button8.Enabled = false;
+            button5.Enabled = button9.Enabled = button8.Enabled = true;// false;
             if (comboBox1.Items.Count == 0)
             {
                 button2_Click(null, EventArgs.Empty);
@@ -111,16 +111,12 @@ namespace UI
         {
             if (_id == LEFT_POLISH || _id == RIGHT_POLISH)
             {
-                propertyGrid1.SelectedObject = _polishPos[index].polishDef;
                 LoadtreeView1(_polishPos[index].pos);
             }
             else
             {
-                propertyGrid1.SelectedObject = _SolderPos[index].solderDef;
-                LoadtreeView1(_SolderPos[index].pos);
+                LoadtreeView_S(_SolderPos[index].pos);
             }
-
-
         }
 
         private void DispalyModelCombox()
@@ -228,15 +224,20 @@ namespace UI
 
         Point point = new Point();
 
+        /// <summary>
+        /// 添加点
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button5_Click(object sender, EventArgs e)
         {
             int index = comboBox1.SelectedIndex;
 
             if (index >= 0)
             {
-                Common.PointF4 f4 = new Common.PointF4();
                 if (_id == LEFT_POLISH || _id == RIGHT_POLISH)
                 {
+                    PolishPosdata f4 = new PolishPosdata();
                     if (_polishPos[index].Vpos.Y == 0 || _polishPos[index].Vpos.X == 0)
                     {
                         MessageBox.Show("先设置模板基准点");
@@ -244,20 +245,21 @@ namespace UI
                     }
                     if (_id == LEFT_POLISH)
                     {
-                        f4.Y = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxY1] - _polishPos[index].Vpos.Y;
+                        f4.pos.Y = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxY1] - _polishPos[index].Vpos.Y;
                     }
                     else
                     {
-                        f4.Y = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxY2] - _polishPos[index].Vpos.Y;
+                        f4.pos.Y = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxY2] - _polishPos[index].Vpos.Y;
                     }
-                    f4.X = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxX3] - _polishPos[index].Vpos.X;
-                    f4.Z = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxZ3];
-                    f4.R = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxR3];
+                    f4.pos.X = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxX3] - _polishPos[index].Vpos.X;
+                    f4.pos.Z = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxZ3];
+                    f4.pos.R = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxR3];
 
                     _polishPos[index].pos.Add(f4);
                 }
                 else
                 {
+                    SolderPosdata f4 = new SolderPosdata();
                     if (_SolderPos[index].Vpos.Y == 0 || _SolderPos[index].Vpos.X == 0)
                     {
                         MessageBox.Show("先设置模板基准点");
@@ -265,21 +267,23 @@ namespace UI
                     }
                     if (_id == LEFT_SOLDER)
                     {
-                        f4.X = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxX1] - _SolderPos[index].Vpos.X;
-                        f4.Y = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxY1] - _SolderPos[index].Vpos.Y;
-                        f4.Z = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxZ1];
-                        f4.R = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxR1];
+                        f4.pos.X = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxX1] - _SolderPos[index].Vpos.X;
+                        f4.pos.Y = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxY1] - _SolderPos[index].Vpos.Y;
+                        f4.pos.Z = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxZ1];
+                        f4.pos.R = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxR1];
                     }
                     else
                     {
-                        f4.X = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxX2] - _SolderPos[index].Vpos.X;
-                        f4.Y = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxY2] - _SolderPos[index].Vpos.Y;
-                        f4.Z = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxZ2];
-                        f4.R = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxR2];
+                        f4.pos.X = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxX2] - _SolderPos[index].Vpos.X;
+                        f4.pos.Y = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxY2] - _SolderPos[index].Vpos.Y;
+                        f4.pos.Z = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxZ2];
+                        f4.pos.R = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxR2];
                     }
 
                     _SolderPos[index].pos.Add(f4);
                 }
+
+
                 propertyGridShow(index);
 
                 if (this.treeView1.Nodes.Count > 0)
@@ -329,7 +333,11 @@ namespace UI
 
 
 
-
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button6_Click(object sender, EventArgs e)
         {
             if (this.treeView1.SelectedNode != null)
@@ -465,6 +473,7 @@ namespace UI
             }
         }
 
+
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (locationShapes != null)
@@ -553,6 +562,11 @@ namespace UI
                             {
                                 Thread.Sleep(1);
                             }
+                            Thread.Sleep(100);
+                            while (!(FormMain.RunProcess.LogicAPI.PlatformMove[0].sta() && FormMain.RunProcess.LogicAPI.PlatformMove[0].start != 1))
+                            {
+                                Thread.Sleep(1);
+                            }
                         }
                         button5.Enabled = button9.Enabled = button8.Enabled = true;
                     }
@@ -579,7 +593,17 @@ namespace UI
                         string info = "X偏移" + point.Value.X.ToString("f2") + "，Y偏移" + point.Value.Y.ToString("f2") + ",是否移动到中心点？";
                         if (MessageBox.Show(info, "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                         {
-                            while (!FormMain.RunProcess.LogicAPI.PlatformMove[0].exe((int)AxisDef.AxX2, ((int)AxisDef.AxY2), (int)AxisDef.AxZ2, (int)AxisDef.AxR2, ((int)AxisDef.AxT2), _SolderPos[OperShapeIndex].Vpos.X, _SolderPos[OperShapeIndex].Vpos.Y, FormMain.RunProcess.LogicData.slaverData.basics.Safe_ZL, 0, 2, 0))
+                            while (!FormMain.RunProcess.LogicAPI.PlatformMove[1].exe((int)AxisDef.AxX2, ((int)AxisDef.AxY2), (int)AxisDef.AxZ2, (int)AxisDef.AxR2, ((int)AxisDef.AxT2), _SolderPos[OperShapeIndex].Vpos.X, _SolderPos[OperShapeIndex].Vpos.Y, FormMain.RunProcess.LogicData.slaverData.basics.Safe_ZL, 0, 2, 0))
+                            {
+                                Thread.Sleep(1);
+                            }
+                            Thread.Sleep(100);
+                            while (!(FormMain.RunProcess.LogicAPI.PlatformMove[1].sta() && FormMain.RunProcess.LogicAPI.PlatformMove[1].start != 1))
+                            {
+                                Thread.Sleep(1);
+                            }
+                            Thread.Sleep(100);
+                            while (!(FormMain.RunProcess.LogicAPI.PlatformMove[0].sta() && FormMain.RunProcess.LogicAPI.PlatformMove[0].start != 1))
                             {
                                 Thread.Sleep(1);
                             }
@@ -613,6 +637,11 @@ namespace UI
                             {
                                 Thread.Sleep(1);
                             }
+                            Thread.Sleep(100);
+                            while (!(FormMain.RunProcess.LogicAPI.PlatformMove[0].sta() && FormMain.RunProcess.LogicAPI.PlatformMove[0].start != 1))
+                            {
+                                Thread.Sleep(1);
+                            }
                         }
                         button5.Enabled = button9.Enabled = button8.Enabled = true;
                     }
@@ -638,7 +667,12 @@ namespace UI
                         string info = "X偏移" + point.Value.X.ToString("f2") + "，Y偏移" + point.Value.Y.ToString("f2") + ",是否移动到中心点？";
                         if (MessageBox.Show(info, "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                         {
-                            while (!FormMain.RunProcess.LogicAPI.PlatformMove[0].exe((int)AxisDef.AxX3, ((int)AxisDef.AxY2), (int)AxisDef.AxZ3, (int)AxisDef.AxR3, (int)AxisDef.AxT2, _polishPos[OperShapeIndex].Vpos.X, _polishPos[OperShapeIndex].Vpos.Y, FormMain.RunProcess.LogicData.slaverData.basics.Safe_ZL, 0, 2, 0))
+                            while (!FormMain.RunProcess.LogicAPI.PlatformMove[1].exe((int)AxisDef.AxX3, ((int)AxisDef.AxY2), (int)AxisDef.AxZ3, (int)AxisDef.AxR3, (int)AxisDef.AxT2, _polishPos[OperShapeIndex].Vpos.X, _polishPos[OperShapeIndex].Vpos.Y, FormMain.RunProcess.LogicData.slaverData.basics.Safe_ZL, 0, 2, 0))
+                            {
+                                Thread.Sleep(1);
+                            }
+                            Thread.Sleep(100);
+                            while (!(FormMain.RunProcess.LogicAPI.PlatformMove[1].sta() && FormMain.RunProcess.LogicAPI.PlatformMove[1].start != 1))
                             {
                                 Thread.Sleep(1);
                             }
@@ -660,20 +694,46 @@ namespace UI
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             RowCount = this.treeView1.SelectedNode.Index;
+            if (_id == LEFT_POLISH || _id == RIGHT_POLISH)
+                propertyGrid1.SelectedObject = _polishPos[OperShapeIndex].pos[RowCount].polishDef;
+            else
+                propertyGrid1.SelectedObject = _SolderPos[OperShapeIndex].pos[RowCount].solderDef;
 
             //this.treeView1.SelectedNode.BackColor = Color.Blue;
         }
 
-        private void LoadtreeView1(List<PointF4> f4s)
+        #region 显示点位
+        private void LoadtreeView1(List<PolishPosdata> f4s)
         {
             int count = 0;
             this.treeView1.Nodes.Clear();
-            foreach (PointF4 p in f4s)
+            foreach (PolishPosdata p in f4s)
             {
                 count++;
-                this.treeView1.Nodes.Add(new TreeNode("端点" + count.ToString() + "X:" + p.X.ToString("f2") + ";\r\n" + "Y:" + p.Y.ToString("f2") + ";\r\n" + "Z:" + p.Z.ToString("f2") + ";\r\n" + "R:" + p.R.ToString("f2") + ";"));
+                this.treeView1.Nodes.Add(new TreeNode("端点" + count.ToString() + 
+                    ":X:" + p.pos.X.ToString("f2") + 
+                    ";\r\n" + "Y:" + p.pos.Y.ToString("f2") + 
+                    ";\r\n" + "Z:" + p.pos.Z.ToString("f2") + 
+                    ";\r\n" + "R:" + p.pos.R.ToString("f2") + ";"));
             }
         }
+
+        private void LoadtreeView_S(List<SolderPosdata> f4s)
+        {
+            int count = 0;
+            this.treeView1.Nodes.Clear();
+            foreach (SolderPosdata p in f4s)
+            {
+                count++;
+                this.treeView1.Nodes.Add(new TreeNode("端点" + count.ToString() +
+                    ":X:" + p.pos.X.ToString("f2") +
+                    ";\r\n" + "Y:" + p.pos.Y.ToString("f2") +
+                    ";\r\n" + "Z:" + p.pos.Z.ToString("f2") +
+                    ";\r\n" + "R:" + p.pos.R.ToString("f2") + ";"));
+            }
+        }
+
+        #endregion
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -789,28 +849,28 @@ namespace UI
                 switch (_id)
                 {
                     case LEFT_SOLDER:
-                        _SolderPos[index].pos[RowCount].X = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxX1] - _SolderPos[index].Vpos.X;
-                        _SolderPos[index].pos[RowCount].Y = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxY1] - _SolderPos[index].Vpos.Y;
-                        _SolderPos[index].pos[RowCount].Z = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxZ1];
-                        _SolderPos[index].pos[RowCount].R = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxR1];
+                        _SolderPos[index].pos[RowCount].pos.X = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxX1] - _SolderPos[index].Vpos.X;
+                        _SolderPos[index].pos[RowCount].pos.Y = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxY1] - _SolderPos[index].Vpos.Y;
+                        _SolderPos[index].pos[RowCount].pos.Z = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxZ1];
+                        _SolderPos[index].pos[RowCount].pos.R = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxR1];
                         break;
                     case RIGHT_SOLSER:
-                        _SolderPos[index].pos[RowCount].X = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxX2] - _SolderPos[index].Vpos.X;
-                        _SolderPos[index].pos[RowCount].Y = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxY2] - _SolderPos[index].Vpos.Y;
-                        _SolderPos[index].pos[RowCount].Z = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxZ2];
-                        _SolderPos[index].pos[RowCount].R = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxR2];
+                        _SolderPos[index].pos[RowCount].pos.X = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxX2] - _SolderPos[index].Vpos.X;
+                        _SolderPos[index].pos[RowCount].pos.Y = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxY2] - _SolderPos[index].Vpos.Y;
+                        _SolderPos[index].pos[RowCount].pos.Z = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxZ2];
+                        _SolderPos[index].pos[RowCount].pos.R = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxR2];
                         break;
                     case LEFT_POLISH:
-                        _polishPos[index].pos[RowCount].X = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxX3] - _polishPos[index].Vpos.X;
-                        _polishPos[index].pos[RowCount].Y = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxY1] - _polishPos[index].Vpos.Y;
-                        _polishPos[index].pos[RowCount].Z = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxZ3];
-                        _polishPos[index].pos[RowCount].R = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxR3];
+                        _polishPos[index].pos[RowCount].pos.X = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxX3] - _polishPos[index].Vpos.X;
+                        _polishPos[index].pos[RowCount].pos.Y = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxY1] - _polishPos[index].Vpos.Y;
+                        _polishPos[index].pos[RowCount].pos.Z = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxZ3];
+                        _polishPos[index].pos[RowCount].pos.R = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxR3];
                         break;
                     case RIGHT_POLISH:
-                        _polishPos[index].pos[RowCount].X = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxX3] - _polishPos[index].Vpos.X;
-                        _polishPos[index].pos[RowCount].Y = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxY2] - _polishPos[index].Vpos.Y;
-                        _polishPos[index].pos[RowCount].Z = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxZ3];
-                        _polishPos[index].pos[RowCount].R = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxR3];
+                        _polishPos[index].pos[RowCount].pos.X = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxX3] - _polishPos[index].Vpos.X;
+                        _polishPos[index].pos[RowCount].pos.Y = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxY2] - _polishPos[index].Vpos.Y;
+                        _polishPos[index].pos[RowCount].pos.Z = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxZ3];
+                        _polishPos[index].pos[RowCount].pos.R = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxR3];
                         break;
                 }
             }
@@ -827,10 +887,10 @@ namespace UI
             switch (_id)
             {
                 case LEFT_SOLDER:
-                    f4.X = _SolderPos[index].pos[RowCount].X + _SolderPos[index].Vpos.X;
-                    f4.Y = _SolderPos[index].pos[RowCount].Y + _SolderPos[index].Vpos.Y;
-                    f4.Z = _SolderPos[index].pos[RowCount].Z;
-                    f4.R = _SolderPos[index].pos[RowCount].R;
+                    f4.X = _SolderPos[index].pos[RowCount].pos.X + _SolderPos[index].Vpos.X;
+                    f4.Y = _SolderPos[index].pos[RowCount].pos.Y + _SolderPos[index].Vpos.Y;
+                    f4.Z = _SolderPos[index].pos[RowCount].pos.Z;
+                    f4.R = _SolderPos[index].pos[RowCount].pos.R;
 
                     Tools.WriteLog.AddLog(DateTime.Now.ToString() + "焊锡左X;" + f4.X.ToString() + "Y：" + f4.Y.ToString() + "Z：" + f4.Z.ToString() + "R：" + f4.R.ToString() + "基点X：" + _SolderPos[index].Vpos.X.ToString() + "Y:" + _SolderPos[index].Vpos.Y.ToString());
 
@@ -852,10 +912,10 @@ namespace UI
 
                     break;
                 case RIGHT_SOLSER:
-                    f4.X = _SolderPos[index].pos[RowCount].X + _SolderPos[index].Vpos.X;
-                    f4.Y = _SolderPos[index].pos[RowCount].Y + _SolderPos[index].Vpos.Y;
-                    f4.Z = _SolderPos[index].pos[RowCount].Z;
-                    f4.R = _SolderPos[index].pos[RowCount].R;
+                    f4.X = _SolderPos[index].pos[RowCount].pos.X + _SolderPos[index].Vpos.X;
+                    f4.Y = _SolderPos[index].pos[RowCount].pos.Y + _SolderPos[index].Vpos.Y;
+                    f4.Z = _SolderPos[index].pos[RowCount].pos.Z;
+                    f4.R = _SolderPos[index].pos[RowCount].pos.R;
 
                     Tools.WriteLog.AddLog(DateTime.Now.ToString() + "焊锡右X;" + f4.X.ToString() + "Y：" + f4.Y.ToString() + "Z：" + f4.Z.ToString() + "R：" + f4.R.ToString() + "基点X：" + _SolderPos[index].Vpos.X.ToString() + "Y:" + _SolderPos[index].Vpos.Y.ToString());
 
@@ -877,10 +937,10 @@ namespace UI
 
                     break;
                 case LEFT_POLISH:
-                    f4.X = _polishPos[index].pos[RowCount].X + _polishPos[index].Vpos.X;
-                    f4.Y = _polishPos[index].pos[RowCount].Y + _polishPos[index].Vpos.Y;
-                    f4.Z = _polishPos[index].pos[RowCount].Z;
-                    f4.R = _polishPos[index].pos[RowCount].R;
+                    f4.X = _polishPos[index].pos[RowCount].pos.X + _polishPos[index].Vpos.X;
+                    f4.Y = _polishPos[index].pos[RowCount].pos.Y + _polishPos[index].Vpos.Y;
+                    f4.Z = _polishPos[index].pos[RowCount].pos.Z;
+                    f4.R = _polishPos[index].pos[RowCount].pos.R;
 
                     Tools.WriteLog.AddLog(DateTime.Now.ToString() + "打磨左X;" + f4.X.ToString() + "Y：" + f4.Y.ToString() + "Z：" + f4.Z.ToString() + "R：" + f4.R.ToString() + "基点X：" + _polishPos[index].Vpos.X.ToString() + "Y:" + _polishPos[index].Vpos.Y.ToString());
 
@@ -902,10 +962,10 @@ namespace UI
 
                     break;
                 case RIGHT_POLISH:
-                    f4.X = _polishPos[index].pos[RowCount].X + _polishPos[index].Vpos.X;
-                    f4.Y = _polishPos[index].pos[RowCount].Y + _polishPos[index].Vpos.Y;
-                    f4.Z = _polishPos[index].pos[RowCount].Z;
-                    f4.R = _polishPos[index].pos[RowCount].R;
+                    f4.X = _polishPos[index].pos[RowCount].pos.X + _polishPos[index].Vpos.X;
+                    f4.Y = _polishPos[index].pos[RowCount].pos.Y + _polishPos[index].Vpos.Y;
+                    f4.Z = _polishPos[index].pos[RowCount].pos.Z;
+                    f4.R = _polishPos[index].pos[RowCount].pos.R;
 
                     Tools.WriteLog.AddLog(DateTime.Now.ToString() + "打磨右X;" + f4.X.ToString() + "Y：" + f4.Y.ToString() + "Z：" + f4.Z.ToString() + "R：" + f4.R.ToString() + "基点X：" + _polishPos[index].Vpos.X.ToString() + "Y:" + _polishPos[index].Vpos.Y.ToString());
 
@@ -932,6 +992,33 @@ namespace UI
         private void Form_SolderSet_FormClosed(object sender, FormClosedEventArgs e)
         {
             ftemp.List_Change();
+        }
+      
+
+
+
+
+        private void 一键同步参数ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("是否将来当前模板内所有端点参数设置为当前参数", "询问", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Cancel)
+                return;
+
+            if (_id == LEFT_POLISH || _id == RIGHT_POLISH)
+            {
+                foreach (PolishPosdata data in _polishPos[OperShapeIndex].pos)
+                {
+                    data.polishDef = _polishPos[OperShapeIndex].pos[RowCount].polishDef.Clone();
+                }
+
+            }
+            else
+            {
+                foreach(SolderPosdata data in _SolderPos[OperShapeIndex].pos)
+                {
+                    data.solderDef = _SolderPos[OperShapeIndex].pos[RowCount].solderDef.Clone();
+                }
+
+            }
         }
     }
 

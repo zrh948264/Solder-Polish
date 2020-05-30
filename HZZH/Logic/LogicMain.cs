@@ -290,7 +290,7 @@ namespace Logic
                                 ((int)AxisDef.AxY1 + my.ID * 6),
                                 (int)AxisDef.AxZ3, (int)AxisDef.AxR3,
                                 ((int)AxisDef.AxT1 + my.ID * 6),
-                                pP[my.ID].X, pP[my.ID].Y, LogicData.slaverData.basics.polish_z_pos, 0, pP[my.ID].T, 0))
+                                pP[my.ID].X, pP[my.ID].Y, LogicData.slaverData.basics.Safe_Z, 0, pP[my.ID].T, 0))
                             {
                                 Thread.Sleep(1);
                             }
@@ -312,14 +312,14 @@ namespace Logic
                             {
                                 int type = result.Type;
 
-                                foreach (PointF4 p in LogicData.vData.polishdata(my.ID)[type].pos)
+                                foreach (PolishPosdata p in LogicData.vData.polishdata(my.ID)[type].pos)
                                 {
                                     PolishPosdata _pos = new PolishPosdata();
-                                    _pos.pos.X = result.X + p.X + pP[my.ID].X;
-                                    _pos.pos.Y = result.Y + p.Y + pP[my.ID].Y;
-                                    _pos.pos.R = p.Clone().R;
-                                    _pos.pos.Z = p.Clone().Z;
-                                    _pos.polishDef = LogicData.vData.polishdata(my.ID)[type].polishDef.Clone();
+                                    _pos.pos.X = result.X + p.pos.X + pP[my.ID].X;
+                                    _pos.pos.Y = result.Y + p.pos.Y + pP[my.ID].Y;
+                                    _pos.pos.R = p.pos.R;
+                                    _pos.pos.Z = p.pos.Z;
+                                    _pos.polishDef = p.polishDef.Clone();
 
                                     ProcessData.PolishList[my.ID].Add(_pos);
                                 }
@@ -356,14 +356,14 @@ namespace Logic
                         {
                             int type = result.Type;
 
-                            foreach (PointF4 p in LogicData.vData.polishdata(my.ID)[type].pos)
+                            foreach (PolishPosdata p in LogicData.vData.polishdata(my.ID)[type].pos)
                             {
                                 PolishPosdata _pos = new PolishPosdata();
-                                _pos.pos.X = result.X + p.X + pP[my.ID].X;
-                                _pos.pos.Y = result.Y + p.Y + pP[my.ID].Y;
-                                _pos.pos.R = p.Clone().R;
-                                _pos.pos.Z = p.Clone().Z;
-                                _pos.polishDef = LogicData.vData.polishdata(my.ID)[type].polishDef.Clone();
+                                _pos.pos.X = result.X + p.pos.X + pP[my.ID].X;
+                                _pos.pos.Y = result.Y + p.pos.Y + pP[my.ID].Y;
+                                _pos.pos.R = p.pos.R;
+                                _pos.pos.Z = p.pos.Z;
+                                _pos.polishDef = p.polishDef.Clone();
 
                                 ProcessData.PolishList[my.ID].Add(_pos);
                             }
@@ -431,7 +431,7 @@ namespace Logic
                                 ((int)AxisDef.AxY1 + my.ID * 6),
                                 (int)AxisDef.AxZ3, (int)AxisDef.AxR3,
                                 ((int)AxisDef.AxT1 + my.ID * 6),
-                                pP[my.ID].X, pP[my.ID].Y, LogicData.slaverData.basics.polish_z_pos, 0, pP[my.ID].T, 0))
+                                pP[my.ID].X, pP[my.ID].Y, LogicData.slaverData.basics.Safe_Z, 0, pP[my.ID].T, 0))
                             {
                                 Thread.Sleep(1);
                             }
@@ -453,15 +453,15 @@ namespace Logic
                             foreach (VisionResult result in VisionAPI.Polishs(my.ID))
                             {
                                 int type = result.Type;
-
-                                foreach (PointF4 p in LogicData.vData.polishdata(my.ID)[type].pos)
+                                
+                                foreach (PolishPosdata p in LogicData.vData.polishdata(my.ID)[type].pos)
                                 {
                                     PolishPosdata _pos = new PolishPosdata();
-                                    _pos.pos.X = result.X + p.X + pP[my.ID].X;
-                                    _pos.pos.Y = result.Y + p.Y + pP[my.ID].Y;
-                                    _pos.pos.R = p.Clone().R;
-                                    _pos.pos.Z = p.Clone().Z;
-                                    _pos.polishDef = LogicData.vData.polishdata(my.ID)[type].polishDef.Clone();
+                                    _pos.pos.X = result.X + p.pos.X + pP[my.ID].X;
+                                    _pos.pos.Y = result.Y + p.pos.Y + pP[my.ID].Y;
+                                    _pos.pos.R = p.pos.R;
+                                    _pos.pos.Z = p.pos.Z;
+                                    _pos.polishDef = p.polishDef.Clone();
 
                                     ProcessData.PolishList[my.ID].Add(_pos);
                                 }
@@ -495,14 +495,14 @@ namespace Logic
                         foreach (VisionResult result in VisionAPI.Polishs(my.ID))
                         {
                             int type = result.Type;
-                            foreach (PointF4 p in LogicData.vData.polishdata(my.ID)[type].pos)
+                            foreach (PolishPosdata p in LogicData.vData.polishdata(my.ID)[type].pos)
                             {
                                 PolishPosdata _pos = new PolishPosdata();
-                                _pos.pos.X = result.X + p.X + pP[my.ID].X;
-                                _pos.pos.Y = result.Y + p.Y + pP[my.ID].Y;
-                                _pos.pos.R = p.Clone().R;
-                                _pos.pos.Z = p.Clone().Z;
-                                _pos.polishDef = LogicData.vData.polishdata(my.ID)[type].polishDef.Clone();
+                                _pos.pos.X = result.X + p.pos.X + pP[my.ID].X;
+                                _pos.pos.Y = result.Y + p.pos.Y + pP[my.ID].Y;
+                                _pos.pos.R = p.pos.R;
+                                _pos.pos.Z = p.pos.Z;
+                                _pos.polishDef = p.polishDef.Clone();
 
                                 ProcessData.PolishList[my.ID].Add(_pos);
                             }
@@ -671,14 +671,14 @@ namespace Logic
                             foreach (VisionResult result in VisionAPI.Solders(my.ID))
                             {
                                 int type = result.Type;
-                                foreach (PointF4 p in LogicData.vData.soliderdata(my.ID)[type].pos)
+                                foreach (SolderPosdata p in LogicData.vData.soliderdata(my.ID)[type].pos)
                                 {
                                     SolderPosdata _pos = new SolderPosdata();
-                                    _pos.pos.X = result.X + p.X + pS[my.ID].X;
-                                    _pos.pos.Y = result.Y + p.Y + pS[my.ID].Y;
-                                    _pos.pos.R = p.Clone().R;
-                                    _pos.pos.Z = p.Clone().Z;
-                                    _pos.solderDef = LogicData.vData.soliderdata(my.ID)[type].solderDef.Clone();
+                                    _pos.pos.X = result.X + p.pos.X + pS[my.ID].X;
+                                    _pos.pos.Y = result.Y + p.pos.Y + pS[my.ID].Y;
+                                    _pos.pos.R = p.pos.R;
+                                    _pos.pos.Z = p.pos.Z;
+                                    _pos.solderDef = p.solderDef.Clone();
 
                                     if (LogicData.RunData.rinseMode == 1)//每几个清洗
                                     {
@@ -723,20 +723,20 @@ namespace Logic
                         {
                             int type = result.Type;
 
-                            foreach (PointF4 p in LogicData.vData.soliderdata(my.ID)[type].pos)
+                            foreach (SolderPosdata p in LogicData.vData.soliderdata(my.ID)[type].pos)
                             {
-
                                 SolderPosdata _pos = new SolderPosdata();
-                                _pos.pos.X = result.X + p.X + pS[my.ID].X;
-                                _pos.pos.Y = result.Y + p.Y + pS[my.ID].Y;
-                                _pos.pos.R = p.Clone().R;
-                                _pos.pos.Z = p.Clone().Z;
-                                _pos.solderDef = LogicData.vData.soliderdata(my.ID)[type].solderDef.Clone();
+                                _pos.pos.X = result.X + p.pos.X + pS[my.ID].X;
+                                _pos.pos.Y = result.Y + p.pos.Y + pS[my.ID].Y;
+                                _pos.pos.R = p.pos.R;
+                                _pos.pos.Z = p.pos.Z;
+                                _pos.solderDef = p.solderDef.Clone();
 
-                                if (LogicData.RunData.rinseMode == 1)//逐个清洗
+                                if (LogicData.RunData.rinseMode == 1)//每几个清洗
                                 {
                                     _pos.rinse = true;
                                 }
+
                                 ProcessData.SolderList[my.ID].Add(_pos);
                             }
                         }
@@ -846,27 +846,23 @@ namespace Logic
                             {
                                 int type = result.Type;
 
-                                foreach (PointF4 p in LogicData.vData.soliderdata(my.ID)[type].pos)
+                                foreach (SolderPosdata p in LogicData.vData.soliderdata(my.ID)[type].pos)
                                 {
                                     SolderPosdata _pos = new SolderPosdata();
-                                    _pos.pos.X = result.X + p.X + pS[my.ID].X;
-                                    _pos.pos.Y = result.Y + p.Y + pS[my.ID].Y;
-                                    _pos.pos.R = p.Clone().R;
-                                    _pos.pos.Z = p.Clone().Z;
-                                    _pos.solderDef = LogicData.vData.soliderdata(my.ID)[type].solderDef.Clone();
+                                    _pos.pos.X = result.X + p.pos.X + pS[my.ID].X;
+                                    _pos.pos.Y = result.Y + p.pos.Y + pS[my.ID].Y;
+                                    _pos.pos.R = p.pos.R;
+                                    _pos.pos.Z = p.pos.Z;
+                                    _pos.solderDef = p.solderDef.Clone();
 
-                                    if (LogicData.RunData.rinseMode == 1)//每几个点清洗
+                                    if (LogicData.RunData.rinseMode == 1)//每几个清洗
                                     {
                                         _pos.rinse = true;
                                     }
 
-
-
                                     ProcessData.SolderList[my.ID].Add(_pos);
                                 }
                             }
-
-
                             my.cnt++;
                             my.step = 6;
                         }
@@ -898,18 +894,20 @@ namespace Logic
                         {
                             int type = result.Type;
 
-                            foreach (PointF4 p in LogicData.vData.soliderdata(my.ID)[type].pos)
+                            foreach (SolderPosdata p in LogicData.vData.soliderdata(my.ID)[type].pos)
                             {
                                 SolderPosdata _pos = new SolderPosdata();
-                                _pos.pos.X = result.X + p.X + pS[my.ID].X;
-                                _pos.pos.Y = result.Y + p.Y + pS[my.ID].Y;
-                                _pos.pos.R = p.Clone().R;
-                                _pos.pos.Z = p.Clone().Z;
-                                _pos.solderDef = LogicData.vData.soliderdata(my.ID)[type].solderDef.Clone();
-                                if (LogicData.RunData.rinseMode == 1)//逐个清洗
+                                _pos.pos.X = result.X + p.pos.X + pS[my.ID].X;
+                                _pos.pos.Y = result.Y + p.pos.Y + pS[my.ID].Y;
+                                _pos.pos.R = p.pos.R;
+                                _pos.pos.Z = p.pos.Z;
+                                _pos.solderDef = p.solderDef.Clone();
+
+                                if (LogicData.RunData.rinseMode == 1)//每几个清洗
                                 {
                                     _pos.rinse = true;
                                 }
+
                                 ProcessData.SolderList[my.ID].Add(_pos);
                             }
                         }
