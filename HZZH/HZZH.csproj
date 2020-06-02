@@ -34,7 +34,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>true</Prefer32Bit>
@@ -244,6 +244,12 @@
     <Compile Include="UI\Form_SolderSet.designer.cs">
       <DependentUpon>Form_SolderSet.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Frm_Machine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Frm_Machine.Designer.cs">
+      <DependentUpon>Frm_Machine.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vision\Algorithm\Circle.cs" />
     <Compile Include="Vision\Config\Config.cs" />
     <Compile Include="Vision\Config\ConfigAPIHandle.cs" />
@@ -384,6 +390,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Form_SolderSet.resx">
       <DependentUpon>Form_SolderSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Frm_Machine.resx">
+      <DependentUpon>Frm_Machine.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vision\Tool\CalibrationAssistant\CalibPPControl.resx">
       <DependentUpon>CalibPPControl.cs</DependentUpon>

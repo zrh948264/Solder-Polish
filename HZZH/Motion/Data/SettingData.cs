@@ -67,6 +67,11 @@ namespace Motion
         
         public int leftSoldertintimes { set; get; }
         public int rightSoldertintimes { set; get; }
+
+
+        public TeachingMechinePra TeachingMechinePra_Left { get; set; }
+        public TeachingMechinePra TeachingMechinePra_Right { get; set; }
+
         #endregion
 
         public RunDataDef()
@@ -83,6 +88,9 @@ namespace Motion
             pNumR = 1;
             sNumL = 1;
             sNumR = 1;
+
+            TeachingMechinePra_Left = new TeachingMechinePra();
+            TeachingMechinePra_Right = new TeachingMechinePra();
         }
 
         [OnDeserialized()]
@@ -211,6 +219,44 @@ namespace Motion
 
 
     }
+
+
+    #region 计算R轴旋转
+
+    [Serializable]
+    public class TeachingMechinePra                         // 用于记录机械中相机、旋转轴、焊头的各个位置
+    {
+        public PointF2 ZeroPostion { get; set; }             // 0度时候的坐标
+        public PointF2 ReversePostion { get; set; }          // 180度时候的坐标
+        public PointF2 RotatePostion { get; set; }           // 认为旋转中心会跟着轴移动,此时的旋转中心
+
+        public PointF2 RotatePstionHXT_Size { get; set; }    // 求得焊锡头距离参考旋转中心的偏移
+        public float Radius { get; set; }    // 求得焊锡头距离参考旋转中心的偏移
+
+
+        public PointF2 RotatePstionCameraSize { get; set; }  // 求得相机的中心到旋转中心的偏移
+
+        public PointF2 CameraRotatePostion { get; set; }     // 在计算相机和旋转中心位置时候，相机位置参考
+        public PointF4 HXT_OrgPostion { get; set; }          // 在计算焊锡头距离参考选中心时，焊锡头的位置
+        public double RotatePostionStartAngle { get; set; } // 在初始机械结构中，焊头在旋转中前状态时候的初始角度，
+                                                            // 为了计算焊头的点转换成相机点的一种转换方式
+
+        public TeachingMechinePra()
+        {
+            ZeroPostion = new PointF2();
+            ReversePostion = new PointF2();
+            RotatePostion = new PointF2();
+            RotatePstionCameraSize = new PointF2();
+            CameraRotatePostion = new PointF2();
+            HXT_OrgPostion = new PointF4();
+            RotatePstionHXT_Size = new PointF2();
+            RotatePostionStartAngle = 0;
+            Radius = 0;
+        }
+    }
+
+    #endregion
+
 
     /// <summary>
     /// 上锡参数

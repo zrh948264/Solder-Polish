@@ -11,6 +11,8 @@ using Vision;
 using HZZH.Vision.Logic;
 using MyControl;
 using UI;
+using System.Drawing;
+using HZZH.Vision.Algorithm;
 
 namespace Logic
 {
@@ -652,12 +654,22 @@ namespace Logic
                         if (LogicAPI.PlatformMove[my.ID].sta() && LogicAPI.PlatformMove[my.ID].start != 1)
                         {
                             pS[my.ID] = ProcessData.wPointFs_SolderF[my.ID][my.cnt];
+                            float safe_Z = 0;
+                            if(my.ID == 0)
+                            {
+                                safe_Z = LogicData.slaverData.basics.Safe_ZL;
+                            }
+                            else
+                            {
+                                safe_Z = LogicData.slaverData.basics.Safe_ZR;
+                            }
+
                             while (!LogicAPI.PlatformMove[my.ID].exe(((int)AxisDef.AxX1 + my.ID * 6),
                                                         ((int)AxisDef.AxY1 + my.ID * 6),
                                                         ((int)AxisDef.AxZ1 + my.ID * 6),
                                                         ((int)AxisDef.AxR1 + my.ID * 6),
                                                         ((int)AxisDef.AxT1 + my.ID * 6),
-                                                        pS[my.ID].X, pS[my.ID].Y, LogicData.slaverData.basics.Safe_ZL,
+                                                        pS[my.ID].X, pS[my.ID].Y, safe_Z,
                                                         0, pS[my.ID].T, 0))
                             {
                                 Thread.Sleep(1);
@@ -828,12 +840,23 @@ namespace Logic
                         {
                             pS[my.ID] = ProcessData.wPointFs_SolderV[my.ID][my.cnt];
 
+                            float safe_Z = 0;
+                            if (my.ID == 0)
+                            {
+                                safe_Z = LogicData.slaverData.basics.Safe_ZL;
+                            }
+                            else
+                            {
+                                safe_Z = LogicData.slaverData.basics.Safe_ZR;
+                            }
+
                             while (!LogicAPI.PlatformMove[my.ID].exe(((int)AxisDef.AxX1 + my.ID * 6),
                                                         ((int)AxisDef.AxY1 + my.ID * 6),
                                                         ((int)AxisDef.AxZ1 + my.ID * 6),
                                                         ((int)AxisDef.AxR1 + my.ID * 6),
                                                         ((int)AxisDef.AxT1 + my.ID * 6),
-                                                        pS[my.ID].X, pS[my.ID].Y, LogicData.slaverData.basics.Safe_Z, 0, pS[my.ID].T, 0))
+                                                        pS[my.ID].X, pS[my.ID].Y, safe_Z,
+                                                        0, pS[my.ID].T, 0))
                             {
                                 Thread.Sleep(1);
                             }
@@ -986,7 +1009,49 @@ namespace Logic
             }
         }
 
-        #endregion
+
+        public void Transorm(UsingPlatformSelect usingPlatform, float X,float Y,float R,float Ang, out float Tx, out float Ty)
+        {
+            TeachingMechinePra mechinePra = new TeachingMechinePra();
+
+            if (usingPlatform == UsingPlatformSelect.Left)
+            {
+                mechinePra = LogicData.RunData.TeachingMechinePra_Left;
+            }
+            else if (usingPlatform == UsingPlatformSelect.Right)
+            {
+                mechinePra = LogicData.RunData.TeachingMechinePra_Right;
+            }
+
+            // 认为是将焊头的点转成0角度的点的位置
+            float rotateAng = R;
+            PointF rotateCur = new PointF();
+            rotateCur.X = X;
+            rotateCur.Y = Y;//装换前的角度和位置
+
+            double radius = mechinePra.Radius ;//圆心半径
+           
+            //
+            PointF rotateC = new PointF();//旋转中心
+            float ang = rotateAng;// + (float)mechinePra.RotatePostionStartAngle;//旋转的角度
+
+            double cos = Math.Cos(ang * Math.PI / 180);//对应弧度
+            double sin = Math.Sin(ang * Math.PI / 180);
+
+            rotateC.X = rotateCur.X + (float)(radius * cos);
+            rotateC.Y = rotateCur.Y + (float)(radius * sin);//计算旋转中心
+            //
+
+            Circle circle = new Circle(rotateC,(float)radius);
+
+            PointF pos = circle.Rotate(rotateCur, Ang);
+            
+            Tx = pos.X;
+            Ty = pos.Y;
+
+        }
+        
+            #endregion
 
         #region 下位机数据块下发
         public void DataToSlaver()
@@ -1122,4 +1187,13 @@ namespace Logic
             }
         }
     }
+
+    public enum UsingPlatformSelect
+    {
+        Left,
+        Right
+    };
+
+    
+
 }

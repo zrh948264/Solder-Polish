@@ -20,6 +20,7 @@ using System.Linq;
 using ApiClass;
 using LicenseManagement;
 using UI;
+using HZZH.UI;
 
 namespace UI
 {
@@ -371,7 +372,9 @@ namespace UI
             }
             finally
             {
-                ChcekLicense();
+                #region 加密狗
+                //ChcekLicense();
+                #endregion
             }
         }
         void toolStripTextBox2_TextChanged(object sender, EventArgs e)
@@ -593,7 +596,7 @@ namespace UI
                         VisionProject.Instance.CamState[0] = false;
                         VisionProject.Instance.CamState[1] = false;
                         VisionProject.Instance.CamState[2] = false;
-
+                        RunProcess.LogicTask.WorkTask[0].execute = RunProcess.LogicTask.WorkTask[1].execute = 1;
                         tabControl2.SelectedIndex = tabControl1.SelectedIndex = 0;
                         panel5.Enabled = toolStripButton4.Enabled = toolStripButton3.Enabled = toolStripButton1.Enabled = toolStripButton2.Enabled =
                             主页Bt.Enabled = 日志Bt.Enabled = 电机参数Bt.Enabled = IO监控Bt.Enabled =
@@ -736,7 +739,7 @@ namespace UI
 
             List_Change();
 
-            label_projectPath.Text = pathRoad.Substring(pathRoad.LastIndexOf('\\'));
+            label_projectPath.Text ="";
         }
         /// <summary>
         /// 保存文件
@@ -885,22 +888,22 @@ namespace UI
 
             #region 日志
 
-            if (cnt > 4500)
-            {
-                cnt = 0;
-                userCtrlMsgListView1.ClearMsgItems();
-            }
-            else
-            {
-                cnt++;
-            }
+            //if (cnt > 100)
+            //{
+            //    cnt = 0;
+            //    userCtrlMsgListView1.ClearMsgItems();
+            //}
+            //else
+            //{
+            //    cnt++;
+            //}
 
             #endregion 日志
 
 
 
             #region 加密狗
-            TimerCheck();
+            //TimerCheck();
             #endregion
 
         }
@@ -925,7 +928,6 @@ namespace UI
 
         public void SaveData()
         {
-
             SaveDataGridView(RunProcess.LogicData.RunData.wPointFs_Polish[0], dataGridView1);
             SaveDataGridView(RunProcess.LogicData.RunData.wPointFs_Polish[1], dataGridView2);
             SaveDataGridView(RunProcess.LogicData.RunData.wPointFs_Solder[0], dataGridView3);
@@ -1422,8 +1424,7 @@ namespace UI
 
         Form_SolderSet form_Solder = new Form_SolderSet();
         private void button_cancel_Click(object sender, EventArgs e)
-        {
-           
+        {           
             ToolStripButton button = sender as ToolStripButton;
             SaveData();
 
@@ -1431,6 +1432,11 @@ namespace UI
             {
                 form1.Close();
             }
+            if (frm_Machine != null && !frm_Machine.IsDisposed)
+            {
+                frm_Machine.Close();
+            }
+
 
             if (form_Solder != null)
             {
@@ -1455,6 +1461,65 @@ namespace UI
             form_Solder.TopLevel = true;
             form_Solder.Show();
         }
+
+        #region 角度计算
+
+        Frm_Machine frm_Machine = new Frm_Machine();
+
+        private void toolStripButton53_Click(object sender, EventArgs e)
+        {
+            ToolStripButton button = sender as ToolStripButton;
+            SaveData();
+
+            if (form1 != null && !form1.IsDisposed)
+            {
+                form1.Close();
+            }
+            if (form_Solder != null && !form_Solder.IsDisposed)
+            {
+                form_Solder.Close();
+            }
+
+            if (frm_Machine != null)
+            {
+                if (frm_Machine.IsDisposed)
+                {
+                    if (Convert.ToInt32(button.Tag.ToString()) == 0)
+                    {
+                        frm_Machine = new Frm_Machine(RunProcess.movedriverZm,RunProcess.LogicData.RunData.TeachingMechinePra_Left, UsingPlatformSelect.Left);
+                    }
+                    else
+                    {
+                        frm_Machine = new Frm_Machine(RunProcess.movedriverZm, RunProcess.LogicData.RunData.TeachingMechinePra_Right, UsingPlatformSelect.Right);
+                    }
+                    frm_Machine.Owner = this;
+                    frm_Machine.TopLevel = true;
+                    frm_Machine.Show();
+                    return;
+                }
+                else
+                {
+                    frm_Machine.Owner = this;
+                    frm_Machine.TopLevel = true;
+                    frm_Machine.Show();
+                    return;
+                }
+            }
+            if (Convert.ToInt32(button.Tag.ToString()) == 0)
+            {
+                frm_Machine = new Frm_Machine(RunProcess.movedriverZm, RunProcess.LogicData.RunData.TeachingMechinePra_Left, UsingPlatformSelect.Left);
+            }
+            else
+            {
+                frm_Machine = new Frm_Machine(RunProcess.movedriverZm, RunProcess.LogicData.RunData.TeachingMechinePra_Right, UsingPlatformSelect.Right);
+            }
+            frm_Machine.Owner = this;
+            frm_Machine.TopLevel = true;
+            frm_Machine.Show();
+        }
+
+        #endregion 
+
         private void button_Set_Click(object sender, EventArgs e)
         {
             ToolStripButton button = sender as ToolStripButton;
@@ -1463,6 +1528,10 @@ namespace UI
             if (form_Solder != null && !form_Solder.IsDisposed)
             {
                 form_Solder.Close();
+            }
+            if (frm_Machine != null && !frm_Machine.IsDisposed)
+            {
+                frm_Machine.Close();
             }
 
             if (form1 != null)
@@ -1959,6 +2028,9 @@ namespace UI
         {
             FormMain.RunProcess.LogicData.RunData.leftSoldertintimes = 0;
 
+           RunProcess.movedriverZm.ErrorCode.IntValue[0] = 1;
+            RunProcess.movedriverZm.ErrorLevel.IntValue[0] = 1;
+
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -2265,6 +2337,7 @@ namespace UI
         {
             tabControl1.SelectedIndex = 5;
         }
+
     }
 
     public class uphDef
