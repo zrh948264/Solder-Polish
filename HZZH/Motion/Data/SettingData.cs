@@ -69,10 +69,22 @@ namespace Motion
         public int rightSoldertintimes { set; get; }
 
 
+
         public TeachingMechinePra TeachingMechinePra_Left { get; set; }
         public TeachingMechinePra TeachingMechinePra_Right { get; set; }
 
+        public bool Rotate { get; set; }
+        public bool Rotate_r { get; set; }
+
         #endregion
+
+        public bool rotate(int LorR)
+        {
+            if (LorR == 0)
+                return Rotate;
+            else
+                return Rotate_r;
+        }
 
         public RunDataDef()
         {
@@ -91,6 +103,8 @@ namespace Motion
 
             TeachingMechinePra_Left = new TeachingMechinePra();
             TeachingMechinePra_Right = new TeachingMechinePra();
+            Rotate = false;
+            Rotate_r = false;
         }
 
         [OnDeserialized()]
@@ -220,7 +234,6 @@ namespace Motion
 
     }
 
-
     #region 计算R轴旋转
 
     [Serializable]
@@ -300,7 +313,7 @@ namespace Motion
         [CategoryAttribute("第三段"), DisplayNameAttribute("第三段送锡延时")]
         public int SendDelay3 { get; set; }
 
-        [DisplayNameAttribute("抖动模式，"), DescriptionAttribute("抖动模式：0：左右，1：前后")]
+        [DisplayNameAttribute("抖动模式"), DescriptionAttribute("抖动模式：0：上下，1：左右，2：前后")]
         public int mode { get; set; }
         [DisplayNameAttribute("抖动次数")]
         public int times { get; set; }
@@ -506,7 +519,7 @@ namespace Motion
         public float TeachSpeedL { get; set; }
         public float TeachSpeedR { get; set; }
 
-        public int polish_z_pos { get; set; }
+        //public int polish_z_pos { get; set; }
         public float Safe_Z { get; set; }
         public float PolishSpeed { get; set; }
         public float TeachSpeed { get; set; }
@@ -530,7 +543,7 @@ namespace Motion
             TurnAvoidPos_XR = 200;
             Safe_ZL = 2;
             Safe_ZR = 2;
-            polish_z_pos = 0;
+           // polish_z_pos = 0;
             WeldSpeedL = 20;
             WeldSpeedR = 20;
             TeachSpeedL = 30;

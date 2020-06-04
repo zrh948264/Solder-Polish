@@ -39,6 +39,7 @@ namespace HZZH.UI
         {
             InitializeComponent();
 
+
             this.movedriverZm = movedriverZm;
             this.TeachingMechine= TeachingMechinePra;
             if(usingPlatform == UsingPlatformSelect.Left)
@@ -89,9 +90,12 @@ namespace HZZH.UI
             TeachingMechine.RotatePostion.Y = y;
 
             TeachingMechine.Radius = (float)Math.Sqrt(Math.Pow((x - TeachingMechine.ZeroPostion.X), 2) + Math.Pow((y - TeachingMechine.ZeroPostion.Y), 2));
+            double ang = Math.Atan(y / x);
+            TeachingMechine.RotatePostionStartAngle = (float)(ang * 180 / Math.PI);
 
             numericUpDown9.DataBindings["Value"].ReadValue();
             numericUpDown8.DataBindings["Value"].ReadValue();
+            numericUpDown1.DataBindings["Value"].ReadValue();
         }
 
         private void Binding()

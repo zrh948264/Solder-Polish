@@ -57,6 +57,9 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.生产参数 = new System.Windows.Forms.TabPage();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.numericUpDown52 = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
@@ -142,6 +145,7 @@
             this.toolStripButton38 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton41 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton37 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton54 = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel14 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabel15 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabel16 = new System.Windows.Forms.ToolStripLabel();
@@ -166,6 +170,7 @@
             this.toolStripButton45 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton43 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton44 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton53 = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel20 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabel23 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabel21 = new System.Windows.Forms.ToolStripLabel();
@@ -379,17 +384,17 @@
             this.toolStrip12 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel24 = new System.Windows.Forms.ToolStripLabel();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.hWindowControl6 = new HalconDotNet.HWindowControl();
             this.toolStrip13 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel25 = new System.Windows.Forms.ToolStripLabel();
-            this.hWindowControl3 = new HalconDotNet.HWindowControl();
             this.panel11 = new System.Windows.Forms.Panel();
             this.toolStrip14 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel26 = new System.Windows.Forms.ToolStripLabel();
             this.hWindowControl5 = new HalconDotNet.HWindowControl();
             this.panel12 = new System.Windows.Forms.Panel();
-            this.hWindowControl6 = new HalconDotNet.HWindowControl();
             this.toolStrip15 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel27 = new System.Windows.Forms.ToolStripLabel();
+            this.hWindowControl3 = new HalconDotNet.HWindowControl();
             this.userCtrlMsgListView1 = new userListView.UserCtrlMsgListView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -450,8 +455,8 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton53 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton54 = new System.Windows.Forms.ToolStripButton();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -460,6 +465,7 @@
             this.panel5.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.生产参数.SuspendLayout();
+            this.panel13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown52)).BeginInit();
             this.参数1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -611,9 +617,9 @@
             this.tsslbl_Camera3,
             this.tsslbl_ControllerStatus,
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 704);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 812);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1008, 25);
+            this.statusStrip1.Size = new System.Drawing.Size(1039, 25);
             this.statusStrip1.TabIndex = 24;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -681,7 +687,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1008, 655);
+            this.tabControl1.Size = new System.Drawing.Size(1039, 763);
             this.tabControl1.TabIndex = 227;
             // 
             // tabPage1
@@ -690,7 +696,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1000, 629);
+            this.tabPage1.Size = new System.Drawing.Size(1031, 737);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -708,8 +714,8 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 623F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(994, 623);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 731F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1025, 731);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // panel5
@@ -718,9 +724,9 @@
             this.panel5.Controls.Add(this.panel7);
             this.panel5.Controls.Add(this.panel10);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(574, 3);
+            this.panel5.Location = new System.Drawing.Point(605, 3);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(417, 617);
+            this.panel5.Size = new System.Drawing.Size(417, 725);
             this.panel5.TabIndex = 3;
             // 
             // tabControl2
@@ -736,7 +742,7 @@
             this.tabControl2.Margin = new System.Windows.Forms.Padding(0);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(417, 389);
+            this.tabControl2.Size = new System.Drawing.Size(417, 497);
             this.tabControl2.TabIndex = 219;
             this.tabControl2.Tag = "2";
             this.tabControl2.SelectedIndexChanged += new System.EventHandler(this.tabControl2_SelectedIndexChanged);
@@ -744,6 +750,9 @@
             // 生产参数
             // 
             this.生产参数.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.生产参数.Controls.Add(this.checkBox4);
+            this.生产参数.Controls.Add(this.checkBox3);
+            this.生产参数.Controls.Add(this.panel13);
             this.生产参数.Controls.Add(this.numericUpDown52);
             this.生产参数.Controls.Add(this.label5);
             this.生产参数.Controls.Add(this.comboBox2);
@@ -765,15 +774,49 @@
             this.生产参数.Location = new System.Drawing.Point(4, 22);
             this.生产参数.Margin = new System.Windows.Forms.Padding(0);
             this.生产参数.Name = "生产参数";
-            this.生产参数.Size = new System.Drawing.Size(409, 363);
+            this.生产参数.Size = new System.Drawing.Size(409, 471);
             this.生产参数.TabIndex = 0;
             this.生产参数.Text = "生产参数";
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(233, 262);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(108, 16);
+            this.checkBox3.TabIndex = 46;
+            this.checkBox3.Text = "左视觉补偿角度";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // panel13
+            // 
+            this.panel13.Controls.Add(this.richTextBox1);
+            this.panel13.Location = new System.Drawing.Point(16, 310);
+            this.panel13.Margin = new System.Windows.Forms.Padding(2);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(392, 158);
+            this.panel13.TabIndex = 45;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.richTextBox1.Font = new System.Drawing.Font("宋体", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.richTextBox1.ForeColor = System.Drawing.Color.DarkGreen;
+            this.richTextBox1.Location = new System.Drawing.Point(0, 2);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ShowSelectionMargin = true;
+            this.richTextBox1.Size = new System.Drawing.Size(393, 157);
+            this.richTextBox1.TabIndex = 47;
+            this.richTextBox1.Text = "             深圳市菲捷尔科技有限公司\n        Shenzhen PJAE Technology Co.,Ltd\n\n自动焊锡机器人 | 自动锁" +
+    "螺丝机器人 | 精密点胶设备 | 在线式高端自动化定制设备 | 六轴多关节机器人应用 | CCD视觉集成设备应用系统 | 配件及耗材定制 | 批发\n\n     " +
+    "         联系电话：400-166-8109";
             // 
             // numericUpDown52
             // 
             this.numericUpDown52.Location = new System.Drawing.Point(321, 230);
             this.numericUpDown52.Maximum = new decimal(new int[] {
-            10,
+            500,
             0,
             0,
             0});
@@ -969,7 +1012,7 @@
             this.参数1.Location = new System.Drawing.Point(4, 22);
             this.参数1.Margin = new System.Windows.Forms.Padding(0);
             this.参数1.Name = "参数1";
-            this.参数1.Size = new System.Drawing.Size(409, 363);
+            this.参数1.Size = new System.Drawing.Size(409, 471);
             this.参数1.TabIndex = 1;
             this.参数1.Text = "打磨参数1";
             this.参数1.UseVisualStyleBackColor = true;
@@ -987,8 +1030,8 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 363F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(409, 363);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 471F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(409, 471);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
             // toolStrip8
@@ -1016,7 +1059,7 @@
             this.toolStripLabel8});
             this.toolStrip8.Location = new System.Drawing.Point(0, 0);
             this.toolStrip8.Name = "toolStrip8";
-            this.toolStrip8.Size = new System.Drawing.Size(34, 363);
+            this.toolStrip8.Size = new System.Drawing.Size(34, 471);
             this.toolStrip8.TabIndex = 13;
             this.toolStrip8.Text = "toolStrip8";
             // 
@@ -1158,7 +1201,7 @@
             this.toolStripLabel8.BackColor = System.Drawing.Color.DarkRed;
             this.toolStripLabel8.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Bold);
             this.toolStripLabel8.Name = "toolStripLabel8";
-            this.toolStripLabel8.Size = new System.Drawing.Size(24, 27);
+            this.toolStripLabel8.Size = new System.Drawing.Size(32, 27);
             this.toolStripLabel8.Text = "1";
             // 
             // dataGridView1
@@ -1208,7 +1251,7 @@
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(372, 363);
+            this.dataGridView1.Size = new System.Drawing.Size(372, 471);
             this.dataGridView1.TabIndex = 12;
             this.dataGridView1.Tag = "0";
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
@@ -1269,7 +1312,7 @@
             this.参数2.Controls.Add(this.tableLayoutPanel6);
             this.参数2.Location = new System.Drawing.Point(4, 22);
             this.参数2.Name = "参数2";
-            this.参数2.Size = new System.Drawing.Size(409, 363);
+            this.参数2.Size = new System.Drawing.Size(409, 471);
             this.参数2.TabIndex = 2;
             this.参数2.Text = "打磨参数2";
             this.参数2.UseVisualStyleBackColor = true;
@@ -1287,8 +1330,8 @@
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 363F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(409, 363);
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 471F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(409, 471);
             this.tableLayoutPanel6.TabIndex = 3;
             // 
             // dataGridView2
@@ -1338,7 +1381,7 @@
             this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.RowTemplate.Height = 23;
-            this.dataGridView2.Size = new System.Drawing.Size(372, 363);
+            this.dataGridView2.Size = new System.Drawing.Size(372, 471);
             this.dataGridView2.TabIndex = 15;
             this.dataGridView2.Tag = "1";
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
@@ -1417,7 +1460,7 @@
             this.toolStripLabel13});
             this.toolStrip9.Location = new System.Drawing.Point(0, 0);
             this.toolStrip9.Name = "toolStrip9";
-            this.toolStrip9.Size = new System.Drawing.Size(34, 363);
+            this.toolStrip9.Size = new System.Drawing.Size(34, 471);
             this.toolStrip9.TabIndex = 14;
             this.toolStrip9.Text = "toolStrip9";
             // 
@@ -1554,7 +1597,7 @@
             // 
             this.toolStripLabel13.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Bold);
             this.toolStripLabel13.Name = "toolStripLabel13";
-            this.toolStripLabel13.Size = new System.Drawing.Size(24, 27);
+            this.toolStripLabel13.Size = new System.Drawing.Size(32, 27);
             this.toolStripLabel13.Text = "2";
             // 
             // tabPage6
@@ -1562,7 +1605,7 @@
             this.tabPage6.Controls.Add(this.tableLayoutPanel4);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(409, 363);
+            this.tabPage6.Size = new System.Drawing.Size(409, 471);
             this.tabPage6.TabIndex = 3;
             this.tabPage6.Text = "上锡参数1";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -1580,8 +1623,8 @@
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 363F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(409, 363);
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 471F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(409, 471);
             this.tableLayoutPanel4.TabIndex = 3;
             // 
             // dataGridView3
@@ -1631,7 +1674,7 @@
             this.dataGridView3.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridView3.RowHeadersVisible = false;
             this.dataGridView3.RowTemplate.Height = 23;
-            this.dataGridView3.Size = new System.Drawing.Size(372, 363);
+            this.dataGridView3.Size = new System.Drawing.Size(372, 471);
             this.dataGridView3.TabIndex = 15;
             this.dataGridView3.Tag = "2";
             this.dataGridView3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
@@ -1703,7 +1746,7 @@
             this.toolStripButton38,
             this.toolStripButton41,
             this.toolStripButton37,
-            this.toolStripButton53,
+            this.toolStripButton54,
             this.toolStripLabel14,
             this.toolStripLabel15,
             this.toolStripLabel16,
@@ -1711,7 +1754,7 @@
             this.toolStripLabel18});
             this.toolStrip10.Location = new System.Drawing.Point(0, 0);
             this.toolStrip10.Name = "toolStrip10";
-            this.toolStrip10.Size = new System.Drawing.Size(34, 363);
+            this.toolStrip10.Size = new System.Drawing.Size(34, 471);
             this.toolStrip10.TabIndex = 14;
             this.toolStrip10.Text = "toolStrip10";
             // 
@@ -1816,6 +1859,18 @@
             this.toolStripButton37.ToolTipText = "标定";
             this.toolStripButton37.Click += new System.EventHandler(this.button23_Click);
             // 
+            // toolStripButton54
+            // 
+            this.toolStripButton54.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton54.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton54.Image")));
+            this.toolStripButton54.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton54.Name = "toolStripButton54";
+            this.toolStripButton54.Size = new System.Drawing.Size(32, 24);
+            this.toolStripButton54.Tag = "0";
+            this.toolStripButton54.Text = "toolStripButton12";
+            this.toolStripButton54.ToolTipText = "标定";
+            this.toolStripButton54.Click += new System.EventHandler(this.toolStripButton54_Click);
+            // 
             // toolStripLabel14
             // 
             this.toolStripLabel14.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Bold);
@@ -1848,7 +1903,7 @@
             // 
             this.toolStripLabel18.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Bold);
             this.toolStripLabel18.Name = "toolStripLabel18";
-            this.toolStripLabel18.Size = new System.Drawing.Size(24, 27);
+            this.toolStripLabel18.Size = new System.Drawing.Size(32, 27);
             this.toolStripLabel18.Text = "1";
             // 
             // tabPage7
@@ -1856,7 +1911,7 @@
             this.tabPage7.Controls.Add(this.tableLayoutPanel5);
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(409, 363);
+            this.tabPage7.Size = new System.Drawing.Size(409, 471);
             this.tabPage7.TabIndex = 4;
             this.tabPage7.Text = "上锡参数2";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -1874,8 +1929,8 @@
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 363F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(409, 363);
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 471F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(409, 471);
             this.tableLayoutPanel5.TabIndex = 3;
             // 
             // dataGridView4
@@ -1925,7 +1980,7 @@
             this.dataGridView4.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridView4.RowHeadersVisible = false;
             this.dataGridView4.RowTemplate.Height = 23;
-            this.dataGridView4.Size = new System.Drawing.Size(372, 363);
+            this.dataGridView4.Size = new System.Drawing.Size(372, 471);
             this.dataGridView4.TabIndex = 15;
             this.dataGridView4.Tag = "3";
             this.dataGridView4.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
@@ -1997,7 +2052,7 @@
             this.toolStripButton45,
             this.toolStripButton43,
             this.toolStripButton44,
-            this.toolStripButton54,
+            this.toolStripButton53,
             this.toolStripLabel20,
             this.toolStripLabel23,
             this.toolStripLabel21,
@@ -2005,7 +2060,7 @@
             this.toolStripLabel22});
             this.toolStrip11.Location = new System.Drawing.Point(0, 0);
             this.toolStrip11.Name = "toolStrip11";
-            this.toolStrip11.Size = new System.Drawing.Size(34, 363);
+            this.toolStrip11.Size = new System.Drawing.Size(34, 471);
             this.toolStrip11.TabIndex = 14;
             this.toolStrip11.Text = "toolStrip11";
             // 
@@ -2110,6 +2165,18 @@
             this.toolStripButton44.ToolTipText = "标定";
             this.toolStripButton44.Click += new System.EventHandler(this.button24_Click);
             // 
+            // toolStripButton53
+            // 
+            this.toolStripButton53.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton53.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton53.Image")));
+            this.toolStripButton53.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton53.Name = "toolStripButton53";
+            this.toolStripButton53.Size = new System.Drawing.Size(32, 24);
+            this.toolStripButton53.Tag = "1";
+            this.toolStripButton53.Text = "toolStripButton12";
+            this.toolStripButton53.ToolTipText = "标定";
+            this.toolStripButton53.Click += new System.EventHandler(this.toolStripButton54_Click);
+            // 
             // toolStripLabel20
             // 
             this.toolStripLabel20.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Bold);
@@ -2142,7 +2209,7 @@
             // 
             this.toolStripLabel22.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Bold);
             this.toolStripLabel22.Name = "toolStripLabel22";
-            this.toolStripLabel22.Size = new System.Drawing.Size(24, 27);
+            this.toolStripLabel22.Size = new System.Drawing.Size(32, 27);
             this.toolStripLabel22.Text = "2";
             // 
             // 机台参数
@@ -2151,7 +2218,7 @@
             this.机台参数.Location = new System.Drawing.Point(4, 22);
             this.机台参数.Margin = new System.Windows.Forms.Padding(0);
             this.机台参数.Name = "机台参数";
-            this.机台参数.Size = new System.Drawing.Size(409, 363);
+            this.机台参数.Size = new System.Drawing.Size(409, 471);
             this.机台参数.TabIndex = 5;
             this.机台参数.Text = "机台参数";
             this.机台参数.UseVisualStyleBackColor = true;
@@ -2166,7 +2233,7 @@
             this.tabControl5.Margin = new System.Windows.Forms.Padding(0);
             this.tabControl5.Name = "tabControl5";
             this.tabControl5.SelectedIndex = 0;
-            this.tabControl5.Size = new System.Drawing.Size(409, 363);
+            this.tabControl5.Size = new System.Drawing.Size(409, 471);
             this.tabControl5.TabIndex = 0;
             this.tabControl5.SelectedIndexChanged += new System.EventHandler(this.tabControl5_SelectedIndexChanged);
             // 
@@ -2186,7 +2253,7 @@
             this.tabPage12.Location = new System.Drawing.Point(4, 22);
             this.tabPage12.Margin = new System.Windows.Forms.Padding(0);
             this.tabPage12.Name = "tabPage12";
-            this.tabPage12.Size = new System.Drawing.Size(401, 337);
+            this.tabPage12.Size = new System.Drawing.Size(401, 445);
             this.tabPage12.TabIndex = 0;
             this.tabPage12.Text = "左焊锡平台";
             this.tabPage12.UseVisualStyleBackColor = true;
@@ -2821,7 +2888,7 @@
             this.tabPage13.Location = new System.Drawing.Point(4, 22);
             this.tabPage13.Margin = new System.Windows.Forms.Padding(0);
             this.tabPage13.Name = "tabPage13";
-            this.tabPage13.Size = new System.Drawing.Size(401, 337);
+            this.tabPage13.Size = new System.Drawing.Size(401, 445);
             this.tabPage13.TabIndex = 1;
             this.tabPage13.Text = "右焊锡平台";
             this.tabPage13.UseVisualStyleBackColor = true;
@@ -3453,7 +3520,7 @@
             this.tabPage16.Location = new System.Drawing.Point(4, 22);
             this.tabPage16.Margin = new System.Windows.Forms.Padding(0);
             this.tabPage16.Name = "tabPage16";
-            this.tabPage16.Size = new System.Drawing.Size(401, 337);
+            this.tabPage16.Size = new System.Drawing.Size(401, 445);
             this.tabPage16.TabIndex = 4;
             this.tabPage16.Text = "其他参数";
             this.tabPage16.UseVisualStyleBackColor = true;
@@ -3935,7 +4002,7 @@
             // 
             this.panel7.BackColor = System.Drawing.SystemColors.Highlight;
             this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel7.Location = new System.Drawing.Point(0, 443);
+            this.panel7.Location = new System.Drawing.Point(0, 551);
             this.panel7.Margin = new System.Windows.Forms.Padding(0);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(417, 174);
@@ -3999,7 +4066,7 @@
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 210F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(571, 623);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(602, 731);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
             // tabControl3
@@ -4013,7 +4080,7 @@
             this.tabControl3.Margin = new System.Windows.Forms.Padding(0);
             this.tabControl3.Name = "tabControl3";
             this.tabControl3.SelectedIndex = 0;
-            this.tabControl3.Size = new System.Drawing.Size(571, 413);
+            this.tabControl3.Size = new System.Drawing.Size(602, 521);
             this.tabControl3.TabIndex = 1;
             // 
             // tabPage8
@@ -4024,7 +4091,7 @@
             this.tabPage8.Location = new System.Drawing.Point(4, 22);
             this.tabPage8.Margin = new System.Windows.Forms.Padding(0);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(563, 387);
+            this.tabPage8.Size = new System.Drawing.Size(594, 495);
             this.tabPage8.TabIndex = 0;
             this.tabPage8.Text = "打磨相机";
             this.tabPage8.UseVisualStyleBackColor = true;
@@ -4038,10 +4105,10 @@
             this.hWindowControl0.Location = new System.Drawing.Point(34, 39);
             this.hWindowControl0.Margin = new System.Windows.Forms.Padding(0);
             this.hWindowControl0.Name = "hWindowControl0";
-            this.hWindowControl0.Size = new System.Drawing.Size(529, 348);
+            this.hWindowControl0.Size = new System.Drawing.Size(560, 456);
             this.hWindowControl0.TabIndex = 14;
             this.hWindowControl0.Tag = "2";
-            this.hWindowControl0.WindowSize = new System.Drawing.Size(529, 348);
+            this.hWindowControl0.WindowSize = new System.Drawing.Size(560, 456);
             // 
             // toolStrip3
             // 
@@ -4056,7 +4123,7 @@
             this.恢复});
             this.toolStrip3.Location = new System.Drawing.Point(0, 39);
             this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(34, 348);
+            this.toolStrip3.Size = new System.Drawing.Size(34, 456);
             this.toolStrip3.TabIndex = 1;
             this.toolStrip3.Text = "toolStrip3";
             // 
@@ -4115,7 +4182,7 @@
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.Padding = new System.Windows.Forms.Padding(0);
-            this.toolStrip2.Size = new System.Drawing.Size(563, 39);
+            this.toolStrip2.Size = new System.Drawing.Size(594, 39);
             this.toolStrip2.TabIndex = 0;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -4206,7 +4273,7 @@
             this.tabPage9.Location = new System.Drawing.Point(4, 22);
             this.tabPage9.Margin = new System.Windows.Forms.Padding(0);
             this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Size = new System.Drawing.Size(563, 387);
+            this.tabPage9.Size = new System.Drawing.Size(594, 495);
             this.tabPage9.TabIndex = 1;
             this.tabPage9.Text = "上锡相机1";
             this.tabPage9.UseVisualStyleBackColor = true;
@@ -4220,10 +4287,10 @@
             this.hWindowControl1.Location = new System.Drawing.Point(34, 39);
             this.hWindowControl1.Margin = new System.Windows.Forms.Padding(0);
             this.hWindowControl1.Name = "hWindowControl1";
-            this.hWindowControl1.Size = new System.Drawing.Size(529, 348);
+            this.hWindowControl1.Size = new System.Drawing.Size(560, 456);
             this.hWindowControl1.TabIndex = 17;
             this.hWindowControl1.Tag = "2";
-            this.hWindowControl1.WindowSize = new System.Drawing.Size(529, 348);
+            this.hWindowControl1.WindowSize = new System.Drawing.Size(560, 456);
             // 
             // toolStrip4
             // 
@@ -4238,7 +4305,7 @@
             this.toolStripButton17});
             this.toolStrip4.Location = new System.Drawing.Point(0, 39);
             this.toolStrip4.Name = "toolStrip4";
-            this.toolStrip4.Size = new System.Drawing.Size(34, 348);
+            this.toolStrip4.Size = new System.Drawing.Size(34, 456);
             this.toolStrip4.TabIndex = 16;
             this.toolStrip4.Text = "toolStrip4";
             // 
@@ -4297,7 +4364,7 @@
             this.toolStrip5.Location = new System.Drawing.Point(0, 0);
             this.toolStrip5.Name = "toolStrip5";
             this.toolStrip5.Padding = new System.Windows.Forms.Padding(0);
-            this.toolStrip5.Size = new System.Drawing.Size(563, 39);
+            this.toolStrip5.Size = new System.Drawing.Size(594, 39);
             this.toolStrip5.TabIndex = 15;
             this.toolStrip5.Text = "toolStrip5";
             // 
@@ -4388,7 +4455,7 @@
             this.tabPage10.Location = new System.Drawing.Point(4, 22);
             this.tabPage10.Margin = new System.Windows.Forms.Padding(0);
             this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Size = new System.Drawing.Size(563, 387);
+            this.tabPage10.Size = new System.Drawing.Size(594, 495);
             this.tabPage10.TabIndex = 2;
             this.tabPage10.Text = "上锡相机2";
             this.tabPage10.UseVisualStyleBackColor = true;
@@ -4402,10 +4469,10 @@
             this.hWindowControl2.Location = new System.Drawing.Point(34, 39);
             this.hWindowControl2.Margin = new System.Windows.Forms.Padding(0);
             this.hWindowControl2.Name = "hWindowControl2";
-            this.hWindowControl2.Size = new System.Drawing.Size(529, 348);
+            this.hWindowControl2.Size = new System.Drawing.Size(560, 456);
             this.hWindowControl2.TabIndex = 17;
             this.hWindowControl2.Tag = "2";
-            this.hWindowControl2.WindowSize = new System.Drawing.Size(529, 348);
+            this.hWindowControl2.WindowSize = new System.Drawing.Size(560, 456);
             // 
             // toolStrip6
             // 
@@ -4420,7 +4487,7 @@
             this.toolStripButton31});
             this.toolStrip6.Location = new System.Drawing.Point(0, 39);
             this.toolStrip6.Name = "toolStrip6";
-            this.toolStrip6.Size = new System.Drawing.Size(34, 348);
+            this.toolStrip6.Size = new System.Drawing.Size(34, 456);
             this.toolStrip6.TabIndex = 16;
             this.toolStrip6.Text = "toolStrip6";
             // 
@@ -4479,7 +4546,7 @@
             this.toolStrip7.Location = new System.Drawing.Point(0, 0);
             this.toolStrip7.Name = "toolStrip7";
             this.toolStrip7.Padding = new System.Windows.Forms.Padding(0);
-            this.toolStrip7.Size = new System.Drawing.Size(563, 39);
+            this.toolStrip7.Size = new System.Drawing.Size(594, 39);
             this.toolStrip7.TabIndex = 15;
             this.toolStrip7.Text = "toolStrip7";
             // 
@@ -4568,7 +4635,7 @@
             this.tabPage11.Location = new System.Drawing.Point(4, 22);
             this.tabPage11.Margin = new System.Windows.Forms.Padding(0);
             this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Size = new System.Drawing.Size(563, 387);
+            this.tabPage11.Size = new System.Drawing.Size(594, 495);
             this.tabPage11.TabIndex = 3;
             this.tabPage11.Text = "运行显示";
             this.tabPage11.UseVisualStyleBackColor = true;
@@ -4580,7 +4647,7 @@
             this.panel6.Location = new System.Drawing.Point(0, 0);
             this.panel6.Margin = new System.Windows.Forms.Padding(0);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(563, 387);
+            this.panel6.Size = new System.Drawing.Size(594, 495);
             this.panel6.TabIndex = 0;
             // 
             // tableLayoutPanel7
@@ -4599,7 +4666,7 @@
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(563, 387);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(594, 495);
             this.tableLayoutPanel7.TabIndex = 0;
             // 
             // panel8
@@ -4609,7 +4676,7 @@
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel8.Location = new System.Drawing.Point(3, 3);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(275, 187);
+            this.panel8.Size = new System.Drawing.Size(291, 241);
             this.panel8.TabIndex = 21;
             // 
             // hWindowControl4
@@ -4620,19 +4687,20 @@
             this.hWindowControl4.ImagePart = new System.Drawing.Rectangle(0, 0, 640, 480);
             this.hWindowControl4.Location = new System.Drawing.Point(0, 20);
             this.hWindowControl4.Name = "hWindowControl4";
-            this.hWindowControl4.Size = new System.Drawing.Size(275, 167);
+            this.hWindowControl4.Size = new System.Drawing.Size(291, 221);
             this.hWindowControl4.TabIndex = 19;
             this.hWindowControl4.Tag = "2";
-            this.hWindowControl4.WindowSize = new System.Drawing.Size(275, 167);
+            this.hWindowControl4.WindowSize = new System.Drawing.Size(291, 221);
             // 
             // toolStrip12
             // 
+            this.toolStrip12.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip12.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel24});
             this.toolStrip12.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
             this.toolStrip12.Location = new System.Drawing.Point(0, 0);
             this.toolStrip12.Name = "toolStrip12";
-            this.toolStrip12.Size = new System.Drawing.Size(275, 20);
+            this.toolStrip12.Size = new System.Drawing.Size(291, 20);
             this.toolStrip12.TabIndex = 0;
             this.toolStrip12.Text = "toolStrip12";
             // 
@@ -4644,22 +4712,36 @@
             // 
             // panel9
             // 
+            this.panel9.Controls.Add(this.hWindowControl6);
             this.panel9.Controls.Add(this.toolStrip13);
-            this.panel9.Controls.Add(this.hWindowControl3);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel9.Location = new System.Drawing.Point(284, 3);
+            this.panel9.Location = new System.Drawing.Point(300, 3);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(276, 187);
+            this.panel9.Size = new System.Drawing.Size(291, 241);
             this.panel9.TabIndex = 22;
+            // 
+            // hWindowControl6
+            // 
+            this.hWindowControl6.BackColor = System.Drawing.Color.Black;
+            this.hWindowControl6.BorderColor = System.Drawing.Color.Black;
+            this.hWindowControl6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hWindowControl6.ImagePart = new System.Drawing.Rectangle(0, 0, 640, 480);
+            this.hWindowControl6.Location = new System.Drawing.Point(0, 20);
+            this.hWindowControl6.Name = "hWindowControl6";
+            this.hWindowControl6.Size = new System.Drawing.Size(291, 221);
+            this.hWindowControl6.TabIndex = 21;
+            this.hWindowControl6.Tag = "2";
+            this.hWindowControl6.WindowSize = new System.Drawing.Size(291, 221);
             // 
             // toolStrip13
             // 
+            this.toolStrip13.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip13.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel25});
             this.toolStrip13.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
             this.toolStrip13.Location = new System.Drawing.Point(0, 0);
             this.toolStrip13.Name = "toolStrip13";
-            this.toolStrip13.Size = new System.Drawing.Size(276, 20);
+            this.toolStrip13.Size = new System.Drawing.Size(291, 20);
             this.toolStrip13.TabIndex = 0;
             this.toolStrip13.Text = "toolStrip13";
             // 
@@ -4669,37 +4751,25 @@
             this.toolStripLabel25.Size = new System.Drawing.Size(68, 17);
             this.toolStripLabel25.Text = "右打磨平台";
             // 
-            // hWindowControl3
-            // 
-            this.hWindowControl3.BackColor = System.Drawing.Color.Black;
-            this.hWindowControl3.BorderColor = System.Drawing.Color.Black;
-            this.hWindowControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.hWindowControl3.ImagePart = new System.Drawing.Rectangle(0, 0, 640, 480);
-            this.hWindowControl3.Location = new System.Drawing.Point(0, 0);
-            this.hWindowControl3.Name = "hWindowControl3";
-            this.hWindowControl3.Size = new System.Drawing.Size(276, 187);
-            this.hWindowControl3.TabIndex = 18;
-            this.hWindowControl3.Tag = "2";
-            this.hWindowControl3.WindowSize = new System.Drawing.Size(276, 187);
-            // 
             // panel11
             // 
             this.panel11.Controls.Add(this.toolStrip14);
             this.panel11.Controls.Add(this.hWindowControl5);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel11.Location = new System.Drawing.Point(284, 196);
+            this.panel11.Location = new System.Drawing.Point(300, 250);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(276, 188);
+            this.panel11.Size = new System.Drawing.Size(291, 242);
             this.panel11.TabIndex = 23;
             // 
             // toolStrip14
             // 
+            this.toolStrip14.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip14.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel26});
             this.toolStrip14.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
             this.toolStrip14.Location = new System.Drawing.Point(0, 0);
             this.toolStrip14.Name = "toolStrip14";
-            this.toolStrip14.Size = new System.Drawing.Size(276, 20);
+            this.toolStrip14.Size = new System.Drawing.Size(291, 20);
             this.toolStrip14.TabIndex = 21;
             this.toolStrip14.Text = "toolStrip14";
             // 
@@ -4717,42 +4787,30 @@
             this.hWindowControl5.ImagePart = new System.Drawing.Rectangle(0, 0, 640, 480);
             this.hWindowControl5.Location = new System.Drawing.Point(0, 0);
             this.hWindowControl5.Name = "hWindowControl5";
-            this.hWindowControl5.Size = new System.Drawing.Size(276, 188);
+            this.hWindowControl5.Size = new System.Drawing.Size(291, 242);
             this.hWindowControl5.TabIndex = 20;
             this.hWindowControl5.Tag = "2";
-            this.hWindowControl5.WindowSize = new System.Drawing.Size(276, 188);
+            this.hWindowControl5.WindowSize = new System.Drawing.Size(291, 242);
             // 
             // panel12
             // 
-            this.panel12.Controls.Add(this.hWindowControl6);
             this.panel12.Controls.Add(this.toolStrip15);
+            this.panel12.Controls.Add(this.hWindowControl3);
             this.panel12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel12.Location = new System.Drawing.Point(3, 196);
+            this.panel12.Location = new System.Drawing.Point(3, 250);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(275, 188);
+            this.panel12.Size = new System.Drawing.Size(291, 242);
             this.panel12.TabIndex = 24;
-            // 
-            // hWindowControl6
-            // 
-            this.hWindowControl6.BackColor = System.Drawing.Color.Black;
-            this.hWindowControl6.BorderColor = System.Drawing.Color.Black;
-            this.hWindowControl6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.hWindowControl6.ImagePart = new System.Drawing.Rectangle(0, 0, 640, 480);
-            this.hWindowControl6.Location = new System.Drawing.Point(0, 20);
-            this.hWindowControl6.Name = "hWindowControl6";
-            this.hWindowControl6.Size = new System.Drawing.Size(275, 168);
-            this.hWindowControl6.TabIndex = 21;
-            this.hWindowControl6.Tag = "2";
-            this.hWindowControl6.WindowSize = new System.Drawing.Size(275, 168);
             // 
             // toolStrip15
             // 
+            this.toolStrip15.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip15.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel27});
             this.toolStrip15.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
             this.toolStrip15.Location = new System.Drawing.Point(0, 0);
             this.toolStrip15.Name = "toolStrip15";
-            this.toolStrip15.Size = new System.Drawing.Size(275, 20);
+            this.toolStrip15.Size = new System.Drawing.Size(291, 20);
             this.toolStrip15.TabIndex = 0;
             this.toolStrip15.Text = "toolStrip15";
             // 
@@ -4762,13 +4820,26 @@
             this.toolStripLabel27.Size = new System.Drawing.Size(68, 17);
             this.toolStripLabel27.Text = "左上锡平台";
             // 
+            // hWindowControl3
+            // 
+            this.hWindowControl3.BackColor = System.Drawing.Color.Black;
+            this.hWindowControl3.BorderColor = System.Drawing.Color.Black;
+            this.hWindowControl3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hWindowControl3.ImagePart = new System.Drawing.Rectangle(0, 0, 640, 480);
+            this.hWindowControl3.Location = new System.Drawing.Point(0, 0);
+            this.hWindowControl3.Name = "hWindowControl3";
+            this.hWindowControl3.Size = new System.Drawing.Size(291, 242);
+            this.hWindowControl3.TabIndex = 18;
+            this.hWindowControl3.Tag = "2";
+            this.hWindowControl3.WindowSize = new System.Drawing.Size(291, 242);
+            // 
             // userCtrlMsgListView1
             // 
             this.userCtrlMsgListView1.ContextMenuStrip = this.contextMenuStrip2;
             this.userCtrlMsgListView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userCtrlMsgListView1.Location = new System.Drawing.Point(3, 416);
+            this.userCtrlMsgListView1.Location = new System.Drawing.Point(3, 524);
             this.userCtrlMsgListView1.Name = "userCtrlMsgListView1";
-            this.userCtrlMsgListView1.Size = new System.Drawing.Size(565, 204);
+            this.userCtrlMsgListView1.Size = new System.Drawing.Size(596, 204);
             this.userCtrlMsgListView1.TabIndex = 22;
             // 
             // tabPage2
@@ -4777,7 +4848,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1000, 629);
+            this.tabPage2.Size = new System.Drawing.Size(1031, 737);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -4787,7 +4858,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(994, 623);
+            this.panel1.Size = new System.Drawing.Size(1025, 731);
             this.panel1.TabIndex = 0;
             // 
             // tabPage3
@@ -4795,7 +4866,7 @@
             this.tabPage3.Controls.Add(this.panel2);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1000, 629);
+            this.tabPage3.Size = new System.Drawing.Size(1031, 737);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -4805,7 +4876,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1000, 629);
+            this.panel2.Size = new System.Drawing.Size(1031, 737);
             this.panel2.TabIndex = 1;
             // 
             // tabPage4
@@ -4813,7 +4884,7 @@
             this.tabPage4.Controls.Add(this.panel3);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1000, 629);
+            this.tabPage4.Size = new System.Drawing.Size(1031, 737);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -4823,7 +4894,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1000, 629);
+            this.panel3.Size = new System.Drawing.Size(1031, 737);
             this.panel3.TabIndex = 1;
             // 
             // tabPage5
@@ -4831,7 +4902,7 @@
             this.tabPage5.Controls.Add(this.panel4);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(1000, 629);
+            this.tabPage5.Size = new System.Drawing.Size(1031, 737);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "tabPage5";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -4841,7 +4912,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1000, 629);
+            this.panel4.Size = new System.Drawing.Size(1031, 737);
             this.panel4.TabIndex = 1;
             // 
             // tabPage14
@@ -4849,7 +4920,7 @@
             this.tabPage14.Controls.Add(this.groupBox47);
             this.tabPage14.Location = new System.Drawing.Point(4, 22);
             this.tabPage14.Name = "tabPage14";
-            this.tabPage14.Size = new System.Drawing.Size(1000, 629);
+            this.tabPage14.Size = new System.Drawing.Size(1031, 737);
             this.tabPage14.TabIndex = 5;
             this.tabPage14.Text = "锁机";
             this.tabPage14.UseVisualStyleBackColor = true;
@@ -5405,33 +5476,25 @@
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0);
-            this.toolStrip1.Size = new System.Drawing.Size(1008, 49);
+            this.toolStrip1.Size = new System.Drawing.Size(1039, 49);
             this.toolStrip1.TabIndex = 23;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripButton53
+            // contextMenuStrip1
             // 
-            this.toolStripButton53.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton53.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton53.Image")));
-            this.toolStripButton53.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton53.Name = "toolStripButton53";
-            this.toolStripButton53.Size = new System.Drawing.Size(32, 24);
-            this.toolStripButton53.Tag = "0";
-            this.toolStripButton53.Text = "toolStripButton12";
-            this.toolStripButton53.ToolTipText = "标定";
-            this.toolStripButton53.Click += new System.EventHandler(this.toolStripButton53_Click);
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // toolStripButton54
+            // checkBox4
             // 
-            this.toolStripButton54.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton54.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton54.Image")));
-            this.toolStripButton54.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton54.Name = "toolStripButton54";
-            this.toolStripButton54.Size = new System.Drawing.Size(32, 24);
-            this.toolStripButton54.Tag = "1";
-            this.toolStripButton54.Text = "toolStripButton12";
-            this.toolStripButton54.ToolTipText = "标定";
-            this.toolStripButton54.Click += new System.EventHandler(this.toolStripButton53_Click);
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(233, 287);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(108, 16);
+            this.checkBox4.TabIndex = 47;
+            this.checkBox4.Text = "右视觉补偿角度";
+            this.checkBox4.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 
@@ -5439,12 +5502,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.ClientSize = new System.Drawing.Size(1039, 837);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Name = "FormMain";
-            this.Text = "打磨上锡机 V01.00.00";
+            this.Text = "打磨上锡机 V01.01.00";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Load += new System.EventHandler(this.Form_SubMain_Load);
             this.contextMenuStrip2.ResumeLayout(false);
@@ -5457,6 +5520,7 @@
             this.tabControl2.ResumeLayout(false);
             this.生产参数.ResumeLayout(false);
             this.生产参数.PerformLayout();
+            this.panel13.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown52)).EndInit();
             this.参数1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -6027,7 +6091,12 @@
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.ToolStrip toolStrip15;
         private System.Windows.Forms.ToolStripLabel toolStripLabel27;
-        private System.Windows.Forms.ToolStripButton toolStripButton53;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Panel panel13;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButton54;
+        private System.Windows.Forms.ToolStripButton toolStripButton53;
+        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox checkBox4;
     }
 }

@@ -75,7 +75,7 @@ namespace UI
             toolStripButton5.Enabled = toolStripButton25.Enabled = toolStripButton6.Enabled =
             toolStripButton16.Enabled = button8.Enabled = button7.Enabled = checkBox5.Enabled =
             checkBox7.Enabled = checkBox8.Enabled = ComBox.Enabled = comboBox1.Enabled = panel7.Enabled =button1.Enabled =comboBox2.Enabled=
-            numericUpDown52.Enabled =
+            numericUpDown52.Enabled = checkBox3.Enabled = checkBox4.Enabled = 
             //视觉
             tabControl3.Enabled = 缩放.Enabled = 恢复.Enabled =
             移动.Enabled = 触发相机.Enabled = 相机实时.Enabled = 相机设置.Enabled = 曝光.Enabled =
@@ -95,14 +95,15 @@ namespace UI
             toolStripButton5.Enabled = toolStripButton25.Enabled = toolStripButton6.Enabled =
             toolStripButton16.Enabled = button8.Enabled = button7.Enabled = checkBox5.Enabled =
             checkBox7.Enabled = checkBox8.Enabled = ComBox.Enabled = comboBox1.Enabled = panel7.Enabled = button1.Enabled = comboBox2.Enabled =
-            numericUpDown52.Enabled=
+            numericUpDown52.Enabled = checkBox3.Enabled = checkBox4.Enabled = 
 
             //视觉
             tabControl3.Enabled = 缩放.Enabled = 恢复.Enabled =
             移动.Enabled = 触发相机.Enabled = 相机实时.Enabled = 相机设置.Enabled = 曝光.Enabled =
-            toolStripTextBox1.Enabled = toolStripLabel3.Enabled = toolStripComboBox1.Enabled =
+            toolStripTextBox1.Enabled = toolStripLabel3.Enabled = toolStripComboBox1.Enabled = 
 
             true;
+            
         }
         private void 登录ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -141,7 +142,7 @@ namespace UI
 
             CurrentUser = null;
             //tsslbl_loginUserMsg.Text = "";
-            this.Text = "打磨上锡机 V00.00.00" + "";
+            this.Text = "打磨上锡机 V01.01.00" + "";
         }
         
         private void UserMgrLogos(User user1)
@@ -152,7 +153,7 @@ namespace UI
                 {
                     CurrentUser = user1;
                     //tsslbl_loginUserMsg.Text = user1.Name;
-                    this.Text = "打磨上锡机 V00.00.00" + user1.Name;
+                    this.Text = "打磨上锡机 V01.01.00" + user1.Name;
                     switch (user1.Type)
                     {
                         case "0":
@@ -372,9 +373,7 @@ namespace UI
             }
             finally
             {
-                #region 加密狗
-                //ChcekLicense();
-                #endregion
+                ChcekLicense();
             }
         }
         void toolStripTextBox2_TextChanged(object sender, EventArgs e)
@@ -431,6 +430,9 @@ namespace UI
             {
                 #region 位置
 
+                Functions.SetBinding(checkBox3, "Checked", RunProcess.LogicData.RunData, "Rotate");//功能选用：左旋转
+                Functions.SetBinding(checkBox4, "Checked", RunProcess.LogicData.RunData, "Rotate_r");//功能选用：右旋转   
+
                 Functions.SetBinding(checkBox1, "Checked", RunProcess.LogicData.slaverData.rstPos1, "modeChecked");//功能选用：平台1复位停靠
                 Functions.SetBinding(checkBox2, "Checked", RunProcess.LogicData.slaverData.rstPos2, "modeChecked");//功能选用：平台1复位停靠
                 Functions.SetBinding(checkBox6, "Checked", RunProcess.LogicData.slaverData.rstPos, "modeChecked");//功能选用：平台1复位停靠
@@ -472,7 +474,7 @@ namespace UI
 
                 Functions.SetBinding(numericUpDown21, "Value", RunProcess.LogicData.RunData, "vDeley");//拍照前延时
                 Functions.SetBinding(numericUpDown26, "Value", RunProcess.LogicData.RunData, "moveSpd");//拍照前延时
-                Functions.SetBinding(numericUpDown53, "Value", RunProcess.LogicData.slaverData.basics, "polish_z_pos");//拍照前延时
+                //Functions.SetBinding(numericUpDown53, "Value", RunProcess.LogicData.slaverData.basics, "polish_z_pos");//拍照前延时
              
                 Functions.SetBinding(numericUpDown_LSpd, "Value", RunProcess.LogicData.slaverData.basics, "WeldSpeedL");//速度窗口：左上锡速度的数据绑定
                 Functions.SetBinding(numericUpDown42, "Value", RunProcess.LogicData.slaverData.basics, "WeldSpeedR");//速度窗口：有上锡速度的数据绑定
@@ -596,7 +598,7 @@ namespace UI
                         VisionProject.Instance.CamState[0] = false;
                         VisionProject.Instance.CamState[1] = false;
                         VisionProject.Instance.CamState[2] = false;
-                        RunProcess.LogicTask.WorkTask[0].execute = RunProcess.LogicTask.WorkTask[1].execute = 1;
+
                         tabControl2.SelectedIndex = tabControl1.SelectedIndex = 0;
                         panel5.Enabled = toolStripButton4.Enabled = toolStripButton3.Enabled = toolStripButton1.Enabled = toolStripButton2.Enabled =
                             主页Bt.Enabled = 日志Bt.Enabled = 电机参数Bt.Enabled = IO监控Bt.Enabled =
@@ -656,6 +658,7 @@ namespace UI
             {
                 RunProcess.ProcessData = new ProcessDataDef();
                 RunProcess.LogicTask = new LogicTaskDef();
+                RunProcess.PolishBusy = false;
 
                 RunProcess.FSM.Stop();
                 userCtrlMsgListView1.AddUserMsg("设备停止", "提示");
@@ -674,6 +677,8 @@ namespace UI
                     RunProcess.DataToSlaver();
                     RunProcess.ProcessData = new ProcessDataDef();
                     RunProcess.LogicTask = new LogicTaskDef();
+                    RunProcess.PolishBusy = false;
+
 
                     CloseWindow("识别错误");
                     RunProcess.FSM.Reset();
@@ -812,6 +817,8 @@ namespace UI
                 userCtrlMsgListView1.AddUserMsg(str, "报警");
             }
 
+            int a = RunProcess.LogicData.RunData.clearnum;
+
             #region 显示工作状态
 
             if(RunProcess.LogicTask.WorkTask[0].execute == 1)
@@ -886,9 +893,9 @@ namespace UI
             label4.Text  = "焊头2使用次数：" + RunProcess.LogicData.RunData.rightSoldertintimes.ToString();
             label60.Text = "打磨头使用次数：" + RunProcess.LogicData.RunData.polishtimes.ToString();
 
-            #region 日志
+            //#region 日志
 
-            //if (cnt > 100)
+            //if (cnt > 4500)
             //{
             //    cnt = 0;
             //    userCtrlMsgListView1.ClearMsgItems();
@@ -898,12 +905,12 @@ namespace UI
             //    cnt++;
             //}
 
-            #endregion 日志
+            //#endregion 日志
 
 
 
             #region 加密狗
-            //TimerCheck();
+            TimerCheck();
             #endregion
 
         }
@@ -1188,7 +1195,7 @@ namespace UI
                     teachList[i].Y = Convert.ToSingle(dataGridView.Rows[i].Cells[2].Value);
                     teachList[i].T = Convert.ToSingle(dataGridView.Rows[i].Cells[3].Value);
                     teachList[i].templateIndex = Convert.ToInt32(dataGridView.Rows[i].Cells[4].Value);
-                    teachList[i].enable = dataGridView.Rows[i].Cells[5].Value == "启用" ? false :true ;
+                    teachList[i].enable = dataGridView.Rows[i].Cells[5].Value.ToString() == "启用" ? false :true ;
                 }
                 //ArrayPointDraw();
             }
@@ -1422,9 +1429,10 @@ namespace UI
             }
         }
 
-        Form_SolderSet form_Solder = new Form_SolderSet();
+        Form_SolderSet form_Solder ;
         private void button_cancel_Click(object sender, EventArgs e)
-        {           
+        {
+           
             ToolStripButton button = sender as ToolStripButton;
             SaveData();
 
@@ -1436,7 +1444,6 @@ namespace UI
             {
                 frm_Machine.Close();
             }
-
 
             if (form_Solder != null)
             {
@@ -1461,65 +1468,6 @@ namespace UI
             form_Solder.TopLevel = true;
             form_Solder.Show();
         }
-
-        #region 角度计算
-
-        Frm_Machine frm_Machine = new Frm_Machine();
-
-        private void toolStripButton53_Click(object sender, EventArgs e)
-        {
-            ToolStripButton button = sender as ToolStripButton;
-            SaveData();
-
-            if (form1 != null && !form1.IsDisposed)
-            {
-                form1.Close();
-            }
-            if (form_Solder != null && !form_Solder.IsDisposed)
-            {
-                form_Solder.Close();
-            }
-
-            if (frm_Machine != null)
-            {
-                if (frm_Machine.IsDisposed)
-                {
-                    if (Convert.ToInt32(button.Tag.ToString()) == 0)
-                    {
-                        frm_Machine = new Frm_Machine(RunProcess.movedriverZm,RunProcess.LogicData.RunData.TeachingMechinePra_Left, UsingPlatformSelect.Left);
-                    }
-                    else
-                    {
-                        frm_Machine = new Frm_Machine(RunProcess.movedriverZm, RunProcess.LogicData.RunData.TeachingMechinePra_Right, UsingPlatformSelect.Right);
-                    }
-                    frm_Machine.Owner = this;
-                    frm_Machine.TopLevel = true;
-                    frm_Machine.Show();
-                    return;
-                }
-                else
-                {
-                    frm_Machine.Owner = this;
-                    frm_Machine.TopLevel = true;
-                    frm_Machine.Show();
-                    return;
-                }
-            }
-            if (Convert.ToInt32(button.Tag.ToString()) == 0)
-            {
-                frm_Machine = new Frm_Machine(RunProcess.movedriverZm, RunProcess.LogicData.RunData.TeachingMechinePra_Left, UsingPlatformSelect.Left);
-            }
-            else
-            {
-                frm_Machine = new Frm_Machine(RunProcess.movedriverZm, RunProcess.LogicData.RunData.TeachingMechinePra_Right, UsingPlatformSelect.Right);
-            }
-            frm_Machine.Owner = this;
-            frm_Machine.TopLevel = true;
-            frm_Machine.Show();
-        }
-
-        #endregion 
-
         private void button_Set_Click(object sender, EventArgs e)
         {
             ToolStripButton button = sender as ToolStripButton;
@@ -1533,7 +1481,6 @@ namespace UI
             {
                 frm_Machine.Close();
             }
-
             if (form1 != null)
             {
                 if (form1.IsDisposed)
@@ -1926,13 +1873,21 @@ namespace UI
                     jog.TagBinding(0);
                     break;
             }
+
+
             if (form1 != null && !form1.IsDisposed)
             {
                 form1.Close();
             }
+
             if (form_Solder != null && !form_Solder.IsDisposed)
             {
                 form_Solder.Close();
+            }
+
+            if (frm_Machine != null && !frm_Machine.IsDisposed)
+            {
+                frm_Machine.Close();
             }
 
         }
@@ -1963,12 +1918,6 @@ namespace UI
 
         #endregion
 
-        private void button1_Click(object sender, EventArgs e)//打磨头数据清零
-        {
-            FormMain.RunProcess.LogicData.RunData.polishtimes = 0;
-
-            FormMain.RunProcess.movedriverZm.WriteRegister(new BaseData(4084, new int[]{ 0,0 }));
-        }
 
         #region UPH
 
@@ -2015,6 +1964,13 @@ namespace UI
         }
         #endregion
 
+        private void button1_Click(object sender, EventArgs e)//打磨头数据清零
+        {
+            FormMain.RunProcess.LogicData.RunData.polishtimes = 0;
+
+            FormMain.RunProcess.movedriverZm.WriteRegister(new BaseData(4084, new int[]{ 0,0 }));
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
             Button button = sender as Button;
@@ -2027,9 +1983,6 @@ namespace UI
         private void button7_Click(object sender, EventArgs e)
         {
             FormMain.RunProcess.LogicData.RunData.leftSoldertintimes = 0;
-
-           RunProcess.movedriverZm.ErrorCode.IntValue[0] = 1;
-            RunProcess.movedriverZm.ErrorLevel.IntValue[0] = 1;
 
         }
 
@@ -2327,10 +2280,6 @@ namespace UI
         }
 
 
-
-
-
-
         #endregion
 
         private void 关于ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2338,6 +2287,61 @@ namespace UI
             tabControl1.SelectedIndex = 5;
         }
 
+        #region 角度计算
+
+        Frm_Machine frm_Machine;
+        private void toolStripButton54_Click(object sender, EventArgs e)
+        {
+            ToolStripButton button = sender as ToolStripButton;
+            SaveData();
+
+            if (form1 != null && !form1.IsDisposed)
+            {
+                form1.Close();
+            }
+            if (form_Solder != null && !form_Solder.IsDisposed)
+            {
+                form_Solder.Close();
+            }
+
+            if (frm_Machine != null)
+            {
+                if (frm_Machine.IsDisposed)
+                {
+                    if (Convert.ToInt32(button.Tag.ToString()) == 0)
+                    {
+                        frm_Machine = new Frm_Machine(RunProcess.movedriverZm, RunProcess.LogicData.RunData.TeachingMechinePra_Left, UsingPlatformSelect.Left);
+                    }
+                    else
+                    {
+                        frm_Machine = new Frm_Machine(RunProcess.movedriverZm, RunProcess.LogicData.RunData.TeachingMechinePra_Right, UsingPlatformSelect.Right);
+                    }
+                    frm_Machine.Owner = this;
+                    frm_Machine.TopLevel = true;
+                    frm_Machine.Show();
+                    return;
+                }
+                else
+                {
+                    frm_Machine.Owner = this;
+                    frm_Machine.TopLevel = true;
+                    frm_Machine.Show();
+                    return;
+                }
+            }
+            if (Convert.ToInt32(button.Tag.ToString()) == 0)
+            {
+                frm_Machine = new Frm_Machine(RunProcess.movedriverZm, RunProcess.LogicData.RunData.TeachingMechinePra_Left, UsingPlatformSelect.Left);
+            }
+            else
+            {
+                frm_Machine = new Frm_Machine(RunProcess.movedriverZm, RunProcess.LogicData.RunData.TeachingMechinePra_Right, UsingPlatformSelect.Right);
+            }
+            frm_Machine.Owner = this;
+            frm_Machine.TopLevel = true;
+            frm_Machine.Show();
+        }
+        #endregion
     }
 
     public class uphDef

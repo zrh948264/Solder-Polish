@@ -35,6 +35,9 @@ namespace Motion
         public List<SolderPosdata>[] SolderList = new List<SolderPosdata>[] { new List<SolderPosdata>(), new List<SolderPosdata>() };
         public List<PolishPosdata>[] PolishList = new List<PolishPosdata>[] { new List<PolishPosdata>(), new List<PolishPosdata>() };
 
+        public List<float>[] SolderList_Ang = new List<float>[] { new List<float>(), new List<float>() };
+
+
         public ProcessDataDef()
         {
             wPointFs_PolishF = new List<wPointF>[] { new List<wPointF>(), new List<wPointF>() };

@@ -85,7 +85,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(437, 35);
             this.label2.TabIndex = 4;
-            this.label2.Text = "汇众智慧 创造未来\r\n";
+            this.label2.Text = "深圳市菲捷尔科技有限公司";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label3
@@ -96,7 +96,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(437, 35);
             this.label3.TabIndex = 5;
-            this.label3.Text = "Intergrate wisdom  Create the future";
+            this.label3.Text = "联系电话:400-166-8109";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // richTextBoxinfo
@@ -105,10 +105,10 @@
             this.richTextBoxinfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.richTextBoxinfo.Cursor = System.Windows.Forms.Cursors.No;
             this.richTextBoxinfo.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.richTextBoxinfo.Location = new System.Drawing.Point(1, 71);
+            this.richTextBoxinfo.Location = new System.Drawing.Point(1, 73);
             this.richTextBoxinfo.Name = "richTextBoxinfo";
             this.richTextBoxinfo.ReadOnly = true;
-            this.richTextBoxinfo.Size = new System.Drawing.Size(608, 245);
+            this.richTextBoxinfo.Size = new System.Drawing.Size(608, 241);
             this.richTextBoxinfo.TabIndex = 6;
             this.richTextBoxinfo.Text = "";
             this.richTextBoxinfo.TextChanged += new System.EventHandler(this.richTextBoxinfo_TextChanged);

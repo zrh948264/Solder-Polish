@@ -532,6 +532,8 @@ namespace UI
             }
         }
 
+        float ang = 0;
+
         private void button7_Click(object sender, EventArgs e)
         {
             button2_Click(null, null);
@@ -544,7 +546,8 @@ namespace UI
                     //VisionProject.Instance.LocateSolderLeftShape();
                     f4.X = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxX1];
                     f4.Y = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxY1];
-                    point = VisionProject.Instance.LocateSolderLeftShape(hImage.Clone(), OperShapeIndex, this.hWndCtrller);
+
+                    point = VisionProject.Instance.LocateSolderLeftShape(hImage.Clone(), OperShapeIndex, this.hWndCtrller, out this.ang);
                     Thread.Sleep(100);
                     if (point != null)
                     {
@@ -580,7 +583,7 @@ namespace UI
                     //VisionProject.Instance.LocateSolderRightShape();
                     f4.X = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxX2];
                     f4.Y = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxY2];
-                    point = VisionProject.Instance.LocateSolderRightShape(hImage.Clone(), OperShapeIndex, this.hWndCtrller);
+                    point = VisionProject.Instance.LocateSolderRightShape(hImage.Clone(), OperShapeIndex, this.hWndCtrller, out this.ang);
                     Thread.Sleep(100);
                     if (point != null)
                     {
@@ -884,6 +887,11 @@ namespace UI
             DialogResult data = DialogResult.None;
             if (RowCount < 0) return;
             PointF4 f4 = new PointF4();
+
+            float x = 0;
+            float y = 0;
+            float aa =0;
+
             switch (_id)
             {
                 case LEFT_SOLDER:
@@ -894,11 +902,27 @@ namespace UI
 
                     Tools.WriteLog.AddLog(DateTime.Now.ToString() + "焊锡左X;" + f4.X.ToString() + "Y：" + f4.Y.ToString() + "Z：" + f4.Z.ToString() + "R：" + f4.R.ToString() + "基点X：" + _SolderPos[index].Vpos.X.ToString() + "Y:" + _SolderPos[index].Vpos.Y.ToString());
 
-                    while (!FormMain.RunProcess.LogicAPI.PlatformMove[0].exe((int)AxisDef.AxX1, ((int)AxisDef.AxY1),
-                        (int)AxisDef.AxZ1, (int)AxisDef.AxR1, ((int)AxisDef.AxT1), f4.X, f4.Y, FormMain.RunProcess.LogicData.slaverData.basics.Safe_ZL, f4.R, 2, 0))
+                    if (FormMain.RunProcess.LogicData.RunData.Rotate)
                     {
-                        Thread.Sleep(1);
+                        FormMain.RunProcess.Transorm(Logic.UsingPlatformSelect.Left, f4.X, f4.Y, f4.R, this.ang, out x, out y);
+                        aa = (float)(this.ang * 180 / Math.PI);
+
+                        while (!FormMain.RunProcess.LogicAPI.PlatformMove[0].exe((int)AxisDef.AxX1, ((int)AxisDef.AxY1),
+                            (int)AxisDef.AxZ1, (int)AxisDef.AxR1, ((int)AxisDef.AxT1), x, y,/*f4.X, f4.Y,*/ FormMain.RunProcess.LogicData.slaverData.basics.Safe_ZL, f4.R + aa, 2, 0))
+                        {
+                            Thread.Sleep(1);
+                        }
                     }
+                    else
+                    {
+                        while (!FormMain.RunProcess.LogicAPI.PlatformMove[0].exe((int)AxisDef.AxX1, ((int)AxisDef.AxY1),
+                            (int)AxisDef.AxZ1, (int)AxisDef.AxR1, ((int)AxisDef.AxT1), f4.X, f4.Y, FormMain.RunProcess.LogicData.slaverData.basics.Safe_ZL, f4.R, 2, 0))
+                        {
+                            Thread.Sleep(1);
+                        }
+                    }
+
+                    
                     Thread.Sleep(100);
                     while (!(FormMain.RunProcess.LogicAPI.PlatformMove[0].sta() && FormMain.RunProcess.LogicAPI.PlatformMove[0].start != 1))
                     {
@@ -919,10 +943,24 @@ namespace UI
 
                     Tools.WriteLog.AddLog(DateTime.Now.ToString() + "焊锡右X;" + f4.X.ToString() + "Y：" + f4.Y.ToString() + "Z：" + f4.Z.ToString() + "R：" + f4.R.ToString() + "基点X：" + _SolderPos[index].Vpos.X.ToString() + "Y:" + _SolderPos[index].Vpos.Y.ToString());
 
-                    while (!FormMain.RunProcess.LogicAPI.PlatformMove[1].exe((int)AxisDef.AxX2, ((int)AxisDef.AxY2),
-                        (int)AxisDef.AxZ2, (int)AxisDef.AxR2, ((int)AxisDef.AxT2), f4.X, f4.Y, FormMain.RunProcess.LogicData.slaverData.basics.Safe_ZR, f4.R, 2, 0))
+                    if (FormMain.RunProcess.LogicData.RunData.Rotate_r)
                     {
-                        Thread.Sleep(1);
+                        FormMain.RunProcess.Transorm(Logic.UsingPlatformSelect.Right, f4.X, f4.Y, f4.R, this.ang, out x, out y);
+                        aa = (float)(this.ang * 180 / Math.PI);
+
+                        while (!FormMain.RunProcess.LogicAPI.PlatformMove[1].exe((int)AxisDef.AxX2, ((int)AxisDef.AxY2),
+                            (int)AxisDef.AxZ2, (int)AxisDef.AxR2, ((int)AxisDef.AxT2), x, y,/*f4.X, f4.Y,*/ FormMain.RunProcess.LogicData.slaverData.basics.Safe_ZR, f4.R + aa, 2, 0))
+                        {
+                            Thread.Sleep(1);
+                        }
+                    }
+                    else
+                    {
+                        while (!FormMain.RunProcess.LogicAPI.PlatformMove[1].exe((int)AxisDef.AxX2, ((int)AxisDef.AxY2),
+                            (int)AxisDef.AxZ2, (int)AxisDef.AxR2, ((int)AxisDef.AxT2), f4.X, f4.Y, FormMain.RunProcess.LogicData.slaverData.basics.Safe_ZR, f4.R, 2, 0))
+                        {
+                            Thread.Sleep(1);
+                        }
                     }
                     Thread.Sleep(100);
                     while (!(FormMain.RunProcess.LogicAPI.PlatformMove[1].sta() && FormMain.RunProcess.LogicAPI.PlatformMove[1].start != 1))

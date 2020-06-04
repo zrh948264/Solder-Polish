@@ -292,12 +292,12 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.一键同步参数ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(149, 26);
             // 
             // 一键同步参数ToolStripMenuItem
             // 
             this.一键同步参数ToolStripMenuItem.Name = "一键同步参数ToolStripMenuItem";
-            this.一键同步参数ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.一键同步参数ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.一键同步参数ToolStripMenuItem.Text = "一键同步参数";
             this.一键同步参数ToolStripMenuItem.Click += new System.EventHandler(this.一键同步参数ToolStripMenuItem_Click);
             // 

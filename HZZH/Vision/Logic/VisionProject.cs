@@ -1236,7 +1236,7 @@ namespace HZZH.Vision.Logic
 
 
 
-        public PointF? LocateSolderLeftShape(HImage hImage, int shapeIndex, HWndCtrller hWndCtrller)
+        public PointF? LocateSolderLeftShape(HImage hImage, int shapeIndex, HWndCtrller hWndCtrller,out float Ang)
         {
             PointF? point = null;
             if (shapeIndex >= 0 && shapeIndex < VisionTools.SolderLeft.Count)
@@ -1281,12 +1281,21 @@ namespace HZZH.Vision.Logic
                         new PointF());
 
                     point = worldPoint;
+                    Ang = match.Angle[0].F;
                 }
+                else
+                {
+                    Ang = 0;
+                }
+            }
+            else
+            {
+                Ang = 0;
             }
 
             return point;
         }
-        public PointF? LocateSolderRightShape(HImage hImage, int shapeIndex, HWndCtrller hWndCtrller)
+        public PointF? LocateSolderRightShape(HImage hImage, int shapeIndex, HWndCtrller hWndCtrller,out float Ang)
         {
             PointF? point = null;
             if (shapeIndex >= 0 && shapeIndex < VisionTools.SolderRight.Count)
@@ -1318,9 +1327,17 @@ namespace HZZH.Vision.Logic
                         new PointF());
 
                     point = worldPoint;
+                    Ang = match.Angle[0].F;
+                }
+                else
+                {
+                    Ang = 0;
                 }
             }
-
+            else
+            {
+                Ang = 0;
+            }
             return point;
         }
         public PointF? LocatePolishLeftShape(HImage hImage, int shapeIndex, HWndCtrller hWndCtrller)
