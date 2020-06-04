@@ -268,7 +268,9 @@ namespace Common
         /// <param name="name">对象所属属性名</param>
        public static void SetBinding(System.Windows.Forms.Control ctrl, string propertyName, object obj, string name)
         {
-            if (ctrl.DataBindings[propertyName] != null) ctrl.DataBindings.Remove(ctrl.DataBindings[propertyName]);
+            if (ctrl.DataBindings[propertyName] != null)
+                ctrl.DataBindings.Remove(ctrl.DataBindings[propertyName]);
+
             ctrl.DataBindings.Add(propertyName, obj, name, true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged);
         }
 

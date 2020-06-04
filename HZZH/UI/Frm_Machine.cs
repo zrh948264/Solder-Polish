@@ -37,6 +37,8 @@ namespace HZZH.UI
 
         public Frm_Machine(BoardCtrllerManager movedriverZm, TeachingMechinePra TeachingMechinePra, UsingPlatformSelect usingPlatform)
         {
+            InitializeComponent();
+
             this.movedriverZm = movedriverZm;
             this.TeachingMechine= TeachingMechinePra;
             if(usingPlatform == UsingPlatformSelect.Left)
@@ -94,7 +96,7 @@ namespace HZZH.UI
 
         private void Binding()
         {
-
+            
             Functions.SetBinding(numericUpDown4, "Value", TeachingMechine.ZeroPostion, "X");
             Functions.SetBinding(numericUpDown5, "Value", TeachingMechine.ZeroPostion, "Y");
 
