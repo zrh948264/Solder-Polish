@@ -56,8 +56,8 @@ namespace UI
             }
             finally
             {
-				//timer1.Interval = 200;
-    //            timer1.Enabled = true;
+                timer1.Interval = 200;
+                timer1.Enabled = true;
             }
 		}
 
@@ -142,7 +142,7 @@ namespace UI
 
             CurrentUser = null;
             //tsslbl_loginUserMsg.Text = "";
-            this.Text = "打磨上锡机 V01.01.00" + "";
+            this.Text = "打磨上锡机 V01.01.01" + "";
         }
         
         private void UserMgrLogos(User user1)
@@ -153,7 +153,7 @@ namespace UI
                 {
                     CurrentUser = user1;
                     //tsslbl_loginUserMsg.Text = user1.Name;
-                    this.Text = "打磨上锡机 V01.01.00" + user1.Name;
+                    this.Text = "打磨上锡机 V01.01.01" + user1.Name;
                     switch (user1.Type)
                     {
                         case "0":
@@ -373,7 +373,7 @@ namespace UI
             }
             finally
             {
-                //ChcekLicense();
+                ChcekLicense();
             }
         }
         void toolStripTextBox2_TextChanged(object sender, EventArgs e)
@@ -892,21 +892,7 @@ namespace UI
             label3.Text  = "焊头1使用次数：" + RunProcess.LogicData.RunData.leftSoldertintimes.ToString();
             label4.Text  = "焊头2使用次数：" + RunProcess.LogicData.RunData.rightSoldertintimes.ToString();
             label60.Text = "打磨头使用次数：" + RunProcess.LogicData.RunData.polishtimes.ToString();
-
-            //#region 日志
-
-            //if (cnt > 4500)
-            //{
-            //    cnt = 0;
-            //    userCtrlMsgListView1.ClearMsgItems();
-            //}
-            //else
-            //{
-            //    cnt++;
-            //}
-
-            //#endregion 日志
-
+            
 
 
             #region 加密狗
