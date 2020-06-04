@@ -60,9 +60,9 @@ namespace ProDriver.Driver
                  && HoImage.IsInitialized())
             {
                 HoImage = null;
-                //System.Threading.Thread.Sleep(1);
-                //GC.Collect();
-                //GC.WaitForPendingFinalizers();
+                System.Threading.Thread.Sleep(1);
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
 
                 IsImageGrabbed = false;
             }

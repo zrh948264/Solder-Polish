@@ -46,7 +46,7 @@ namespace UI
                 VisionProject.Instance.calibrateSetting[1].PlatformMove = new MotionPlatform(RunProcess.movedriverZm, (int)AxisDef.AxX2, (int)AxisDef.AxY2);
                 VisionProject.Instance.calibrateSetting[2].PlatformMove = new MotionPlatform(RunProcess.movedriverZm, (int)AxisDef.AxX3, (int)AxisDef.AxY1);
                 VisionProject.Instance.calibrateSetting[3].PlatformMove = new MotionPlatform(RunProcess.movedriverZm, (int)AxisDef.AxX3, (int)AxisDef.AxY2);
-                
+
                 StartUpdate.SendStartMsg("通信连接完成");
                 StartUpdate.SendStartMsg("正在进入系统>>>");
             }
@@ -56,8 +56,8 @@ namespace UI
             }
             finally
             {
-				timer1.Interval = 200;
-                timer1.Enabled = true;
+				//timer1.Interval = 200;
+    //            timer1.Enabled = true;
             }
 		}
 
@@ -373,7 +373,7 @@ namespace UI
             }
             finally
             {
-                ChcekLicense();
+                //ChcekLicense();
             }
         }
         void toolStripTextBox2_TextChanged(object sender, EventArgs e)
