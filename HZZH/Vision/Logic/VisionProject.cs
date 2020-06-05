@@ -543,7 +543,7 @@ namespace HZZH.Vision.Logic
 
 
             grabTimer.AutoReset = true;
-            grabTimer.Interval = 100;
+            grabTimer.Interval = 150;
             grabTimer.Elapsed += ContinueTimerElapsed;
             grabTimer.Enabled = true;
             Log("相机初始化正常");

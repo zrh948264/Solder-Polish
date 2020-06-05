@@ -142,7 +142,7 @@ namespace UI
 
             CurrentUser = null;
             //tsslbl_loginUserMsg.Text = "";
-            this.Text = "打磨上锡机 V01.01.01" + "";
+            this.Text = "打磨上锡机 V01.01.02" + "";
         }
         
         private void UserMgrLogos(User user1)
@@ -153,7 +153,7 @@ namespace UI
                 {
                     CurrentUser = user1;
                     //tsslbl_loginUserMsg.Text = user1.Name;
-                    this.Text = "打磨上锡机 V01.01.01" + user1.Name;
+                    this.Text = "打磨上锡机 V01.01.02" + user1.Name;
                     switch (user1.Type)
                     {
                         case "0":

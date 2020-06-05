@@ -701,10 +701,35 @@ namespace Logic
                                 int type = result.Type;
                                 foreach (SolderPosdata p in LogicData.vData.soliderdata(my.ID)[type].pos)
                                 {
+                                    float cAng = (float)(result.R * Math.PI/180);
+
+                                    float x = 0;
+                                    float y = 0;
+
+                                    float Tx = 0;
+                                    float Ty = 0;
+                                    float Tr = 0;
+
+                                    if (LogicData.RunData.rotate(my.ID))
+                                    {
+                                        x = result.X + pS[my.ID].X;
+                                        y = result.Y + pS[my.ID].Y;
+                                        Tr = result.R + p.pos.R;
+
+                                        Transorm((UsingPlatformSelect)my.ID, x, y, p.pos.X + x, p.pos.Y + y, p.pos.R, cAng, out Tx, out Ty);
+
+                                    }
+                                    else
+                                    {
+                                        Tx = result.X + p.pos.X + pS[my.ID].X;
+                                        Ty = result.Y + p.pos.Y + pS[my.ID].Y;
+                                        Tr = p.pos.R;
+                                    }
+                                    
                                     SolderPosdata _pos = new SolderPosdata();
-                                    _pos.pos.X = result.X + p.pos.X + pS[my.ID].X;
-                                    _pos.pos.Y = result.Y + p.pos.Y + pS[my.ID].Y;
-                                    _pos.pos.R = p.pos.R;
+                                    _pos.pos.X = Tx;
+                                    _pos.pos.Y = Ty;
+                                    _pos.pos.R = Tr;
                                     _pos.pos.Z = p.pos.Z;
                                     _pos.solderDef = p.solderDef.Clone();
 
@@ -726,15 +751,6 @@ namespace Logic
                         }
                         else
                         {
-                            //results[my.ID] = DialogResult.None;
-                            // new Thread(() =>
-                            // {
-                            //     movedriverZm.WriteRegister(new BaseData((ushort)(1604 + 2 * my.ID), new int[] { 1 }));
-                            //     results[my.ID] = MessageBox.Show("平台" + my.ID.ToString() + "识别失败,是否重新拍照\n\r\n\r确定：重新拍照\n\r\n\r否：强制工作\n\r\n\r取消：跳过该点", "识别错误", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
-                            //     movedriverZm.WriteRegister(new BaseData((ushort)(1604 + 2 * my.ID), new int[] { 0 }));
-                            // }).Start();
-
-
                             my.cnt++;
                             my.step = 2;
                             // my.step = 20;
@@ -757,12 +773,38 @@ namespace Logic
 
                             foreach (SolderPosdata p in LogicData.vData.soliderdata(my.ID)[type].pos)
                             {
+                                float cAng = (float)(result.R * Math.PI / 180);
+
+                                float x = 0;
+                                float y = 0;
+
+                                float Tx = 0;
+                                float Ty = 0;
+                                float Tr = 0;
+
+                                if (LogicData.RunData.rotate(my.ID))
+                                {
+                                    x = result.X + pS[my.ID].X;
+                                    y = result.Y + pS[my.ID].Y;
+                                    Tr = result.R + p.pos.R;
+
+                                    Transorm((UsingPlatformSelect)my.ID, x, y, p.pos.X + x, p.pos.Y + y, p.pos.R, cAng, out Tx, out Ty);
+
+                                }
+                                else
+                                {
+                                    Tx = result.X + p.pos.X + pS[my.ID].X;
+                                    Ty = result.Y + p.pos.Y + pS[my.ID].Y;
+                                    Tr = p.pos.R;
+                                }
+
                                 SolderPosdata _pos = new SolderPosdata();
-                                _pos.pos.X = result.X + p.pos.X + pS[my.ID].X;
-                                _pos.pos.Y = result.Y + p.pos.Y + pS[my.ID].Y;
-                                _pos.pos.R = p.pos.R;
+                                _pos.pos.X = Tx;
+                                _pos.pos.Y = Ty;
+                                _pos.pos.R = Tr;
                                 _pos.pos.Z = p.pos.Z;
                                 _pos.solderDef = p.solderDef.Clone();
+
 
                                 if (LogicData.RunData.rinseMode == 1)//每几个清洗
                                 {
@@ -770,9 +812,27 @@ namespace Logic
                                 }
 
                                 ProcessData.SolderList[my.ID].Add(_pos);
+
                                 float ang = result.R;
                                 ProcessData.SolderList_Ang[my.ID].Add(ang);
                             }
+                            //{
+                            //    SolderPosdata _pos = new SolderPosdata();
+                            //    _pos.pos.X = result.X + p.pos.X + pS[my.ID].X;
+                            //    _pos.pos.Y = result.Y + p.pos.Y + pS[my.ID].Y;
+                            //    _pos.pos.R = p.pos.R;
+                            //    _pos.pos.Z = p.pos.Z;
+                            //    _pos.solderDef = p.solderDef.Clone();
+
+                            //    if (LogicData.RunData.rinseMode == 1)//每几个清洗
+                            //    {
+                            //        _pos.rinse = true;
+                            //    }
+
+                            //    ProcessData.SolderList[my.ID].Add(_pos);
+                            //    float ang = result.R;
+                            //    ProcessData.SolderList_Ang[my.ID].Add(ang);
+                            //}
                         }
                         my.cnt++;
                         my.step = 2;
@@ -806,27 +866,11 @@ namespace Logic
                             p.rinse = true;
                         }
 
-                        if (LogicData.RunData.rotate(my.ID))
-                        {
-                            float cAng = (float)(ProcessData.SolderList_Ang[my.ID][0]*Math.PI/180);
-                            float x = 0;
-                            float y = 0;
-                            float r = (float)(ProcessData.SolderList_Ang[my.ID][0] + p.pos.R);
 
-                            Transorm((UsingPlatformSelect)my.ID, p.pos.X, p.pos.Y, p.pos.R, cAng, out x, out y);
-                            while (!LogicAPI.solderTin[my.ID].exe(0, x, y, p.pos.Z, r, 2, p.solderDef, p.rinse ? 1 : 0))
-                            {
-                                Thread.Sleep(1);
-                            }
-                        }
-                        else
+                        while (!LogicAPI.solderTin[my.ID].exe(0, p.pos.X, p.pos.Y, p.pos.Z, p.pos.R, 2, p.solderDef, p.rinse ? 1 : 0))
                         {
-                            while (!LogicAPI.solderTin[my.ID].exe(0, p.pos.X, p.pos.Y, p.pos.Z, p.pos.R, 2, p.solderDef, p.rinse ? 1 : 0))
-                            {
-                                Thread.Sleep(1);
-                            }
+                            Thread.Sleep(1);
                         }
-
                         cnt[my.ID]++;
                         my.step = 5;
                     }
@@ -910,12 +954,39 @@ namespace Logic
 
                                 foreach (SolderPosdata p in LogicData.vData.soliderdata(my.ID)[type].pos)
                                 {
+
+                                    float cAng = (float)(result.R * Math.PI / 180);
+
+                                    float x = 0;
+                                    float y = 0;
+
+                                    float Tx = 0;
+                                    float Ty = 0;
+                                    float Tr = 0;
+
+                                    if (LogicData.RunData.rotate(my.ID))
+                                    {
+                                        x = result.X + pS[my.ID].X;
+                                        y = result.Y + pS[my.ID].Y;
+                                        Tr = result.R + p.pos.R;
+
+                                        Transorm((UsingPlatformSelect)my.ID, x, y, p.pos.X + x, p.pos.Y + y, p.pos.R, cAng, out Tx, out Ty);
+
+                                    }
+                                    else
+                                    {
+                                        Tx = result.X + p.pos.X + pS[my.ID].X;
+                                        Ty = result.Y + p.pos.Y + pS[my.ID].Y;
+                                        Tr = p.pos.R;
+                                    }
+
                                     SolderPosdata _pos = new SolderPosdata();
-                                    _pos.pos.X = result.X + p.pos.X + pS[my.ID].X;
-                                    _pos.pos.Y = result.Y + p.pos.Y + pS[my.ID].Y;
-                                    _pos.pos.R = p.pos.R;
+                                    _pos.pos.X = Tx;
+                                    _pos.pos.Y = Ty;
+                                    _pos.pos.R = Tr;
                                     _pos.pos.Z = p.pos.Z;
                                     _pos.solderDef = p.solderDef.Clone();
+
 
                                     if (LogicData.RunData.rinseMode == 1)//每几个清洗
                                     {
@@ -961,12 +1032,39 @@ namespace Logic
 
                             foreach (SolderPosdata p in LogicData.vData.soliderdata(my.ID)[type].pos)
                             {
+
+                                float cAng = (float)(result.R * Math.PI / 180);
+
+                                float x = 0;
+                                float y = 0;
+
+                                float Tx = 0;
+                                float Ty = 0;
+                                float Tr = 0;
+
+                                if (LogicData.RunData.rotate(my.ID))
+                                {
+                                    x = result.X + pS[my.ID].X;
+                                    y = result.Y + pS[my.ID].Y;
+                                    Tr = result.R + p.pos.R;
+
+                                    Transorm((UsingPlatformSelect)my.ID, x, y, p.pos.X + x, p.pos.Y + y, p.pos.R, cAng, out Tx, out Ty);
+
+                                }
+                                else
+                                {
+                                    Tx = result.X + p.pos.X + pS[my.ID].X;
+                                    Ty = result.Y + p.pos.Y + pS[my.ID].Y;
+                                    Tr = p.pos.R;
+                                }
+
                                 SolderPosdata _pos = new SolderPosdata();
-                                _pos.pos.X = result.X + p.pos.X + pS[my.ID].X;
-                                _pos.pos.Y = result.Y + p.pos.Y + pS[my.ID].Y;
-                                _pos.pos.R = p.pos.R;
+                                _pos.pos.X = Tx;
+                                _pos.pos.Y = Ty;
+                                _pos.pos.R = Tr;
                                 _pos.pos.Z = p.pos.Z;
                                 _pos.solderDef = p.solderDef.Clone();
+
 
                                 if (LogicData.RunData.rinseMode == 1)//每几个清洗
                                 {
@@ -1011,29 +1109,10 @@ namespace Logic
                             p.rinse = true;
                         }
 
-                        if (LogicData.RunData.rotate(my.ID))
+                        while (!LogicAPI.solderTin[my.ID].exe(0, p.pos.X, p.pos.Y, p.pos.Z, p.pos.R, 2, p.solderDef, p.rinse ? 1 : 0))
                         {
-                            float cAng = (float)(ProcessData.SolderList_Ang[my.ID][0] * Math.PI / 180);
-                            float x = 0;
-                            float y = 0;
-                            float r = (float)(ProcessData.SolderList_Ang[my.ID][0] + p.pos.R);
-
-
-                            Transorm((UsingPlatformSelect)my.ID, p.pos.X, p.pos.Y, p.pos.R, cAng, out x, out y);
-                            while (!LogicAPI.solderTin[my.ID].exe(0, x, y, p.pos.Z, r, 2, p.solderDef, p.rinse ? 1 : 0))
-                            {
-                                Thread.Sleep(1);
-                            }
+                            Thread.Sleep(1);
                         }
-                        else
-                        {
-                            while (!LogicAPI.solderTin[my.ID].exe(0, p.pos.X, p.pos.Y, p.pos.Z, p.pos.R, 2, p.solderDef, p.rinse ? 1 : 0))
-                            {
-                                Thread.Sleep(1);
-                            }
-                        }
-
-
                         cnt[my.ID]++;
                         my.step = 9;
                     }
@@ -1153,41 +1232,48 @@ namespace Logic
         }
         #endregion
 
-        public void Transorm(UsingPlatformSelect usingPlatform, float X, float Y, float R, float Ang, out float Tx, out float Ty)
+        /// <summary>
+        /// 计算旋转后位置
+        /// </summary>
+        /// <param name="usingPlatform">哪边</param>
+        /// <param name="X">相机中心位置</param>
+        /// <param name="Y"></param>
+        /// <param name="Sx">焊头位置</param>
+        /// <param name="Sy"></param>
+        /// <param name="Sr"></param>
+        /// <param name="Ang"></param>
+        /// <param name="Tx"></param>
+        /// <param name="Ty"></param>
+        public void Transorm(UsingPlatformSelect usingPlatform, float X, float Y, float Sx, float Sy, float Sr, float Ang, out float Tx, out float Ty)
         {
             TeachingMechinePra mechinePra = new TeachingMechinePra();
+
+            PointF rotateCur = new PointF();
+            rotateCur.X = Sx;
+            rotateCur.Y = Sy;//装换前的角度和位置
+
+            PointF rotateC = new PointF();//旋转中心
+            double r = 0;
+
 
             if (usingPlatform == UsingPlatformSelect.Left)
             {
                 mechinePra = LogicData.RunData.TeachingMechinePra_Left;
+                r = Ang;
             }
-            else //if (usingPlatform == UsingPlatformSelect.Right)
+            else 
             {
                 mechinePra = LogicData.RunData.TeachingMechinePra_Right;
+                r = -Ang;
             }
 
-            // 认为是将焊头的点转成0角度的点的位置
-            float rotateAng = (float)(R + mechinePra.RotatePostionStartAngle);
-            PointF rotateCur = new PointF();
-            rotateCur.X = X;
-            rotateCur.Y = Y;//装换前的角度和位置
+                rotateC.X = X - mechinePra.RotatePstionCameraSize.X;
+                rotateC.Y = Y - mechinePra.RotatePstionCameraSize.Y;//计算旋转中心
 
             double radius = mechinePra.Radius;//圆心半径
-
-            //
-            PointF rotateC = new PointF();//旋转中心
-            float ang = rotateAng;// + (float)mechinePra.RotatePostionStartAngle;//旋转的角度
-
-            double cos = Math.Cos(ang* Math.PI / 180/* */);//对应弧度
-            double sin = Math.Sin(ang * Math.PI / 180/**/);
-
-            rotateC.X = rotateCur.X + (float)(radius * cos);
-            rotateC.Y = rotateCur.Y + (float)(radius * sin);//计算旋转中心
-            //
-
             Circle circle = new Circle(rotateC, (float)radius);
 
-            PointF pos = circle.Rotate(rotateCur, Ang);
+            PointF pos = circle.Rotate(rotateCur, r);
 
             Tx = pos.X;
             Ty = pos.Y;

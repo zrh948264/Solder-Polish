@@ -904,11 +904,12 @@ namespace UI
 
                     if (FormMain.RunProcess.LogicData.RunData.Rotate)
                     {
-                        FormMain.RunProcess.Transorm(Logic.UsingPlatformSelect.Left, f4.X, f4.Y, f4.R, this.ang, out x, out y);
+                        FormMain.RunProcess.Transorm(Logic.UsingPlatformSelect.Left, _SolderPos[index].Vpos.X, _SolderPos[index].Vpos.Y,
+                            f4.X, f4.Y, f4.R, this.ang, out x, out y);
                         aa = (float)(this.ang * 180 / Math.PI);
 
                         while (!FormMain.RunProcess.LogicAPI.PlatformMove[0].exe((int)AxisDef.AxX1, ((int)AxisDef.AxY1),
-                            (int)AxisDef.AxZ1, (int)AxisDef.AxR1, ((int)AxisDef.AxT1), x, y,/*f4.X, f4.Y,*/ FormMain.RunProcess.LogicData.slaverData.basics.Safe_ZL, f4.R + aa, 2, 0))
+                            (int)AxisDef.AxZ1, (int)AxisDef.AxR1, ((int)AxisDef.AxT1), x, y, FormMain.RunProcess.LogicData.slaverData.basics.Safe_ZL, f4.R + aa, 2, 0))
                         {
                             Thread.Sleep(1);
                         }
@@ -945,7 +946,8 @@ namespace UI
 
                     if (FormMain.RunProcess.LogicData.RunData.Rotate_r)
                     {
-                        FormMain.RunProcess.Transorm(Logic.UsingPlatformSelect.Right, f4.X, f4.Y, f4.R, this.ang, out x, out y);
+                        FormMain.RunProcess.Transorm(Logic.UsingPlatformSelect.Right, _SolderPos[index].Vpos.X, _SolderPos[index].Vpos.Y,
+                            f4.X, f4.Y, f4.R, this.ang, out x, out y);
                         aa = (float)(this.ang * 180 / Math.PI);
 
                         while (!FormMain.RunProcess.LogicAPI.PlatformMove[1].exe((int)AxisDef.AxX2, ((int)AxisDef.AxY2),

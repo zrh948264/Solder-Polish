@@ -246,14 +246,21 @@ namespace Device
                 hzaux.InitializeUdp(ip, port);
                 InitializeReadData();
                 netSucceed = true;
-                backworkerRead = new BackgroundWorker();
-                backworkerRead.WorkerSupportsCancellation = true;
-                backworkerRead.DoWork += ReadWork;//被动读取使用
-                backworkerRead.RunWorkerAsync();
-                backworkerWrite = new BackgroundWorker();
-                backworkerWrite.WorkerSupportsCancellation = true;
-                backworkerWrite.DoWork += WriteWork;//主动读写
-                backworkerWrite.RunWorkerAsync();
+
+
+              
+                    backworkerRead = new BackgroundWorker();
+                    backworkerRead.WorkerSupportsCancellation = true;
+                    backworkerRead.DoWork += ReadWork;//被动读取使用
+                    backworkerRead.RunWorkerAsync();
+               
+                    backworkerWrite = new BackgroundWorker();
+                    backworkerWrite.WorkerSupportsCancellation = true;
+                    backworkerWrite.DoWork += WriteWork;//主动读写
+                    backworkerWrite.RunWorkerAsync();
+            
+
+   
             }
             catch
             {
@@ -526,6 +533,13 @@ namespace Device
         /// </summary>
         public  void Disposed()
         {
+            backworkerRead.DoWork -= ReadWork;//被动读取使用
+            backworkerWrite.DoWork -= WriteWork;//主动读写
+            backworkerRead.CancelAsync();
+            backworkerWrite.CancelAsync();
+            backworkerWrite.Dispose();
+            backworkerRead.Dispose();
+
             hzaux.Dispose();
         }
 

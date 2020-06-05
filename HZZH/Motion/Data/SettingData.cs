@@ -244,13 +244,15 @@ namespace Motion
         public PointF2 RotatePostion { get; set; }           // 认为旋转中心会跟着轴移动,此时的旋转中心
 
         public PointF2 RotatePstionHXT_Size { get; set; }    // 求得焊锡头距离参考旋转中心的偏移
-        public float Radius { get; set; }    // 求得焊锡头距离参考旋转中心的偏移
+        public float Radius { get; set; }    // 求得焊锡头距离参考旋转中心的半径
 
 
         public PointF2 RotatePstionCameraSize { get; set; }  // 求得相机的中心到旋转中心的偏移
 
         public PointF2 CameraRotatePostion { get; set; }     // 在计算相机和旋转中心位置时候，相机位置参考
         public PointF4 HXT_OrgPostion { get; set; }          // 在计算焊锡头距离参考选中心时，焊锡头的位置
+
+
         public double RotatePostionStartAngle { get; set; } // 在初始机械结构中，焊头在旋转中前状态时候的初始角度，
                                                             // 为了计算焊头的点转换成相机点的一种转换方式
 

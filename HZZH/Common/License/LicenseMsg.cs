@@ -83,7 +83,7 @@ namespace LicenseManagement
 
             while (worker.CancellationPending == false)
             {
-                Thread.Sleep(2);
+                Thread.Sleep(500);
                  RealDateTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
 
                  integralDate = new DateTime(RealDateTime.Year, RealDateTime.Month, RealDateTime.Day, RealDateTime.Hour, 0, RealDateTime.Second);

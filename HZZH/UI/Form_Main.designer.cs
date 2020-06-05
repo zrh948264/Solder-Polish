@@ -57,6 +57,7 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.生产参数 = new System.Windows.Forms.TabPage();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.panel13 = new System.Windows.Forms.Panel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
@@ -395,7 +396,6 @@
             this.toolStrip15 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel27 = new System.Windows.Forms.ToolStripLabel();
             this.hWindowControl3 = new HalconDotNet.HWindowControl();
-            this.userCtrlMsgListView1 = new userListView.UserCtrlMsgListView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -456,7 +456,7 @@
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.userCtrlMsgListView1 = new userListView.UserCtrlMsgListView();
             this.contextMenuStrip2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -777,6 +777,16 @@
             this.生产参数.Size = new System.Drawing.Size(409, 471);
             this.生产参数.TabIndex = 0;
             this.生产参数.Text = "生产参数";
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(233, 287);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(108, 16);
+            this.checkBox4.TabIndex = 47;
+            this.checkBox4.Text = "右视觉补偿角度";
+            this.checkBox4.UseVisualStyleBackColor = true;
             // 
             // checkBox3
             // 
@@ -4833,15 +4843,6 @@
             this.hWindowControl3.Tag = "2";
             this.hWindowControl3.WindowSize = new System.Drawing.Size(291, 242);
             // 
-            // userCtrlMsgListView1
-            // 
-            this.userCtrlMsgListView1.ContextMenuStrip = this.contextMenuStrip2;
-            this.userCtrlMsgListView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userCtrlMsgListView1.Location = new System.Drawing.Point(3, 524);
-            this.userCtrlMsgListView1.Name = "userCtrlMsgListView1";
-            this.userCtrlMsgListView1.Size = new System.Drawing.Size(596, 204);
-            this.userCtrlMsgListView1.TabIndex = 22;
-            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.panel1);
@@ -5486,15 +5487,14 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // checkBox4
+            // userCtrlMsgListView1
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(233, 287);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(108, 16);
-            this.checkBox4.TabIndex = 47;
-            this.checkBox4.Text = "右视觉补偿角度";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.userCtrlMsgListView1.ContextMenuStrip = this.contextMenuStrip2;
+            this.userCtrlMsgListView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userCtrlMsgListView1.Location = new System.Drawing.Point(3, 524);
+            this.userCtrlMsgListView1.Name = "userCtrlMsgListView1";
+            this.userCtrlMsgListView1.Size = new System.Drawing.Size(596, 204);
+            this.userCtrlMsgListView1.TabIndex = 22;
             // 
             // FormMain
             // 
@@ -5507,7 +5507,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Name = "FormMain";
-            this.Text = "打磨上锡机 V01.01.00";
+            this.Text = "打磨上锡机 V01.01.02";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Load += new System.EventHandler(this.Form_SubMain_Load);
             this.contextMenuStrip2.ResumeLayout(false);
