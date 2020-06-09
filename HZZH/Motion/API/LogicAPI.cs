@@ -88,13 +88,22 @@ namespace Motion
                 case 1:
                     if (CommData.Succeed == true)
                     {
-                        start = CommData.IntValue[0];
-                        type = CommData.IntValue[1];
-                        busy = CommData.IntValue[2];
+                        if (CommData.IntValue.Length >= 3)
+                        {
+                            start = CommData.IntValue[0];
+                            type = CommData.IntValue[1];
+                            busy = CommData.IntValue[2];
 
-                        StatusStep = 0;
-                        CommData.Succeed = false;
-                        return true;
+                            StatusStep = 0;
+                            CommData.Succeed = false;
+                            return true;
+                        }
+                        else
+                        {
+                            StatusStep = 0;
+                            CommData.Succeed = false;
+                            return false;
+                        }
                     }
                     if (StatusOT.ElapsedMilliseconds > 1000)
                     {
