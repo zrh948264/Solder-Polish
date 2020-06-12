@@ -142,7 +142,7 @@ namespace UI
 
             CurrentUser = null;
             //tsslbl_loginUserMsg.Text = "";
-            this.Text = "打磨上锡机 V01.01.02" + "";
+            this.Text = "打磨上锡机 V01.01.03" + "";
         }
         
         private void UserMgrLogos(User user1)
@@ -153,7 +153,7 @@ namespace UI
                 {
                     CurrentUser = user1;
                     //tsslbl_loginUserMsg.Text = user1.Name;
-                    this.Text = "打磨上锡机 V01.01.02" + user1.Name;
+                    this.Text = "打磨上锡机 V01.01.03" + user1.Name;
                     switch (user1.Type)
                     {
                         case "0":
@@ -2098,7 +2098,7 @@ namespace UI
                             else
                             {
                                 // tabControl1.SelectedIndex = 0;
-                                MessageBox.Show("软件使用日期剩余：" + days + "天");
+                               // MessageBox.Show("软件使用日期剩余：" + days + "天");
                                 stateData = true;
                             }
                         }

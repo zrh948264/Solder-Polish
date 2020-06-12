@@ -396,6 +396,7 @@
             this.toolStrip15 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel27 = new System.Windows.Forms.ToolStripLabel();
             this.hWindowControl3 = new HalconDotNet.HWindowControl();
+            this.userCtrlMsgListView1 = new userListView.UserCtrlMsgListView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -456,7 +457,6 @@
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.userCtrlMsgListView1 = new userListView.UserCtrlMsgListView();
             this.contextMenuStrip2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -4843,6 +4843,15 @@
             this.hWindowControl3.Tag = "2";
             this.hWindowControl3.WindowSize = new System.Drawing.Size(291, 242);
             // 
+            // userCtrlMsgListView1
+            // 
+            this.userCtrlMsgListView1.ContextMenuStrip = this.contextMenuStrip2;
+            this.userCtrlMsgListView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userCtrlMsgListView1.Location = new System.Drawing.Point(3, 524);
+            this.userCtrlMsgListView1.Name = "userCtrlMsgListView1";
+            this.userCtrlMsgListView1.Size = new System.Drawing.Size(596, 204);
+            this.userCtrlMsgListView1.TabIndex = 22;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.panel1);
@@ -5487,15 +5496,6 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // userCtrlMsgListView1
-            // 
-            this.userCtrlMsgListView1.ContextMenuStrip = this.contextMenuStrip2;
-            this.userCtrlMsgListView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userCtrlMsgListView1.Location = new System.Drawing.Point(3, 524);
-            this.userCtrlMsgListView1.Name = "userCtrlMsgListView1";
-            this.userCtrlMsgListView1.Size = new System.Drawing.Size(596, 204);
-            this.userCtrlMsgListView1.TabIndex = 22;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -5507,7 +5507,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Name = "FormMain";
-            this.Text = "打磨上锡机 V01.01.02";
+            this.Text = "打磨上锡机 V01.01.03";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Load += new System.EventHandler(this.Form_SubMain_Load);
             this.contextMenuStrip2.ResumeLayout(false);
