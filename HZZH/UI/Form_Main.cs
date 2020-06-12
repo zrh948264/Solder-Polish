@@ -27,6 +27,9 @@ namespace UI
 	public partial class FormMain : Form
 	{
 		public static LogicMain RunProcess = new LogicMain();
+
+        public static bool PanoramaEnd = false;
+
         public FormMain()
 		{
             try
@@ -58,6 +61,18 @@ namespace UI
             {
                 timer1.Interval = 200;
                 timer1.Enabled = true;
+                if(!PanoramaEnd)
+                {
+                    dataGridView1.Columns[4].Visible = false;
+                    dataGridView2.Columns[4].Visible = false;
+                    dataGridView3.Columns[4].Visible = false;
+                    dataGridView4.Columns[4].Visible = false;
+
+                    this.toolStripButton13.Visible = false;
+                    this.toolStripButton27.Visible = false;
+                    this.toolStripButton41.Visible = false;
+                    this.toolStripButton43.Visible = false;
+                }
             }
 		}
 
@@ -142,7 +157,7 @@ namespace UI
 
             CurrentUser = null;
             //tsslbl_loginUserMsg.Text = "";
-            this.Text = "打磨上锡机 V01.01.03" + "";
+            this.Text = "打磨上锡机 V01.02.03" + "";
         }
         
         private void UserMgrLogos(User user1)
@@ -153,7 +168,7 @@ namespace UI
                 {
                     CurrentUser = user1;
                     //tsslbl_loginUserMsg.Text = user1.Name;
-                    this.Text = "打磨上锡机 V01.01.03" + user1.Name;
+                    this.Text = "打磨上锡机 V01.02.03" + user1.Name;
                     switch (user1.Type)
                     {
                         case "0":

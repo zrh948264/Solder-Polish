@@ -70,7 +70,7 @@ namespace Vision
                 return false;
             }
 
-            VisionProject.Instance.LocateSolderLeftShape(index);
+            VisionProject.Instance.LocateSolderLeftShape();
             return SolderLeft.Count > 0;//= FormMain.RunProcess.LogicData.RunData.sNumL;
         }
         public bool TriggerCamera1(int index)
@@ -84,7 +84,7 @@ namespace Vision
                 return false;
             }
 
-            VisionProject.Instance.LocateSolderRightShape(index);
+            VisionProject.Instance.LocateSolderRightShape();
             return SolderRight.Count > 0;//= FormMain.RunProcess.LogicData.RunData.sNumR;
         }
         public bool TriggerCamera2(int index)
@@ -98,7 +98,7 @@ namespace Vision
                 return false;
             }
 
-            VisionProject.Instance.LocatePolishLeftShape(index);
+            VisionProject.Instance.LocatePolishLeftShape();
             return PolishLeft.Count > 0;//= FormMain.RunProcess.LogicData.RunData.pNumL;
         }
         public bool TriggerCamera3(int index)
@@ -112,7 +112,7 @@ namespace Vision
                 return false;
             }
 
-            VisionProject.Instance.LocatePolishRightShape(index);
+            VisionProject.Instance.LocatePolishRightShape();
             return PolishRight.Count > 0;//= FormMain.RunProcess.LogicData.RunData.pNumR;
         }
     }

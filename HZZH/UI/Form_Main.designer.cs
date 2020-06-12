@@ -5507,7 +5507,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Name = "FormMain";
-            this.Text = "打磨上锡机 V01.01.03";
+            this.Text = "打磨上锡机 V01.02.03";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Load += new System.EventHandler(this.Form_SubMain_Load);
             this.contextMenuStrip2.ResumeLayout(false);

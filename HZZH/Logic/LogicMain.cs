@@ -102,9 +102,10 @@ namespace Logic
         }
 
 
-        public bool TriggerPolish(int index, int templateIndex)//出发打磨诱因
+        public bool TriggerPolish(int index, int templateIndex)//出发打磨
         {
-            if (templateIndex == -1)
+            
+            if (templateIndex == -1 && FormMain.PanoramaEnd )
                 return false;
 
             if (index == 0)
@@ -291,14 +292,17 @@ namespace Logic
                 case 2://到拍照位
                     if (my.cnt < ProcessData.wPointFs_PolishF[my.ID].Count)
                     {
-                        if (LogicAPI.PlatformMove[my.ID].sta() && LogicAPI.PlatformMove[my.ID].start != 1)
+                        if (LogicAPI.polishcameras.sta() && LogicAPI.polishcameras.start != 1)
                         {
                             pP[my.ID] = ProcessData.wPointFs_PolishF[my.ID][my.cnt];
-                            while (!LogicAPI.PlatformMove[my.ID].exe((int)AxisDef.AxX3,
-                                ((int)AxisDef.AxY1 + my.ID * 6),
-                                (int)AxisDef.AxZ3, (int)AxisDef.AxR3,
-                                ((int)AxisDef.AxT1 + my.ID * 6),
-                                pP[my.ID].X, pP[my.ID].Y, LogicData.slaverData.basics.Safe_Z, 0, pP[my.ID].T, 0))
+
+                            int end = 0;
+                            if(ProcessData.wPointFs_PolishF[my.ID].Count <= my.cnt)
+                            {
+                                end = 1;
+                            }
+
+                            while (!LogicAPI.polishcameras.exe(my.ID, end, pP[my.ID].X, pP[my.ID].Y, LogicData.slaverData.basics.Safe_Z, 0, pP[my.ID].T))
                             {
                                 Thread.Sleep(1);
                             }
@@ -313,7 +317,7 @@ namespace Logic
                     break;
 
                 case 3://到位,拍照
-                    if (LogicAPI.PlatformMove[my.ID].sta() && LogicAPI.PlatformMove[my.ID].start != 1)
+                    if (LogicAPI.polishcameras.sta() && LogicAPI.polishcameras.start != 1)
                     {
                         if (TriggerPolish(my.ID, pP[my.ID].templateIndex))
                         {
@@ -338,16 +342,6 @@ namespace Logic
                         }
                         else
                         {
-                            //results[my.ID] = DialogResult.None; 
-                            //new Thread(() =>
-                            //{
-                            //    movedriverZm.WriteRegister(new BaseData((ushort)(1604 + 2 * my.ID), new int[] { 1}));
-                            //    results[my.ID] = MessageBox.Show("平台" + my.ID.ToString() + "识别失败,是否重新拍照\n\r\n\r确定：重新拍照\n\r\n\r否：强制工作\n\r\n\r取消：跳过该点", "识别错误", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
-
-                            //    movedriverZm.WriteRegister(new BaseData((ushort)(1604 + 2 * my.ID), new int[] { 0 }));
-                            //}).Start();
-                            //my.step = 20;
-
                             my.cnt++;
                             my.step = 2;
                         }
@@ -435,18 +429,20 @@ namespace Logic
                 case 6://到拍照位
                     if (my.cnt < ProcessData.wPointFs_PolishV[my.ID].Count)
                     {
-                        if (LogicAPI.PlatformMove[my.ID].sta() && LogicAPI.PlatformMove[my.ID].start != 1)
+                        if (LogicAPI.polishcameras.sta() && LogicAPI.polishcameras.start != 1)
                         {
                             pP[my.ID] = ProcessData.wPointFs_PolishV[my.ID][my.cnt];
-                            while (!LogicAPI.PlatformMove[my.ID].exe((int)AxisDef.AxX3,
-                                ((int)AxisDef.AxY1 + my.ID * 6),
-                                (int)AxisDef.AxZ3, (int)AxisDef.AxR3,
-                                ((int)AxisDef.AxT1 + my.ID * 6),
-                                pP[my.ID].X, pP[my.ID].Y, LogicData.slaverData.basics.Safe_Z, 0, pP[my.ID].T, 0))
+
+                            int end = 0;
+                            if (ProcessData.wPointFs_PolishV[my.ID].Count <= my.cnt)
+                            {
+                                end = 1;
+                            }
+
+                            while (!LogicAPI.polishcameras.exe(my.ID, end, pP[my.ID].X, pP[my.ID].Y, LogicData.slaverData.basics.Safe_Z, 0, pP[my.ID].T))
                             {
                                 Thread.Sleep(1);
                             }
-
                             my.step = 7;
                         }
                     }
@@ -458,7 +454,7 @@ namespace Logic
                     break;
 
                 case 7://到位,拍照
-                    if (LogicAPI.PlatformMove[my.ID].sta() && LogicAPI.PlatformMove[my.ID].start != 1)
+                    if (LogicAPI.polishcameras.sta() && LogicAPI.polishcameras.start != 1)
                     {
                         if (TriggerPolish(my.ID, pP[my.ID].templateIndex))
                         {

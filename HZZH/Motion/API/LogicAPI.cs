@@ -270,6 +270,56 @@ namespace Motion
     }
 
     /// <summary>
+    /// 打磨拍照接口
+    /// </summary>
+    public class Polishcamera : BasicApiDef
+    {
+        public bool exe(int Side,int VisionEnd, float  x, float y, float z, float r, float t)
+        {
+            switch (StartStep)
+            {
+                case 0:
+                    List<byte> temp = new List<byte>();
+                    temp.AddRange(Functions.NetworkBytes(1));
+                    temp.AddRange(Functions.NetworkBytes(Side));
+                    temp.AddRange(Functions.NetworkBytes(VisionEnd));
+                    temp.AddRange(Functions.NetworkBytes(FormMain.RunProcess.LogicData.RunData.moveSpd));//速度
+
+                    temp.AddRange(Functions.NetworkBytes(x));
+                    temp.AddRange(Functions.NetworkBytes(y));
+                    temp.AddRange(Functions.NetworkBytes(z));
+                    temp.AddRange(Functions.NetworkBytes(r));
+                    temp.AddRange(Functions.NetworkBytes(t));
+
+                    CommData = new BaseData(Addr, temp.ToArray());
+                    movedriverZm.WriteRegister(CommData);
+                    StartOT.Restart();
+                    StartStep = 1;
+                    return false;
+
+                case 1:
+                    if (CommData.Succeed == true)
+                    {
+                        StartStep = 0;
+                        CommData.Succeed = false;
+                        return true;
+                    }
+                    if (StartOT.ElapsedMilliseconds > 10000)
+                    {
+                        StartStep = 0;
+                    }
+                    return false;
+
+                default:
+                    StartStep = 0;
+                    CommData.Succeed = false;
+                    return false;
+            }
+        }
+        public Polishcamera(Device.BoardCtrllerManager movedriverZm, ushort Addr) : base(movedriverZm, Addr) { }
+    }
+
+    /// <summary>
     /// 打磨接口
     /// </summary>
     public class Polish : BasicApiDef
@@ -449,6 +499,8 @@ namespace Motion
         public Rinse[] rinse = new Rinse[2];//清洗接口
 
         public Reversal[] reversals = new Reversal[2];//翻转接口
+
+        public Polishcamera polishcameras { get; set; }//打磨拍照接口
         public Polish polish { get; set; }//打磨接口
         #endregion
 
@@ -468,6 +520,8 @@ namespace Motion
 
             reversals[0] = new Reversal(this.movedriverZm, 4612);
             reversals[1] = new Reversal(this.movedriverZm, 5012);
+
+            polishcameras = new Polishcamera(this.movedriverZm, 1608);
 
             polish = new Polish(this.movedriverZm, 5200);
         }
