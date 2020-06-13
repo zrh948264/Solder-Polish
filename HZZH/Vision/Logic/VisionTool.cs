@@ -55,6 +55,8 @@ namespace HZZH.Vision.Logic
     public class LocationShapePoint
     {
         //public string Name = "";
+        public int ID { get; set; }
+
         public NCCModel Shape = new NCCModel();
         [NonSerialized]
         public LocationCrossCollection locationCross = new LocationCrossCollection();

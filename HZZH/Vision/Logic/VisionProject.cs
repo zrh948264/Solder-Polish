@@ -891,6 +891,23 @@ namespace HZZH.Vision.Logic
 
         #region   运行时候的控制逻辑与方法
 
+        public int NowIsFaceUp_Left
+        {
+            get
+            {
+                return FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxT1] > 1 ? 1 : 0;
+            }
+        }
+
+        public int NowIsFaceUp_Right
+        {
+            get
+            {
+                return FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxT2] > 1 ? 1 : 0;
+            }
+        }
+
+
         private void Camera_ImageGrabbedEvt(Camera cam, HObject hoImage)
         {
             HObject _hoImage = GetCurrentImage(cam.Number);
@@ -914,7 +931,10 @@ namespace HZZH.Vision.Logic
         {
             for (int i = 0; i < VisionTools.SolderLeft.Count; i++)
             {
-                LocateSolderLeftShape(i);
+                if (VisionTools.SolderLeft[i].ID == NowIsFaceUp_Left)
+                {
+                    LocateSolderLeftShape(i);
+                }
             }
         }
         public void LocateSolderLeftShape(int index)
@@ -995,7 +1015,10 @@ namespace HZZH.Vision.Logic
         {
             for (int i = 0; i < VisionTools.SolderRight.Count; i++)
             {
-                LocateSolderRightShape(i);
+                if (VisionTools.SolderRight[i].ID == NowIsFaceUp_Right)
+                {
+                    LocateSolderRightShape(i);
+                }    
             }
         }
         public void LocateSolderRightShape(int index)
@@ -1076,7 +1099,11 @@ namespace HZZH.Vision.Logic
         {
             for (int i = 0; i < VisionTools.PolishLeft.Count; i++)
             {
-                LocatePolishLeftShape(i);
+                if (VisionTools.PolishLeft[i].ID == NowIsFaceUp_Left)
+                {
+                    LocatePolishLeftShape(i);
+                }
+                   
             }
         }
         public void LocatePolishLeftShape(int index)
@@ -1159,7 +1186,10 @@ namespace HZZH.Vision.Logic
         {
             for (int i = 0; i < VisionTools.PolishRight.Count; i++)
             {
-                LocatePolishRightShape(i);
+                if (VisionTools.PolishRight[i].ID == NowIsFaceUp_Right)
+                {
+                    LocatePolishRightShape(i);
+                }
             }
         }
         public void LocatePolishRightShape(int index)
@@ -1235,13 +1265,14 @@ namespace HZZH.Vision.Logic
 
 
 
-
+        // 设定基准位置时候调用
         public PointF? LocateSolderLeftShape(HImage hImage, int shapeIndex, HWndCtrller hWndCtrller,out float Ang)
         {
             PointF? point = null;
             if (shapeIndex >= 0 && shapeIndex < VisionTools.SolderLeft.Count)
             {
                 Model shape = VisionTools.SolderLeft[shapeIndex].Shape;
+                VisionTools.SolderLeft[shapeIndex].ID = NowIsFaceUp_Left;
 
                 // 模板匹配
                 HImage image = hImage;
@@ -1301,7 +1332,7 @@ namespace HZZH.Vision.Logic
             if (shapeIndex >= 0 && shapeIndex < VisionTools.SolderRight.Count)
             {
                 Model shape = VisionTools.SolderRight[shapeIndex].Shape;
-
+                VisionTools.SolderRight[shapeIndex].ID = NowIsFaceUp_Right;
                 // 模板匹配
                 HImage image = hImage;
                 if (shape.InputImg != null)
@@ -1346,6 +1377,7 @@ namespace HZZH.Vision.Logic
             if (shapeIndex >= 0 && shapeIndex < VisionTools.PolishLeft.Count)
             {
                 Model shape = VisionTools.PolishLeft[shapeIndex].Shape;
+                VisionTools.PolishLeft[shapeIndex].ID = NowIsFaceUp_Left;
 
                 // 模板匹配
                 HImage image = hImage;
@@ -1383,6 +1415,7 @@ namespace HZZH.Vision.Logic
             if (shapeIndex >= 0 && shapeIndex < VisionTools.PolishRight.Count)
             {
                 Model shape = VisionTools.PolishRight[shapeIndex].Shape;
+                VisionTools.PolishRight[shapeIndex].ID = NowIsFaceUp_Right;
 
                 // 模板匹配
                 HImage image = hImage;
