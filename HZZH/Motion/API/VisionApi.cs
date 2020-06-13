@@ -71,6 +71,7 @@ namespace Vision
             }
 
             VisionProject.Instance.LocateSolderLeftShape();
+            //VisionProject.Instance.LocateSolderLeftShape(index);
             return SolderLeft.Count > 0;//= FormMain.RunProcess.LogicData.RunData.sNumL;
         }
         public bool TriggerCamera1(int index)
@@ -85,6 +86,7 @@ namespace Vision
             }
 
             VisionProject.Instance.LocateSolderRightShape();
+            //VisionProject.Instance.LocateSolderRightShape(index);
             return SolderRight.Count > 0;//= FormMain.RunProcess.LogicData.RunData.sNumR;
         }
         public bool TriggerCamera2(int index)
@@ -99,6 +101,7 @@ namespace Vision
             }
 
             VisionProject.Instance.LocatePolishLeftShape();
+            //VisionProject.Instance.LocatePolishLeftShape(index);
             return PolishLeft.Count > 0;//= FormMain.RunProcess.LogicData.RunData.pNumL;
         }
         public bool TriggerCamera3(int index)
@@ -113,6 +116,7 @@ namespace Vision
             }
 
             VisionProject.Instance.LocatePolishRightShape();
+            //VisionProject.Instance.LocatePolishRightShape(index);
             return PolishRight.Count > 0;//= FormMain.RunProcess.LogicData.RunData.pNumR;
         }
     }

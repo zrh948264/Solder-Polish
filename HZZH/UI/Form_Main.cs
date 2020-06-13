@@ -61,7 +61,7 @@ namespace UI
             {
                 timer1.Interval = 200;
                 timer1.Enabled = true;
-                if(!PanoramaEnd)
+                if(!PanoramaEnd)//是否拍整个物料
                 {
                     dataGridView1.Columns[4].Visible = false;
                     dataGridView2.Columns[4].Visible = false;
@@ -486,10 +486,11 @@ namespace UI
                 Functions.SetBinding(numericUpDown47, "Value", RunProcess.LogicData.slaverData.basics, "TurnAvoidPos_XL");//位置：左翻转的数据绑定
                 Functions.SetBinding(numericUpDown46, "Value", RunProcess.LogicData.slaverData.basics, "TurnAvoidPos_XR");//位置：右翻转的数据绑定
                 #endregion
-
                 Functions.SetBinding(numericUpDown21, "Value", RunProcess.LogicData.RunData, "vDeley");//拍照前延时
                 Functions.SetBinding(numericUpDown26, "Value", RunProcess.LogicData.RunData, "moveSpd");//拍照前延时
-                //Functions.SetBinding(numericUpDown53, "Value", RunProcess.LogicData.slaverData.basics, "polish_z_pos");//拍照前延时
+
+                Functions.SetBinding(numericUpDown53, "Value", RunProcess.LogicData.slaverData.basics, "polish_z_Lpos");//拍照高度
+                Functions.SetBinding(numericUpDown54, "Value", RunProcess.LogicData.slaverData.basics, "polish_z_Rpos");//拍照高度
              
                 Functions.SetBinding(numericUpDown_LSpd, "Value", RunProcess.LogicData.slaverData.basics, "WeldSpeedL");//速度窗口：左上锡速度的数据绑定
                 Functions.SetBinding(numericUpDown42, "Value", RunProcess.LogicData.slaverData.basics, "WeldSpeedR");//速度窗口：有上锡速度的数据绑定

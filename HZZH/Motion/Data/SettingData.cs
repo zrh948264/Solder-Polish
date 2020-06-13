@@ -521,7 +521,9 @@ namespace Motion
         public float TeachSpeedL { get; set; }
         public float TeachSpeedR { get; set; }
 
-        //public int polish_z_pos { get; set; }
+        public int polish_z_Lpos { get; set; }//左拍照安全高度
+        public int polish_z_Rpos { get; set; }//右拍照安全高度
+
         public float Safe_Z { get; set; }
         public float PolishSpeed { get; set; }
         public float TeachSpeed { get; set; }

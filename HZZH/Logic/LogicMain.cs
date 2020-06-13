@@ -105,7 +105,7 @@ namespace Logic
         public bool TriggerPolish(int index, int templateIndex)//出发打磨
         {
             
-            if (templateIndex == -1 && FormMain.PanoramaEnd )
+            if (templateIndex == -1 && FormMain.PanoramaEnd)
                 return false;
 
             if (index == 0)
@@ -119,7 +119,7 @@ namespace Logic
         }
         public bool TriggerSolder(int index, int templateIndex)
         {
-            if (templateIndex == -1)
+            if (templateIndex == -1 && FormMain.PanoramaEnd)
                 return false;
 
             if (index == 0)
@@ -297,12 +297,22 @@ namespace Logic
                             pP[my.ID] = ProcessData.wPointFs_PolishF[my.ID][my.cnt];
 
                             int end = 0;
-                            if(ProcessData.wPointFs_PolishF[my.ID].Count <= my.cnt)
+                            if(ProcessData.wPointFs_PolishF[my.ID].Count <= my.cnt + 1)
                             {
                                 end = 1;
                             }
 
-                            while (!LogicAPI.polishcameras.exe(my.ID, end, pP[my.ID].X, pP[my.ID].Y, LogicData.slaverData.basics.Safe_Z, 0, pP[my.ID].T))
+                            float Hight = 0;
+                            if (my.ID == 0)
+                            {
+                                Hight = LogicData.slaverData.basics.polish_z_Lpos;
+                            }
+                            else
+                            {
+                                Hight = LogicData.slaverData.basics.polish_z_Rpos;
+                            }
+
+                            while (!LogicAPI.polishcameras.exe(my.ID, end, pP[my.ID].X, pP[my.ID].Y, Hight, 0, pP[my.ID].T))
                             {
                                 Thread.Sleep(1);
                             }
@@ -439,7 +449,17 @@ namespace Logic
                                 end = 1;
                             }
 
-                            while (!LogicAPI.polishcameras.exe(my.ID, end, pP[my.ID].X, pP[my.ID].Y, LogicData.slaverData.basics.Safe_Z, 0, pP[my.ID].T))
+                            float Hight = 0;
+                            if (my.ID == 0)
+                            {
+                                Hight = LogicData.slaverData.basics.polish_z_Lpos;
+                            }
+                            else
+                            {
+                                Hight = LogicData.slaverData.basics.polish_z_Rpos;
+                            }
+
+                            while (!LogicAPI.polishcameras.exe(my.ID, end, pP[my.ID].X, pP[my.ID].Y, Hight, 0, pP[my.ID].T))
                             {
                                 Thread.Sleep(1);
                             }
