@@ -331,6 +331,11 @@ namespace Logic
                     {
                         if (TriggerPolish(my.ID, pP[my.ID].templateIndex))
                         {
+                            if (ProcessData.wPointFs_PolishF[my.ID].Count <= my.cnt + 1 )
+                            {
+                                int end = 1;
+                                movedriverZm.WriteRegister(new BaseData(1626, new int[] { 1 }));
+                            }
                             foreach (VisionResult result in VisionAPI.Polishs(my.ID))
                             {
                                 int type = result.Type;
@@ -352,6 +357,12 @@ namespace Logic
                         }
                         else
                         {
+                            if (ProcessData.wPointFs_PolishF[my.ID].Count <= my.cnt + 1)
+                            {
+                                int end = 1;
+
+                                movedriverZm.WriteRegister(new BaseData(1626, new int[] { 1 }));
+                            }
                             my.cnt++;
                             my.step = 2;
                         }
@@ -444,7 +455,7 @@ namespace Logic
                             pP[my.ID] = ProcessData.wPointFs_PolishV[my.ID][my.cnt];
 
                             int end = 0;
-                            if (ProcessData.wPointFs_PolishV[my.ID].Count <= my.cnt)
+                            if (ProcessData.wPointFs_PolishV[my.ID].Count <= my.cnt+1)
                             {
                                 end = 1;
                             }
@@ -478,6 +489,11 @@ namespace Logic
                     {
                         if (TriggerPolish(my.ID, pP[my.ID].templateIndex))
                         {
+                            if (ProcessData.wPointFs_PolishV[my.ID].Count <= my.cnt + 1)
+                            {
+                                int end = 1;
+                                movedriverZm.WriteRegister(new BaseData(1626, new int[] { 1 }));
+                            }
                             foreach (VisionResult result in VisionAPI.Polishs(my.ID))
                             {
                                 int type = result.Type;
@@ -508,6 +524,11 @@ namespace Logic
                             //}).Start();
                             //my.step = 60;
 
+                            if (ProcessData.wPointFs_PolishV[my.ID].Count <= my.cnt + 1)
+                            {
+                                int end = 1;
+                                movedriverZm.WriteRegister(new BaseData(1626, new int[] { 1 }));
+                            }
                             my.cnt++;
                             my.step = 6;
                         }

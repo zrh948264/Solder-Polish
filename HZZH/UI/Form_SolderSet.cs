@@ -548,6 +548,7 @@ namespace UI
                     f4.Y = FormMain.RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxY1];
 
                     point = VisionProject.Instance.LocateSolderLeftShape(hImage.Clone(), OperShapeIndex, this.hWndCtrller, out this.ang);
+
                     Thread.Sleep(100);
                     if (point != null)
                     {
