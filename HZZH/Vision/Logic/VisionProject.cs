@@ -925,7 +925,7 @@ namespace HZZH.Vision.Logic
         }
 
         /// <summary>
-        /// 做焊锡模板定位
+        /// 左焊锡模板定位
         /// </summary>
         public void LocateSolderLeftShape()
         {
@@ -959,7 +959,7 @@ namespace HZZH.Vision.Logic
             DisplayModelResult(hWndCtrller[3], shape);
 
             // 结果转换
-            VisionResult result = new VisionResult();
+            //VisionResult result = new VisionResult();
             for (int n = 0; n < match.Count; n++)
             {
                 int imgWidth, imgHeight;
@@ -971,10 +971,12 @@ namespace HZZH.Vision.Logic
                     new PointF(imgWidth / 2f, imgHeight / 2f),
                     new PointF());
 
+                VisionResult result = new VisionResult();
                 result.X = worldPoint.X;
                 result.Y = worldPoint.Y;
                 result.R = match.Angle.TupleDeg()[n].F;
                 result.Type = index;
+                Debug.WriteLine(string.Format("左焊锡结果：Num={0}，X={1}，Y={2}，R={3}，ID={4}", n, result.X, result.Y, result.R, result.Type));
 
                 if (visionAPIDef != null)
                 {
@@ -1043,7 +1045,7 @@ namespace HZZH.Vision.Logic
             DisplayModelResult(hWndCtrller[5], shape);
 
             // 结果转换
-            VisionResult result = new VisionResult();
+            //VisionResult result = new VisionResult();
             for (int n = 0; n < match.Count; n++)
             {
                 int imgWidth, imgHeight;
@@ -1055,10 +1057,12 @@ namespace HZZH.Vision.Logic
                     new PointF(imgWidth / 2f, imgHeight / 2f),
                     new PointF());
 
+                VisionResult result = new VisionResult();
                 result.X = worldPoint.X;
                 result.Y = worldPoint.Y;
                 result.R = match.Angle.TupleDeg()[n].F;
                 result.Type = index;
+                Debug.WriteLine(string.Format("右焊锡结果：Num={0}，X={1}，Y={2}，R={3}，ID={4}", n, result.X, result.Y, result.R, result.Type));
                 if (visionAPIDef != null)
                 {
                     visionAPIDef.SolderRight.Add(result);
@@ -1143,6 +1147,7 @@ namespace HZZH.Vision.Logic
                 result.Y = worldPoint.Y;
                 result.R = match.Angle.TupleDeg()[n].F;
                 result.Type = index;
+                Debug.WriteLine(string.Format("左打磨结果：Num={0}，X={1}，Y={2}，R={3}，ID={4}", n, result.X, result.Y, result.R, result.Type));
 
                 if (visionAPIDef != null)
                 {
@@ -1229,6 +1234,7 @@ namespace HZZH.Vision.Logic
                 result.Y = worldPoint.Y;
                 result.R = match.Angle.TupleDeg()[n].F;
                 result.Type = index;
+                Debug.WriteLine(string.Format("右打磨结果：Num={0}，X={1}，Y={2}，R={3}，ID={4}", n, result.X, result.Y, result.R, result.Type));
 
                 if (visionAPIDef != null)
                 {

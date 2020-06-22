@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Jog));
             this.panel5 = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label_X = new System.Windows.Forms.Label();
             this.label_R = new System.Windows.Forms.Label();
@@ -54,7 +55,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.button4 = new System.Windows.Forms.Button();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown31)).BeginInit();
             this.SuspendLayout();
@@ -93,6 +93,21 @@
             this.panel5.Size = new System.Drawing.Size(394, 174);
             this.panel5.TabIndex = 4;
             // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.SystemColors.Control;
+            this.button4.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.button4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button4.Location = new System.Drawing.Point(341, 6);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(48, 35);
+            this.button4.TabIndex = 255;
+            this.button4.Tag = "0";
+            this.button4.Text = "打磨";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
@@ -100,7 +115,7 @@
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.Location = new System.Drawing.Point(4, 14);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(48, 16);
+            this.checkBox1.Size = new System.Drawing.Size(59, 19);
             this.checkBox1.TabIndex = 254;
             this.checkBox1.Text = "点动";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -111,7 +126,7 @@
             this.label_X.AutoSize = true;
             this.label_X.Location = new System.Drawing.Point(159, 139);
             this.label_X.Name = "label_X";
-            this.label_X.Size = new System.Drawing.Size(53, 12);
+            this.label_X.Size = new System.Drawing.Size(71, 15);
             this.label_X.TabIndex = 253;
             this.label_X.Text = "X:000.00";
             // 
@@ -120,7 +135,7 @@
             this.label_R.AutoSize = true;
             this.label_R.Location = new System.Drawing.Point(336, 99);
             this.label_R.Name = "label_R";
-            this.label_R.Size = new System.Drawing.Size(53, 12);
+            this.label_R.Size = new System.Drawing.Size(71, 15);
             this.label_R.TabIndex = 252;
             this.label_R.Text = "R:000.00";
             // 
@@ -129,7 +144,7 @@
             this.label_Z.AutoSize = true;
             this.label_Z.Location = new System.Drawing.Point(211, 92);
             this.label_Z.Name = "label_Z";
-            this.label_Z.Size = new System.Drawing.Size(53, 12);
+            this.label_Z.Size = new System.Drawing.Size(71, 15);
             this.label_Z.TabIndex = 251;
             this.label_Z.Text = "Z:000.00";
             // 
@@ -138,7 +153,7 @@
             this.label_Y.AutoSize = true;
             this.label_Y.Location = new System.Drawing.Point(159, 46);
             this.label_Y.Name = "label_Y";
-            this.label_Y.Size = new System.Drawing.Size(53, 12);
+            this.label_Y.Size = new System.Drawing.Size(71, 15);
             this.label_Y.TabIndex = 250;
             this.label_Y.Text = "Y:000.00";
             // 
@@ -147,7 +162,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(56, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(29, 12);
+            this.label1.Size = new System.Drawing.Size(37, 15);
             this.label1.TabIndex = 248;
             this.label1.Text = "步长";
             // 
@@ -267,7 +282,7 @@
             0,
             0});
             this.numericUpDown31.Name = "numericUpDown31";
-            this.numericUpDown31.Size = new System.Drawing.Size(76, 21);
+            this.numericUpDown31.Size = new System.Drawing.Size(76, 25);
             this.numericUpDown31.TabIndex = 238;
             this.numericUpDown31.Value = new decimal(new int[] {
             1,
@@ -299,7 +314,7 @@
             this.comboBox4.FormattingEnabled = true;
             this.comboBox4.Location = new System.Drawing.Point(209, 9);
             this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(87, 28);
+            this.comboBox4.Size = new System.Drawing.Size(87, 31);
             this.comboBox4.TabIndex = 235;
             // 
             // button17
@@ -402,22 +417,6 @@
             // 
             this.timer1.Interval = 200;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.SystemColors.Control;
-            this.button4.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.button4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button4.Location = new System.Drawing.Point(341, 6);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(48, 35);
-            this.button4.TabIndex = 255;
-            this.button4.Tag = "0";
-            this.button4.Text = "打磨";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            this.button4.Enabled = true;//按钮使能
             // 
             // Jog
             // 
