@@ -21,6 +21,7 @@ using ApiClass;
 using LicenseManagement;
 using UI;
 using HZZH.UI;
+using Device;
 
 namespace UI
 {
@@ -672,11 +673,11 @@ namespace UI
         {
             if (RunProcess.movedriverZm.Succeed)
             {
+                RunProcess.FSM.Stop();
+
                 RunProcess.ProcessData = new ProcessDataDef();
                 RunProcess.LogicTask = new LogicTaskDef();
                 RunProcess.PolishBusy = false;
-
-                RunProcess.FSM.Stop();
                 userCtrlMsgListView1.AddUserMsg("设备停止", "提示");
             }
         }
@@ -826,7 +827,21 @@ namespace UI
         private bool[,] b_statusError = new bool[20, 32];
         private void timer1_Tick(object sender, EventArgs e)
         {
-			int[] error = (int[])RunProcess.movedriverZm.ErrorCode.IntValue.Clone();
+            label63.Text = "X1 : " + RunProcess.movedriverZm.CurrentPos.FloatValue[Convert.ToInt32(AxisDef.AxX1)].ToString("f2");
+            label64.Text = "Y1 : " + RunProcess.movedriverZm.CurrentPos.FloatValue[Convert.ToInt32(AxisDef.AxY1)].ToString("f2");
+            label67.Text = "Z1 : " + RunProcess.movedriverZm.CurrentPos.FloatValue[Convert.ToInt32(AxisDef.AxZ1)].ToString("f2");
+            label66.Text = "R1 : " + RunProcess.movedriverZm.CurrentPos.FloatValue[Convert.ToInt32(AxisDef.AxR1)].ToString("f2");
+           
+            label69.Text = "X2 : " + RunProcess.movedriverZm.CurrentPos.FloatValue[Convert.ToInt32(AxisDef.AxX2)].ToString("f2");
+            label68.Text = "Y2 : " + RunProcess.movedriverZm.CurrentPos.FloatValue[Convert.ToInt32(AxisDef.AxY2)].ToString("f2");
+            label65.Text = "Z2 : " + RunProcess.movedriverZm.CurrentPos.FloatValue[Convert.ToInt32(AxisDef.AxZ2)].ToString("f2");
+            label62.Text = "R2 : " + RunProcess.movedriverZm.CurrentPos.FloatValue[Convert.ToInt32(AxisDef.AxR2)].ToString("f2");
+           
+            label75.Text = "X3 : " + RunProcess.movedriverZm.CurrentPos.FloatValue[Convert.ToInt32(AxisDef.AxX3)].ToString("f2");
+            label74.Text = "Z3 : " + RunProcess.movedriverZm.CurrentPos.FloatValue[Convert.ToInt32(AxisDef.AxZ3)].ToString("f2");
+            label73.Text = "R3 : " + RunProcess.movedriverZm.CurrentPos.FloatValue[Convert.ToInt32(AxisDef.AxR3)].ToString("f2");
+
+            int[] error = (int[])RunProcess.movedriverZm.ErrorCode.IntValue.Clone();
 			int[] errorLevel = (int[])RunProcess.movedriverZm.ErrorLevel.IntValue.Clone();
             foreach (string str in ConfigHandle.Instance.AlarmDefine.ErrorInformation(error, errorLevel[0], b_statusError))
             {
@@ -898,6 +913,9 @@ namespace UI
             tsslbl_Camera2.BackColor = VisionProject.Instance.CameraConnected(1) ? SystemColors.ActiveCaption : Color.Red;
             tsslbl_Camera3.Text = VisionProject.Instance.CameraConnected(2) ? "相机3:链接" : "相机3:断开";
             tsslbl_Camera3.BackColor = VisionProject.Instance.CameraConnected(2) ? SystemColors.ActiveCaption : Color.Red;
+            
+           
+
             toolStripStatusLabel1.Text = "版本号：" + FormMain.RunProcess.movedriverZm.SoftWare_Ver.IntValue[0].ToString() + "." +
             FormMain.RunProcess.movedriverZm.SoftWare_Ver.IntValue[1].ToString() + "." +
             FormMain.RunProcess.movedriverZm.SoftWare_Ver.IntValue[2].ToString() + "." + 
