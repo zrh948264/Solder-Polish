@@ -1254,6 +1254,16 @@ namespace Logic
             temp.AddRange(Functions.NetworkBytes(LogicData.slaverData.basics.PolishBlowDelay));
             movedriverZm.WriteRegister(new BaseData(4088, temp.ToArray()));
 
+            temp = new List<byte>();
+            temp.AddRange(Functions.NetworkBytes(LogicData.slaverData.basics.lefrScalingPowderTime));//左助焊剂时间
+            movedriverZm.WriteRegister(new BaseData(4622, temp.ToArray()));
+
+            temp = new List<byte>();
+            temp.AddRange(Functions.NetworkBytes(LogicData.slaverData.basics.rightScalingPowderTime));//右助焊剂时间
+            movedriverZm.WriteRegister(new BaseData(5022, temp.ToArray()));
+
+
+
 
             temp = new List<byte>();
             temp.AddRange(Functions.NetworkBytes(LogicData.slaverData.rstPos1.mode));
