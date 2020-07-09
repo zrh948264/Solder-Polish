@@ -524,6 +524,9 @@ namespace Motion
         public int polish_z_Lpos { get; set; }//左拍照安全高度
         public int polish_z_Rpos { get; set; }//右拍照安全高度
 
+        public int lefrScalingPowderTime { get; set; }//左助焊剂时间
+        public int rightScalingPowderTime { get; set; }//右助焊剂时间
+
         public float Safe_Z { get; set; }
         public float PolishSpeed { get; set; }
         public float TeachSpeed { get; set; }
@@ -552,6 +555,9 @@ namespace Motion
             WeldSpeedR = 20;
             TeachSpeedL = 30;
             TeachSpeedR = 30;
+
+            lefrScalingPowderTime = 5;//默认5ms
+            rightScalingPowderTime = 5;//默认5ms
 
             Safe_Z = 2;
             PolishSpeed = 20;

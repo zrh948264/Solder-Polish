@@ -492,7 +492,11 @@ namespace UI
 
                 Functions.SetBinding(numericUpDown53, "Value", RunProcess.LogicData.slaverData.basics, "polish_z_Lpos");//拍照高度
                 Functions.SetBinding(numericUpDown54, "Value", RunProcess.LogicData.slaverData.basics, "polish_z_Rpos");//拍照高度
-             
+
+                Functions.SetBinding(numericUpDown55, "Value", RunProcess.LogicData.slaverData.basics, "lefrScalingPowderTime");//左助焊剂时间默认5ms
+                Functions.SetBinding(numericUpDown56, "Value", RunProcess.LogicData.slaverData.basics, "rightScalingPowderTime");//右助焊剂时间默认5ms
+
+
                 Functions.SetBinding(numericUpDown_LSpd, "Value", RunProcess.LogicData.slaverData.basics, "WeldSpeedL");//速度窗口：左上锡速度的数据绑定
                 Functions.SetBinding(numericUpDown42, "Value", RunProcess.LogicData.slaverData.basics, "WeldSpeedR");//速度窗口：有上锡速度的数据绑定
                 Functions.SetBinding(numericUpDown41, "Value", RunProcess.LogicData.slaverData.basics, "TeachSpeedL");//速度窗口：左示教速度的数据绑定
