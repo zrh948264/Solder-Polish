@@ -95,7 +95,7 @@ namespace Motion
             rinseMode = 0;
 
             UPH = 0;
-
+            clearnum = 6;
             pNumL = 1;
             pNumR = 1;
             sNumL = 1;

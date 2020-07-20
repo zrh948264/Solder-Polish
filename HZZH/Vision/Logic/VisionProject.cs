@@ -970,7 +970,6 @@ namespace HZZH.Vision.Logic
                     out worldPoint,
                     new PointF(imgWidth / 2f, imgHeight / 2f),
                     new PointF());
-
                 VisionResult result = new VisionResult();
                 result.X = worldPoint.X;
                 result.Y = worldPoint.Y;
@@ -1056,13 +1055,12 @@ namespace HZZH.Vision.Logic
                     out worldPoint,
                     new PointF(imgWidth / 2f, imgHeight / 2f),
                     new PointF());
-
                 VisionResult result = new VisionResult();
                 result.X = worldPoint.X;
                 result.Y = worldPoint.Y;
                 result.R = match.Angle.TupleDeg()[n].F;
                 result.Type = index;
-                Debug.WriteLine(string.Format("右焊锡结果：Num={0}，X={1}，Y={2}，R={3}，ID={4}", n, result.X, result.Y, result.R, result.Type));
+                Debug.WriteLine(string.Format("视觉结果：X={0}，Y={1}", result.X, result.Y));
                 if (visionAPIDef != null)
                 {
                     visionAPIDef.SolderRight.Add(result);
