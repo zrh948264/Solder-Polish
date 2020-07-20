@@ -923,7 +923,7 @@ namespace Logic
                             p.solderDef.LiftHeight = p.pos.Z - LogicData.slaverData.basics.Safe_ZL;
                         }
 
-                        if ((cnt[my.ID] % LogicData.RunData.clearnum == 0) && LogicData.RunData.rinseMode == 3)//每几个点去清洗
+                        if ((cnt[my.ID] % (LogicData.RunData.clearnum == 0 ? 1 : LogicData.RunData.clearnum) == 0) && LogicData.RunData.rinseMode == 3)//每几个点去清洗
                         {
                             p.rinse = true;
                         }
@@ -1375,7 +1375,7 @@ namespace Logic
                                 WorkLogic(LogicTask.WorkTask[i]);
                                 PolishLogic(LogicTask.PolishTask[i]);
                                 SolderLogic(LogicTask.SolderTask[i]);
-                            }
+                             }
 
                         }
                     }
