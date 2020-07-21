@@ -67,21 +67,33 @@ namespace UI
             {
                 case LEFT_SOLDER:
                     //textBox1.Text = FormMain.RunProcess.LogicData.RunData.sNumL.ToString();
+                    numericUpDown1.Visible = label1.Visible = false;
+                    Functions.SetBinding(numericUpDown1, "Value", FormMain.RunProcess.LogicData.RunData, "sNumL");
+
                     locationShapes = VisionProject.Instance.VisionTools.SolderLeft;
                     _SolderPos = FormMain.RunProcess.LogicData.vData.vSolderDatasL;
                     break;
                 case RIGHT_SOLSER:
                     //textBox1.Text = FormMain.RunProcess.LogicData.RunData.sNumR.ToString();
+                    numericUpDown1.Visible = label1.Visible = false;
+                    Functions.SetBinding(numericUpDown1, "Value", FormMain.RunProcess.LogicData.RunData, "sNumR");
+
                     locationShapes = VisionProject.Instance.VisionTools.SolderRight;
                     _SolderPos = FormMain.RunProcess.LogicData.vData.vSolderDatasR;
                     break;
                 case LEFT_POLISH:
                     //textBox1.Text = FormMain.RunProcess.LogicData.RunData.pNumL.ToString();
+                    numericUpDown1.Visible = label1.Visible = true;
+                    Functions.SetBinding(numericUpDown1, "Value", FormMain.RunProcess.LogicData.RunData, "pNumL");
+
                     locationShapes = VisionProject.Instance.VisionTools.PolishLeft;
                     _polishPos = FormMain.RunProcess.LogicData.vData.vPolishDatasL;
                     break;
                 case RIGHT_POLISH:
                     //textBox1.Text = FormMain.RunProcess.LogicData.RunData.pNumR.ToString();
+                    numericUpDown1.Visible = label1.Visible = true;
+                    Functions.SetBinding(numericUpDown1, "Value", FormMain.RunProcess.LogicData.RunData, "pNumR");
+
                     locationShapes = VisionProject.Instance.VisionTools.PolishRight;
                     _polishPos = FormMain.RunProcess.LogicData.vData.vPolishDatasR;
                     break;

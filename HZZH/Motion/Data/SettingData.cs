@@ -47,7 +47,9 @@ namespace Motion
         /// 清洗模式：0不清洗，1逐产品清洗，2焊前清洗
         /// </summary>
         public int rinseMode { get; set; }
-
+        /// <summary>
+        /// 隔多少个工作点清洗
+        /// </summary>
         public int clearnum { get; set; }
 
         /// <summary>
@@ -62,22 +64,49 @@ namespace Motion
         /// UPH
         /// </summary>
         public int UPH { set; get; }
+        /// <summary>
+        /// 周期
+        /// </summary>
         public int polishtimes { set; get; }
+        /// <summary>
+        /// 移动速度
+        /// </summary>
         public int moveSpd { get; set; }
-        
+        /// <summary>
+        /// 焊头使用次数
+        /// </summary>
         public int leftSoldertintimes { set; get; }
+        /// <summary>
+        /// 右焊头使用次数
+        /// </summary>
         public int rightSoldertintimes { set; get; }
 
 
-
+        /// <summary>
+        /// 左旋转参数
+        /// </summary>
         public TeachingMechinePra TeachingMechinePra_Left { get; set; }
+        /// <summary>
+        /// 右旋转参数
+        /// </summary>
         public TeachingMechinePra TeachingMechinePra_Right { get; set; }
 
+        /// <summary>
+        /// 旋转选用左
+        /// </summary>
         public bool Rotate { get; set; }
+        /// <summary>
+        /// 旋转选用右
+        /// </summary>
         public bool Rotate_r { get; set; }
 
         #endregion
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="LorR"></param>
+        /// <returns></returns>
         public bool rotate(int LorR)
         {
             if (LorR == 0)
@@ -524,9 +553,6 @@ namespace Motion
         public int polish_z_Lpos { get; set; }//左拍照安全高度
         public int polish_z_Rpos { get; set; }//右拍照安全高度
 
-        public int lefrScalingPowderTime { get; set; }//左助焊剂时间
-        public int rightScalingPowderTime { get; set; }//右助焊剂时间
-
         public float Safe_Z { get; set; }
         public float PolishSpeed { get; set; }
         public float TeachSpeed { get; set; }
@@ -555,9 +581,6 @@ namespace Motion
             WeldSpeedR = 20;
             TeachSpeedL = 30;
             TeachSpeedR = 30;
-
-            lefrScalingPowderTime = 5;//默认5ms
-            rightScalingPowderTime = 5;//默认5ms
 
             Safe_Z = 2;
             PolishSpeed = 20;

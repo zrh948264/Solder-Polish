@@ -471,10 +471,6 @@
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.numericUpDown55 = new System.Windows.Forms.NumericUpDown();
-            this.label70 = new System.Windows.Forms.Label();
-            this.numericUpDown56 = new System.Windows.Forms.NumericUpDown();
-            this.label71 = new System.Windows.Forms.Label();
             this.contextMenuStrip2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -603,8 +599,6 @@
             this.panel11_A.SuspendLayout();
             this.panel25.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown55)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown56)).BeginInit();
             this.SuspendLayout();
             // 
             // contextMenuStrip2
@@ -2439,8 +2433,6 @@
             // 
             // tabPage12
             // 
-            this.tabPage12.Controls.Add(this.numericUpDown55);
-            this.tabPage12.Controls.Add(this.label70);
             this.tabPage12.Controls.Add(this.groupBox1);
             this.tabPage12.Controls.Add(this.groupBox4);
             this.tabPage12.Controls.Add(this.numericUpDown47);
@@ -3126,8 +3118,6 @@
             // 
             // tabPage13
             // 
-            this.tabPage13.Controls.Add(this.numericUpDown56);
-            this.tabPage13.Controls.Add(this.label71);
             this.tabPage13.Controls.Add(this.numericUpDown46);
             this.tabPage13.Controls.Add(this.label55);
             this.tabPage13.Controls.Add(this.groupBox2);
@@ -5898,64 +5888,6 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // numericUpDown55
-            // 
-            this.numericUpDown55.DecimalPlaces = 2;
-            this.numericUpDown55.Location = new System.Drawing.Point(392, 408);
-            this.numericUpDown55.Margin = new System.Windows.Forms.Padding(4);
-            this.numericUpDown55.Maximum = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-            this.numericUpDown55.Minimum = new decimal(new int[] {
-            500,
-            0,
-            0,
-            -2147483648});
-            this.numericUpDown55.Name = "numericUpDown55";
-            this.numericUpDown55.Size = new System.Drawing.Size(101, 25);
-            this.numericUpDown55.TabIndex = 30;
-            // 
-            // label70
-            // 
-            this.label70.AutoSize = true;
-            this.label70.Location = new System.Drawing.Point(282, 412);
-            this.label70.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label70.Name = "label70";
-            this.label70.Size = new System.Drawing.Size(97, 15);
-            this.label70.TabIndex = 29;
-            this.label70.Text = "左助焊剂时间";
-            // 
-            // numericUpDown56
-            // 
-            this.numericUpDown56.DecimalPlaces = 2;
-            this.numericUpDown56.Location = new System.Drawing.Point(384, 407);
-            this.numericUpDown56.Margin = new System.Windows.Forms.Padding(4);
-            this.numericUpDown56.Maximum = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-            this.numericUpDown56.Minimum = new decimal(new int[] {
-            500,
-            0,
-            0,
-            -2147483648});
-            this.numericUpDown56.Name = "numericUpDown56";
-            this.numericUpDown56.Size = new System.Drawing.Size(101, 25);
-            this.numericUpDown56.TabIndex = 32;
-            // 
-            // label71
-            // 
-            this.label71.AutoSize = true;
-            this.label71.Location = new System.Drawing.Point(274, 413);
-            this.label71.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label71.Name = "label71";
-            this.label71.Size = new System.Drawing.Size(97, 15);
-            this.label71.TabIndex = 31;
-            this.label71.Text = "右助焊剂时间";
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -6139,8 +6071,6 @@
             this.panel25.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown55)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown56)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -6576,9 +6506,5 @@
         private System.Windows.Forms.Label label69;
         private System.Windows.Forms.Label label66;
         private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.NumericUpDown numericUpDown55;
-        private System.Windows.Forms.Label label70;
-        private System.Windows.Forms.NumericUpDown numericUpDown56;
-        private System.Windows.Forms.Label label71;
     }
 }
