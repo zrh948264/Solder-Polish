@@ -50,6 +50,8 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.一键同步参数ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -57,6 +59,7 @@
             this.panel3.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -196,6 +199,8 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Controls.Add(this.numericUpDown1);
             this.panel3.Controls.Add(this.button9);
             this.panel3.Controls.Add(this.button8);
             this.panel3.Controls.Add(this.button6);
@@ -209,7 +214,7 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(128, 20);
+            this.button9.Location = new System.Drawing.Point(90, 19);
             this.button9.Margin = new System.Windows.Forms.Padding(2);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(62, 37);
@@ -220,7 +225,7 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(352, 20);
+            this.button8.Location = new System.Drawing.Point(254, 19);
             this.button8.Margin = new System.Windows.Forms.Padding(2);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(62, 37);
@@ -231,7 +236,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(240, 20);
+            this.button6.Location = new System.Drawing.Point(172, 19);
             this.button6.Margin = new System.Windows.Forms.Padding(2);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(62, 37);
@@ -242,7 +247,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(16, 20);
+            this.button5.Location = new System.Drawing.Point(8, 19);
             this.button5.Margin = new System.Windows.Forms.Padding(2);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(62, 37);
@@ -301,6 +306,22 @@
             this.一键同步参数ToolStripMenuItem.Text = "一键同步参数";
             this.一键同步参数ToolStripMenuItem.Click += new System.EventHandler(this.一键同步参数ToolStripMenuItem_Click);
             // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(343, 34);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(83, 21);
+            this.numericUpDown1.TabIndex = 53;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(358, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 12);
+            this.label1.TabIndex = 54;
+            this.label1.Text = "识别个数";
+            // 
             // Form_SolderSet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -317,8 +338,10 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -346,5 +369,7 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 一键同步参数ToolStripMenuItem;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
     }
 }

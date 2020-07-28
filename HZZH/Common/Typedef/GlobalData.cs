@@ -77,6 +77,9 @@ namespace Common
     public class wPointF:ICloneable
     {
         public bool enable { get; set; }
+        /// <summary>
+        /// 对应匹配模板
+        /// </summary>
         public int templateIndex { get; set; }
         public float X { get; set; }
         public float Y { get; set; }

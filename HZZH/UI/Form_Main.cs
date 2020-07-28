@@ -29,6 +29,9 @@ namespace UI
 	{
 		public static LogicMain RunProcess = new LogicMain();
 
+        /// <summary>
+        /// 拍全局模式选用，默认为拍全局，代码内设置
+        /// </summary>
         public static bool PanoramaEnd = false;
 
         public FormMain()
@@ -492,10 +495,7 @@ namespace UI
 
                 Functions.SetBinding(numericUpDown53, "Value", RunProcess.LogicData.slaverData.basics, "polish_z_Lpos");//拍照高度
                 Functions.SetBinding(numericUpDown54, "Value", RunProcess.LogicData.slaverData.basics, "polish_z_Rpos");//拍照高度
-
-                Functions.SetBinding(numericUpDown55, "Value", RunProcess.LogicData.slaverData.basics, "lefrScalingPowderTime");//左助焊剂时间默认5ms
-                Functions.SetBinding(numericUpDown56, "Value", RunProcess.LogicData.slaverData.basics, "rightScalingPowderTime");//右助焊剂时间默认5ms
-
+                Functions.SetBinding(numericUpDown55, "Value", RunProcess.LogicData.RunData, "polishNum");//拍照高度
 
                 Functions.SetBinding(numericUpDown_LSpd, "Value", RunProcess.LogicData.slaverData.basics, "WeldSpeedL");//速度窗口：左上锡速度的数据绑定
                 Functions.SetBinding(numericUpDown42, "Value", RunProcess.LogicData.slaverData.basics, "WeldSpeedR");//速度窗口：有上锡速度的数据绑定
@@ -923,14 +923,25 @@ namespace UI
             toolStripStatusLabel1.Text = "版本号：" + FormMain.RunProcess.movedriverZm.SoftWare_Ver.IntValue[0].ToString() + "." +
             FormMain.RunProcess.movedriverZm.SoftWare_Ver.IntValue[1].ToString() + "." +
             FormMain.RunProcess.movedriverZm.SoftWare_Ver.IntValue[2].ToString() + "." + 
-            FormMain.RunProcess.movedriverZm.SoftWare_Ver.IntValue[3].ToString() + "年" +
-            FormMain.RunProcess.movedriverZm.SoftWare_Ver.IntValue[4].ToString() + "月" +
-            FormMain.RunProcess.movedriverZm.SoftWare_Ver.IntValue[5].ToString() + "日" +
-            "_" + FormMain.RunProcess.movedriverZm.SoftWare_Ver.IntValue[6].ToString();
+            FormMain.RunProcess.movedriverZm.SoftWare_Ver.IntValue[3].ToString() + "." +
+            FormMain.RunProcess.movedriverZm.SoftWare_Ver.IntValue[4].ToString() + "." +
+            FormMain.RunProcess.movedriverZm.SoftWare_Ver.IntValue[5].ToString() + "_" + 
+            FormMain.RunProcess.movedriverZm.SoftWare_Ver.IntValue[6].ToString();
             label3.Text  = "焊头1使用次数：" + RunProcess.LogicData.RunData.leftSoldertintimes.ToString();
             label4.Text  = "焊头2使用次数：" + RunProcess.LogicData.RunData.rightSoldertintimes.ToString();
             label60.Text = "打磨头使用次数：" + RunProcess.LogicData.RunData.polishtimes.ToString();
-            
+            if (RunProcess.FSM.Status == FsmStaDef.RUN && RunProcess.LogicData.RunData.polishtimes >= RunProcess.LogicData.RunData.polishNum)
+            {
+                if (RunProcess.LogicTask.PolishTask[0].execute == 1 || RunProcess.LogicTask.PolishTask[1].execute == 1)
+                {
+                    RunProcess.LogicData.RunData.polishtimes = RunProcess.LogicData.RunData.polishNum;
+                }
+                else
+                {
+                    RunProcess.FSM.Status = FsmStaDef.STOP;
+                    MessageBox.Show("打磨头磨损严重，请更换打磨头并把打磨计数清零！", "警告");
+                }
+            }
 
 
             #region 加密狗
@@ -2366,6 +2377,7 @@ namespace UI
             frm_Machine.Show();
         }
         #endregion
+        
     }
 
     public class uphDef

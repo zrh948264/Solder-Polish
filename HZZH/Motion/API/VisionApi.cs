@@ -102,7 +102,7 @@ namespace Vision
 
             VisionProject.Instance.LocatePolishLeftShape();
             //VisionProject.Instance.LocatePolishLeftShape(index);
-            return PolishLeft.Count > 0;//= FormMain.RunProcess.LogicData.RunData.pNumL;
+            return PolishLeft.Count >= FormMain.RunProcess.LogicData.RunData.pNumL; //0;//
         }
         public bool TriggerCamera3(int index)
         {
@@ -117,7 +117,7 @@ namespace Vision
 
             VisionProject.Instance.LocatePolishRightShape();
             //VisionProject.Instance.LocatePolishRightShape(index);
-            return PolishRight.Count > 0;//= FormMain.RunProcess.LogicData.RunData.pNumR;
+            return PolishRight.Count >= FormMain.RunProcess.LogicData.RunData.pNumR;//0;//
         }
     }
 
