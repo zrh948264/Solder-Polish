@@ -20,9 +20,7 @@ namespace Motion
         /// </summary>
         public List<wPointF>[] wPointFs_PolishF = new List<wPointF>[] { new List<wPointF>(), new List<wPointF>() };
         public List<wPointF>[] wPointFs_PolishV = new List<wPointF>[] { new List<wPointF>(), new List<wPointF>() };
-
-
-
+        
         /// <summary>
         /// 上锡点拍照
         /// </summary>
@@ -35,7 +33,8 @@ namespace Motion
         public List<SolderPosdata>[] SolderList = new List<SolderPosdata>[] { new List<SolderPosdata>(), new List<SolderPosdata>() };
         public List<PolishPosdata>[] PolishList = new List<PolishPosdata>[] { new List<PolishPosdata>(), new List<PolishPosdata>() };
 
-        public List<float>[] SolderList_Ang = new List<float>[] { new List<float>(), new List<float>() };
+        public List<bool>[] SolderList_EnableF = new List<bool>[] { new List<bool>(), new List<bool>() };
+        public List<bool>[] SolderList_EnableV = new List<bool>[] { new List<bool>(), new List<bool>() };
 
 
         public ProcessDataDef()

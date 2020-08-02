@@ -925,7 +925,7 @@ namespace HZZH.Vision.Logic
         }
 
         /// <summary>
-        /// 做焊锡模板定位
+        /// 左焊锡模板定位
         /// </summary>
         public void LocateSolderLeftShape()
         {
@@ -959,7 +959,7 @@ namespace HZZH.Vision.Logic
             DisplayModelResult(hWndCtrller[3], shape);
 
             // 结果转换
-            VisionResult result = new VisionResult();
+            //VisionResult result = new VisionResult();
             for (int n = 0; n < match.Count; n++)
             {
                 int imgWidth, imgHeight;
@@ -970,7 +970,7 @@ namespace HZZH.Vision.Logic
                     out worldPoint,
                     new PointF(imgWidth / 2f, imgHeight / 2f),
                     new PointF());
-
+                VisionResult result = new VisionResult();
                 result.X = worldPoint.X;
                 result.Y = worldPoint.Y;
                 result.R = match.Angle.TupleDeg()[n].F;
@@ -1043,7 +1043,7 @@ namespace HZZH.Vision.Logic
             DisplayModelResult(hWndCtrller[5], shape);
 
             // 结果转换
-            VisionResult result = new VisionResult();
+            //VisionResult result = new VisionResult();
             for (int n = 0; n < match.Count; n++)
             {
                 int imgWidth, imgHeight;
@@ -1054,11 +1054,12 @@ namespace HZZH.Vision.Logic
                     out worldPoint,
                     new PointF(imgWidth / 2f, imgHeight / 2f),
                     new PointF());
-
+                VisionResult result = new VisionResult();
                 result.X = worldPoint.X;
                 result.Y = worldPoint.Y;
                 result.R = match.Angle.TupleDeg()[n].F;
                 result.Type = index;
+                Debug.WriteLine(string.Format("视觉结果：X={0}，Y={1}", result.X, result.Y));
                 if (visionAPIDef != null)
                 {
                     visionAPIDef.SolderRight.Add(result);
