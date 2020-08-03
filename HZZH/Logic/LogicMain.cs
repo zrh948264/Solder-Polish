@@ -749,7 +749,7 @@ namespace Logic
                             }
                             else
                             {
-                                if (my.cnt < ProcessData.SolderList_EnableF[my.ID].Count)//防止越界
+                                if (my.cnt >= ProcessData.SolderList_EnableF[my.ID].Count)//防止越界
                                 {
                                     my.cnt++;
                                     my.step = 2;
@@ -1026,7 +1026,7 @@ namespace Logic
                             }
                             else
                             {
-                                if (my.cnt < ProcessData.SolderList_EnableF[my.ID].Count)//防止越界
+                                if (my.cnt >= ProcessData.SolderList_EnableF[my.ID].Count)//防止越界
                                 {
                                     my.cnt++;
                                     my.step = 6;
