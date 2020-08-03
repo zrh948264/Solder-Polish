@@ -556,6 +556,15 @@ namespace Logic
                         }
                         else
                         {
+                            //results[my.ID] = DialogResult.None;
+                            //new Thread(() =>
+                            //{
+                            //    movedriverZm.WriteRegister(new BaseData((ushort)(1604 + 2 * my.ID), new int[] { 1 }));
+                            //    results[my.ID] = MessageBox.Show("平台" + my.ID.ToString() + "识别失败,是否重新拍照\n\r\n\r确定：重新拍照\n\r\n\r否：强制工作\n\r\n\r取消：跳过该点", "识别错误", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                            //    movedriverZm.WriteRegister(new BaseData((ushort)(1604 + 2 * my.ID), new int[] { 0 }));
+                            //}).Start();
+                            //my.step = 60;
+
                             if (ProcessData.wPointFs_PolishV[my.ID].Count <= my.cnt + 1)
                             {
                                 int end = 1;
@@ -719,7 +728,7 @@ namespace Logic
 
                 #region 正面
                 case 2://到拍照位
-                    if (my.cnt < ProcessData.wPointFs_SolderF[my.ID].Count)//还有牌照位没有拍到
+                    if (my.cnt < ProcessData.wPointFs_SolderF[my.ID].Count)//还有拍照位没有拍到
                     {
                         if (LogicAPI.PlatformMove[my.ID].sta() && LogicAPI.PlatformMove[my.ID].start != 1)//移动到位置
                         {
@@ -1026,7 +1035,7 @@ namespace Logic
                             }
                             else
                             {
-                                if (my.cnt >= ProcessData.SolderList_EnableF[my.ID].Count)//防止越界
+                                if (my.cnt >= ProcessData.SolderList_EnableV[my.ID].Count)//防止越界
                                 {
                                     my.cnt++;
                                     my.step = 6;

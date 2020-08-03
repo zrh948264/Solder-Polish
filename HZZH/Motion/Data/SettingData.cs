@@ -68,6 +68,7 @@ namespace Motion
         /// 周期
         /// </summary>
         public int polishtimes { set; get; }
+        public int polishNum { get; set; }
         /// <summary>
         /// 移动速度
         /// </summary>
