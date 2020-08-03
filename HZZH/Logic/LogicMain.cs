@@ -382,10 +382,13 @@ namespace Logic
                                 ProcessData.PolishList[my.ID].Add(data);//把排列好的点写进打磨list里
                             }
 
+
+
+                            ProcessData.SolderList_EnableF[my.ID][my.cnt] = true;
                             my.cnt++;
                             my.step = 2;
 
-                            ProcessData.SolderList_EnableF[my.ID][my.cnt] = true;
+                            //ProcessData.SolderList_EnableF[my.ID][my.cnt] = true;
 
                         }
                         else
@@ -548,23 +551,17 @@ namespace Logic
                             {
                                 ProcessData.PolishList[my.ID].Add(data);//加进打磨列表里
                             }
+
+                            ProcessData.SolderList_EnableV[my.ID][my.cnt] = true;
+
                             my.cnt++;
                             my.step = 6;
 
 
-                            ProcessData.SolderList_EnableV[my.ID][my.cnt] = true;
+                            //ProcessData.SolderList_EnableV[my.ID][my.cnt] = true;
                         }
                         else
                         {
-                            //results[my.ID] = DialogResult.None;
-                            //new Thread(() =>
-                            //{
-                            //    movedriverZm.WriteRegister(new BaseData((ushort)(1604 + 2 * my.ID), new int[] { 1 }));
-                            //    results[my.ID] = MessageBox.Show("平台" + my.ID.ToString() + "识别失败,是否重新拍照\n\r\n\r确定：重新拍照\n\r\n\r否：强制工作\n\r\n\r取消：跳过该点", "识别错误", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
-                            //    movedriverZm.WriteRegister(new BaseData((ushort)(1604 + 2 * my.ID), new int[] { 0 }));
-                            //}).Start();
-                            //my.step = 60;
-
                             if (ProcessData.wPointFs_PolishV[my.ID].Count <= my.cnt + 1)
                             {
                                 int end = 1;
