@@ -120,7 +120,7 @@
             resources.ApplyResources(this.hWindowControl1, "hWindowControl1");
             this.hWindowControl1.ImagePart = new System.Drawing.Rectangle(0, 0, 640, 480);
             this.hWindowControl1.Name = "hWindowControl1";
-            this.hWindowControl1.WindowSize = new System.Drawing.Size(767, 713);
+            this.hWindowControl1.WindowSize = new System.Drawing.Size(576, 565);
             // 
             // panel2
             // 

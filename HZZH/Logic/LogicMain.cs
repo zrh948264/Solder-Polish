@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using Common;
 using System.Windows.Forms;
@@ -875,74 +876,6 @@ namespace Logic
                         }
                     }
                     break;
-
-                case 20:
-                    if (results[my.ID] == DialogResult.Yes)
-                    {
-                        my.step = 3;
-                    }
-                    else if (results[my.ID] == DialogResult.No)
-                    {
-
-                        int count = ProcessData.SolderList[my.ID].Count;
-                        foreach (VisionResult result in VisionAPI.Solders(my.ID))
-                        {
-                            int type = result.Type;
-
-                            foreach (SolderPosdata p in LogicData.vData.soliderdata(my.ID)[type].pos)
-                            {
-                                float cAng = (float)(result.R * Math.PI / 180);
-
-                                float x = 0;
-                                float y = 0;
-
-                                float Tx = 0;
-                                float Ty = 0;
-                                float Tr = 0;
-
-                                if (LogicData.RunData.rotate(my.ID))
-                                {
-                                    x = result.X + pS[my.ID].X;
-                                    y = result.Y + pS[my.ID].Y;
-                                    Tr = result.R + p.pos.R;
-
-                                    Transorm((UsingPlatformSelect)my.ID, x, y, p.pos.X + x, p.pos.Y + y, p.pos.R, cAng, out Tx, out Ty);
-
-                                }
-                                else
-                                {
-                                    Tx = result.X + p.pos.X + pS[my.ID].X;
-                                    Ty = result.Y + p.pos.Y + pS[my.ID].Y;
-                                    Tr = p.pos.R;
-                                }
-
-                                SolderPosdata _pos = new SolderPosdata();
-                                _pos.pos.X = Tx;
-                                _pos.pos.Y = Ty;
-                                _pos.pos.R = Tr;
-                                _pos.pos.Z = p.pos.Z;
-                                _pos.solderDef = p.solderDef.Clone();
-
-
-                                if (LogicData.RunData.rinseMode == 1)//每几个清洗
-                                {
-                                    _pos.rinse = true;
-                                }
-
-                                ProcessData.SolderList[my.ID].Add(_pos);
-                            }
-                        }
-                        my.cnt++;
-                        my.step = 2;
-                    }
-                    else if (results[my.ID] == DialogResult.Cancel)
-                    {
-                        my.cnt++;
-                        my.step = 2;
-
-                    }
-                    break;
-
                 case 4:
                     if (ProcessData.SolderList[my.ID].Count > 0)
                     {

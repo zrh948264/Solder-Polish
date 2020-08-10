@@ -358,7 +358,7 @@ namespace UI
 
         private void _PrimaryForm_Closed(object sender, EventArgs e)
         {
-            Config.ConfigHandle.Instance.Save();
+            //Config.ConfigHandle.Instance.Save();
             base.ExitThread();
         }
 
