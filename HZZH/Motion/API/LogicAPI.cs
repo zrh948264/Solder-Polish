@@ -438,6 +438,54 @@ namespace Motion
         
     }
 
+    public class PolishRinse : BasicApiDef
+    {
+        public bool exe(CleanDef cleanDef)
+        {
+            switch (StartStep)
+            {
+                case 0:
+                    List<byte> temp = new List<byte>();
+                    temp.AddRange(Functions.NetworkBytes(1));
+
+                    temp.AddRange(Functions.NetworkBytes(cleanDef.Cleanmode));
+                    temp.AddRange(Functions.NetworkBytes(cleanDef.CleanPos_X));
+                    temp.AddRange(Functions.NetworkBytes(cleanDef.CleanPos_Z));
+                    temp.AddRange(Functions.NetworkBytes(cleanDef.CleanPos_R));
+                    temp.AddRange(Functions.NetworkBytes(cleanDef.GoBackTimes));
+                    temp.AddRange(Functions.NetworkBytes(cleanDef.CleanSpeed));
+                    temp.AddRange(Functions.NetworkBytes(cleanDef.GoBackRange));
+                    temp.AddRange(Functions.NetworkBytes(cleanDef.CleanInterval));
+
+                    CommData = new BaseData(Addr, temp.ToArray());
+                    movedriverZm.WriteRegister(CommData);
+                    StartOT.Restart();
+                    StartStep = 1;
+                    return false;
+
+                case 1:
+                    if (CommData.Succeed == true)
+                    {
+                        StartStep = 0;
+                        CommData.Succeed = false;
+                        return true;
+                    }
+                    if (StartOT.ElapsedMilliseconds > 10000)
+                    {
+                        StartStep = 0;
+                    }
+                    return false;
+
+                default:
+                    StartStep = 0;
+                    CommData.Succeed = false;
+                    return false;
+            }
+        }
+        public PolishRinse(Device.BoardCtrllerManager movedriverZm, ushort Addr) : base(movedriverZm, Addr) { }
+
+    }
+
     /// <summary>
     /// 翻转接口
     /// </summary>
@@ -502,6 +550,11 @@ namespace Motion
 
         public Polishcamera polishcameras { get; set; }//打磨拍照接口
         public Polish polish { get; set; }//打磨接口
+
+        /// <summary>
+        /// 打磨清洗
+        /// </summary>
+        public PolishRinse polishRinse{get;set;}
         #endregion
 
         public LogicAPIDef(BoardCtrllerManager movedriverZm)
@@ -524,6 +577,7 @@ namespace Motion
             polishcameras = new Polishcamera(this.movedriverZm, 1608);
 
             polish = new Polish(this.movedriverZm, 5200);
+            polishRinse = new PolishRinse(this.movedriverZm, 5308);
         }
 
         //输出口Set

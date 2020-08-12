@@ -530,6 +530,18 @@ namespace UI
                 Functions.SetBinding(numericUpDown34, "Value", RunProcess.LogicData.rinseData, "CleanTime");//清洗参数：清洗时间的数据绑定
                 Functions.SetBinding(numericUpDown38, "Value", RunProcess.LogicData.rinseData, "FrontLen");//清洗参数：送锡长度的数据绑定
                 Functions.SetBinding(numericUpDown37, "Value", RunProcess.LogicData.rinseData, "FrontSpeed");//清洗参数：送锡速度的数据绑定
+                                
+                Functions.SetBinding(comboBox3, "SelectedIndex", RunProcess.LogicData.rinseData, "Cleanmode");
+                Functions.SetBinding(numericUpDown_CleanPos_X, "Value", RunProcess.LogicData.rinseData, "CleanPos_X");
+                Functions.SetBinding(numericUpDown_CleanPos_Z, "Value", RunProcess.LogicData.rinseData, "CleanPos_Z");
+                Functions.SetBinding(numericUpDown_CleanPos_R, "Value", RunProcess.LogicData.rinseData, "CleanPos_R");
+                Functions.SetBinding(numericUpDown_GoBackTimes, "Value", RunProcess.LogicData.rinseData, "GoBackTimes");
+                Functions.SetBinding(numericUpDown_CleanSpeed, "Value", RunProcess.LogicData.rinseData, "CleanSpeed");
+                Functions.SetBinding(numericUpDown_GoBackRange, "Value", RunProcess.LogicData.rinseData, "GoBackRange");
+                Functions.SetBinding(numericUpDown_CleanInterval, "Value", RunProcess.LogicData.rinseData, "CleanInterval");
+
+                Functions.SetBinding(numericUpDown_CleanNum, "Value", RunProcess.LogicData.rinseData, "CleanNum");
+               // Functions.SetBinding(checkBox_CleanEn, "Value", RunProcess.LogicData.rinseData, "CleanEn");
 
                 #endregion
 
@@ -2388,7 +2400,24 @@ namespace UI
             frm_Machine.Show();
         }
         #endregion
-        
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            FormMain.RunProcess.LogicAPI.polishRinse.exe(RunProcess.LogicData.rinseData);
+            FormMain.RunProcess.LogicAPI.polishRinse.Initialize();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            numericUpDown_CleanPos_X.Value = (decimal)RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxX3];
+            numericUpDown_CleanPos_Z.Value = (decimal)RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxZ3];
+            numericUpDown_CleanPos_R.Value = (decimal)RunProcess.movedriverZm.CurrentPos.FloatValue[(int)AxisDef.AxR3];
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            while (!RunProcess.LogicAPI.PlatformMove[0].exe((int)AxisDef.AxX3, (int)AxisDef.AxY1, (int)AxisDef.AxZ3, (int)AxisDef.AxR3, (int)AxisDef.AxT1, (float)numericUpDown_CleanPos_X.Value, LogicMain.StopMove, (float)numericUpDown_CleanPos_Z.Value, (float)numericUpDown_CleanPos_R.Value, 2, 0)) { }
+        }
     }
 
     public class uphDef

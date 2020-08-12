@@ -155,6 +155,9 @@ namespace Logic
 
         public bool PolishBusy = false;//老化流程
 
+        public bool rinseL = false;
+        public bool rinseR = false;
+
         /// <summary>
         /// 读取平台工作
         /// </summary>
@@ -169,7 +172,7 @@ namespace Logic
                 LogicTask = new LogicTaskDef();
                 PolishBusy = false;
             }
-
+            
             if (FSM.RunMode == RunModeDef.AGING)//老化
             {
                 if (stadef == FsmStaDef.RUN)
@@ -198,6 +201,35 @@ namespace Logic
                     movedriverZm.WriteRegister(new BaseData((ushort)1504, new int[] { 0 }));
                 }
             }
+
+
+            if(stadef == FsmStaDef.STOP)
+            {
+                if ((DiDoStatus.CurrInputStatus[0] & (1 << 36)) == 0 && !rinseL)
+                {
+                    FormMain.RunProcess.LogicAPI.rinse[0].exe();
+                    FormMain.RunProcess.LogicAPI.rinse[0].Initialize();
+                    rinseL = true;
+                    Thread.Sleep(500);
+                }
+                else
+                {
+                    rinseL = false ;
+                }
+
+                if ((DiDoStatus.CurrInputStatus[0] & (1 << 37)) == 0 && !rinseR)
+                {
+                    FormMain.RunProcess.LogicAPI.rinse[1].exe();
+                    FormMain.RunProcess.LogicAPI.rinse[1].Initialize();
+                    rinseR = true;
+                    Thread.Sleep(500);
+                }
+                else
+                {
+                    rinseR = false;
+                }
+            }
+
         }
 
         /// <summary>
@@ -245,6 +277,10 @@ namespace Logic
         /// </summary>
         /// <param name="my"></param>
         wPointF[] pP = new wPointF[2] { new wPointF(), new wPointF() };
+        /// <summary>
+        /// 记录工作过多少个点
+        /// </summary>
+        int _polishcount = 0;
         void PolishLogic(TaskDef my)
         {
             my.Start();
@@ -442,6 +478,16 @@ namespace Logic
                 case 4:
                     if (ProcessData.PolishList[my.ID].Count > 0)//有打磨点
                     {
+                        if (_polishcount > LogicData.rinseData.CleanNum && LogicData.rinseData.CleanNum > 0)
+                        {
+                            while (!LogicAPI.polishRinse.exe(LogicData.rinseData))
+                            {
+                                Thread.Sleep(1);
+                            }
+                            _polishcount = 0;
+                            my.step = 11;
+                            break;
+                        }
                         PolishPosdata p = ProcessData.PolishList[my.ID][0];//实例化
                         int up = 0;//0:开打磨头1：关打磨头
 
@@ -460,6 +506,7 @@ namespace Logic
                         {
                             Thread.Sleep(1);
                         }
+                        _polishcount++; 
 
                         my.step = 5;
                     }
@@ -477,6 +524,12 @@ namespace Logic
                     if (LogicAPI.polish.sta() && LogicAPI.polish.start != 1)
                     {
                         ProcessData.PolishList[my.ID].RemoveAt(0);//删除该点
+                        my.step = 4;
+                    }
+                    break;
+                case 11:
+                    if (LogicAPI.polishRinse.sta() && LogicAPI.polishRinse.start != 1)
+                    {
                         my.step = 4;
                     }
                     break;
@@ -610,6 +663,17 @@ namespace Logic
                 case 8:
                     if (ProcessData.PolishList[my.ID].Count > 0)
                     {
+                        if(_polishcount > LogicData.rinseData.CleanNum && LogicData.rinseData.CleanNum > 0)
+                        {
+                            while (!LogicAPI.polishRinse.exe(LogicData.rinseData))
+                            {
+                                Thread.Sleep(1);
+                            }
+                            _polishcount = 0;
+                            my.step = 10;
+                            break;
+                        }
+                        
                         PolishPosdata p = ProcessData.PolishList[my.ID][0];
                         int up = 0;//0:开打磨头1：关打磨头
 
@@ -628,6 +692,8 @@ namespace Logic
                         {
                             Thread.Sleep(1);
                         }
+                        _polishcount++;
+
                         my.step = 9;
                     }
                     else
@@ -642,6 +708,12 @@ namespace Logic
                     if (LogicAPI.polish.sta() && LogicAPI.polish.start != 1)
                     {
                         ProcessData.PolishList[my.ID].RemoveAt(0);//删除该点
+                        my.step = 8;
+                    }
+                    break;
+                case 10:
+                    if (LogicAPI.polishRinse.sta() && LogicAPI.polishRinse.start != 1)
+                    {
                         my.step = 8;
                     }
                     break;

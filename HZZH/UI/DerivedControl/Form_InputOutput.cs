@@ -116,10 +116,6 @@ namespace MyControl
                     dataGridViewOUT.Rows[i].Cells[1].Value = "ON";
                     dataGridViewOUT.Rows[i].Cells[1].Style.ForeColor = clrSignalON;
                 }
-              //  else if ()
-               // {
-                    
-               // }
                 else
                 {
                     dataGridViewOUT.Rows[i].Cells[1].Value = "OFF";

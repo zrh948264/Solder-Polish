@@ -504,12 +504,28 @@ namespace Motion
 
         public PointF5 posL { get; set; }
         public PointF5 posR { get; set; }
-
+        
         public float FrontLen { get; set; }
         public float FrontSpeed { get; set; }
         public float BackLen { get; set; }
         public float BackSpeed { get; set; }
         public int CleanTime { get; set; }
+
+        /// <summary>
+        /// 打磨清洗模式 0 1
+        /// </summary>
+        public int Cleanmode { get; set; }
+        public float CleanPos_X { get; set; }
+        public float CleanPos_Z { get; set; }
+        public float CleanPos_R { get; set; }
+        public int GoBackTimes { get; set; }
+        public float CleanSpeed { get; set; }
+        public float GoBackRange { get; set; }
+        public float CleanInterval { get; set; }
+
+        public int CleanNum { get; set; }
+        public bool CleanEn { get; set; }
+
 
         #endregion
         public CleanDef()
@@ -522,6 +538,18 @@ namespace Motion
             BackLen = 1;
             BackSpeed = 100;
             CleanTime = 100;
+
+
+            Cleanmode = 0;
+            CleanPos_X = 0;
+            CleanPos_Z = 0;
+            CleanPos_R = 0;
+            GoBackTimes = 0;
+            CleanSpeed = 0;
+            GoBackRange = 0;
+            CleanInterval = 0;
+            CleanNum = 3;
+            CleanEn = true;
         }
     }
 
