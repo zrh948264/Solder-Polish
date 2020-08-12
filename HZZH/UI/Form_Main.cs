@@ -265,7 +265,7 @@ namespace UI
                     case "退出":
                         if (MessageBox.Show("是否退出软件", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.OK)
                         {
-                            Config.ConfigHandle.Instance.Save();
+                            //Config.ConfigHandle.Instance.Save();
                             Application.Exit();
                             //System.Environment.Exit(0);
                         }
@@ -289,19 +289,27 @@ namespace UI
                 {
                     case "PrjFileOpen":
                         btn_PrjFileOpen();
+                        Config.ConfigHandle.Instance.Save();
+                        VisionProject.Instance.SaveCalib();
                         break;
                     case "PrjFileNew":
                         if(MessageBox.Show("是否新建程式", "信息提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.OK)
                         {
                             btn_PrjFileNew();
                             VisionProject.Instance.NewVisionTool();
+                            Config.ConfigHandle.Instance.Save();
+                            VisionProject.Instance.SaveCalib();
                         }
                         break;
                     case "PrjFileSave":
                         btn_PrjFileSave();
+                        Config.ConfigHandle.Instance.Save();
+                        VisionProject.Instance.SaveCalib();
                         break;
                     case "PrjFileSaveAs":
                         btn_PrjFileSaveAs();
+                        Config.ConfigHandle.Instance.Save();
+                        VisionProject.Instance.SaveCalib();
                         break;
                     default:
                         break;
@@ -423,7 +431,7 @@ namespace UI
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             Logic.LogicMain.LogicThreadLife = false;
-            Config.ConfigHandle.Instance.Save();
+            //Config.ConfigHandle.Instance.Save();
             VisionProject.Instance.CurrentDomain_ProcessExit(null, EventArgs.Empty);
             
         }
@@ -829,6 +837,7 @@ namespace UI
 
         private int cnt = 0;
         private bool[,] b_statusError = new bool[20, 32];
+        bool max = true;
         private void timer1_Tick(object sender, EventArgs e)
         {
             label63.Text = "X1 : " + RunProcess.movedriverZm.CurrentPos.FloatValue[Convert.ToInt32(AxisDef.AxX1)].ToString("f2");
@@ -930,7 +939,7 @@ namespace UI
             label3.Text  = "焊头1使用次数：" + RunProcess.LogicData.RunData.leftSoldertintimes.ToString();
             label4.Text  = "焊头2使用次数：" + RunProcess.LogicData.RunData.rightSoldertintimes.ToString();
             label60.Text = "打磨头使用次数：" + RunProcess.LogicData.RunData.polishtimes.ToString();
-            if (RunProcess.FSM.Status == FsmStaDef.RUN && RunProcess.LogicData.RunData.polishtimes >= RunProcess.LogicData.RunData.polishNum)
+            if (max == true && RunProcess.FSM.Status == FsmStaDef.RUN && RunProcess.LogicData.RunData.polishtimes >= RunProcess.LogicData.RunData.polishNum)
             {
                 if (RunProcess.LogicTask.PolishTask[0].execute == 1 || RunProcess.LogicTask.PolishTask[1].execute == 1)
                 {
@@ -939,6 +948,7 @@ namespace UI
                 else
                 {
                     RunProcess.FSM.Status = FsmStaDef.STOP;
+                    max = false;
                     MessageBox.Show("打磨头磨损严重，请更换打磨头并把打磨计数清零！", "警告");
                 }
             }
@@ -2002,8 +2012,9 @@ namespace UI
         private void button1_Click(object sender, EventArgs e)//打磨头数据清零
         {
             FormMain.RunProcess.LogicData.RunData.polishtimes = 0;
-
-            FormMain.RunProcess.movedriverZm.WriteRegister(new BaseData(4084, new int[]{ 0,0 }));
+            max = true;
+            FormMain.RunProcess.movedriverZm.WriteRegister(new BaseData(4084, new int[] { 0,0 }));
+            FormMain.RunProcess.movedriverZm.WriteRegister(new BaseData(4086, new int[] { 0, 0 }));
         }
 
         private void button2_Click(object sender, EventArgs e)

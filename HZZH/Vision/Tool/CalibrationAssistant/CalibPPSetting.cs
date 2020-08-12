@@ -397,7 +397,7 @@ namespace Vision.Tool.Calibrate
                 {
                     continue;
                 }
-                Thread.Sleep(1000);
+                Thread.Sleep(3000);
                 ShapeMatchResult matchResult = FindShapeModel();
 
                 if (matchResult.Count > 0)
@@ -431,7 +431,6 @@ namespace Vision.Tool.Calibrate
 
             }
         }
-
 
         public void MoveImgCross()
         {
