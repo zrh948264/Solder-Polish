@@ -2416,7 +2416,19 @@ namespace UI
 
         private void button4_Click(object sender, EventArgs e)
         {
-            while (!RunProcess.LogicAPI.PlatformMove[0].exe((int)AxisDef.AxX3, (int)AxisDef.AxY1, (int)AxisDef.AxZ3, (int)AxisDef.AxR3, (int)AxisDef.AxT1, (float)numericUpDown_CleanPos_X.Value, LogicMain.StopMove, (float)numericUpDown_CleanPos_Z.Value, (float)numericUpDown_CleanPos_R.Value, 2, 0)) { }
+            while (!RunProcess.LogicAPI.PlatformMove[0].exe((int)AxisDef.AxX3, 
+                (int)AxisDef.AxY1, 
+                (int)AxisDef.AxZ3, 
+                (int)AxisDef.AxR3, 
+                (int)AxisDef.AxT1, 
+                (float)numericUpDown_CleanPos_X.Value,
+                LogicMain.StopMove, 
+                (float)numericUpDown_CleanPos_Z.Value, 
+                (float)numericUpDown_CleanPos_R.Value,
+                2, 0))
+            {
+                Thread.Sleep(5);
+            }
         }
     }
 

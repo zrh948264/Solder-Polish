@@ -203,28 +203,28 @@ namespace Logic
             }
 
 
-            if(stadef == FsmStaDef.STOP)
+            //if(stadef == FsmStaDef.STOP)
             {
-                if ((DiDoStatus.CurrInputStatus[0] & (1 << 36)) == 0 && !rinseL)
+                if ((DiDoStatus.CurrInputStatus[1] & (1 << 36)) == 0 && !rinseL)
                 {
                     FormMain.RunProcess.LogicAPI.rinse[0].exe();
                     FormMain.RunProcess.LogicAPI.rinse[0].Initialize();
                     rinseL = true;
                     Thread.Sleep(500);
                 }
-                else
+                else if((DiDoStatus.CurrInputStatus[1] & (1 << 36)) != 0)
                 {
                     rinseL = false ;
                 }
 
-                if ((DiDoStatus.CurrInputStatus[0] & (1 << 37)) == 0 && !rinseR)
+                if ((DiDoStatus.CurrInputStatus[1] & (1 << 37)) == 0 && !rinseR)
                 {
                     FormMain.RunProcess.LogicAPI.rinse[1].exe();
                     FormMain.RunProcess.LogicAPI.rinse[1].Initialize();
                     rinseR = true;
                     Thread.Sleep(500);
                 }
-                else
+                else if((DiDoStatus.CurrInputStatus[1] & (1 << 37)) != 0)
                 {
                     rinseR = false;
                 }

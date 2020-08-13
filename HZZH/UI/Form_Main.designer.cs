@@ -437,6 +437,7 @@
             this.toolStrip15 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel27 = new System.Windows.Forms.ToolStripLabel();
             this.hWindowControl3 = new HalconDotNet.HWindowControl();
+            this.userCtrlMsgListView1 = new userListView.UserCtrlMsgListView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -497,7 +498,6 @@
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.userCtrlMsgListView1 = new userListView.UserCtrlMsgListView();
             this.contextMenuStrip2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -4289,6 +4289,7 @@
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(87, 20);
             this.comboBox3.TabIndex = 42;
+            this.comboBox3.Visible = false;
             // 
             // numericUpDown_CleanSpeed
             // 
@@ -4338,6 +4339,7 @@
             this.label79.Size = new System.Drawing.Size(53, 12);
             this.label79.TabIndex = 25;
             this.label79.Text = "清洗方式";
+            this.label79.Visible = false;
             // 
             // label80
             // 
@@ -5387,6 +5389,15 @@
             this.hWindowControl3.Tag = "2";
             this.hWindowControl3.WindowSize = new System.Drawing.Size(291, 242);
             // 
+            // userCtrlMsgListView1
+            // 
+            this.userCtrlMsgListView1.ContextMenuStrip = this.contextMenuStrip2;
+            this.userCtrlMsgListView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userCtrlMsgListView1.Location = new System.Drawing.Point(3, 524);
+            this.userCtrlMsgListView1.Name = "userCtrlMsgListView1";
+            this.userCtrlMsgListView1.Size = new System.Drawing.Size(596, 204);
+            this.userCtrlMsgListView1.TabIndex = 22;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.panel1);
@@ -6030,15 +6041,6 @@
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // userCtrlMsgListView1
-            // 
-            this.userCtrlMsgListView1.ContextMenuStrip = this.contextMenuStrip2;
-            this.userCtrlMsgListView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userCtrlMsgListView1.Location = new System.Drawing.Point(3, 524);
-            this.userCtrlMsgListView1.Name = "userCtrlMsgListView1";
-            this.userCtrlMsgListView1.Size = new System.Drawing.Size(596, 204);
-            this.userCtrlMsgListView1.TabIndex = 22;
             // 
             // FormMain
             // 
